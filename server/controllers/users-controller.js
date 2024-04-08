@@ -1,5 +1,7 @@
 const HttpError = require("../models/http-error");
 const { validationResult } = require("express-validator");
+const crypto = require('crypto');
+
 const User = require("../models/users");
 const sendAuthLink = require("../util/authlink");
 
@@ -46,12 +48,15 @@ const signup = async (req, res, next) => {
     );
   }
 
+  const uniqueString = crypto.randomBytes(32).toString('hex');
+
   const newUser = new User({
     name,
     email,
     password,
     image,
     isValid: false,
+    uniqueString,
     posts: []
   });
 
@@ -64,8 +69,6 @@ const signup = async (req, res, next) => {
   const backendUrl = `https://5000-${process.env.GITPOD_WORKSPACE_ID}.${process.env.GITPOD_WORKSPACE_CLUSTER_HOST}`;
 
   console.log(backendUrl);
-
-  const uniqueString = "12345";
 
 	const message = {
 		from: '"NYIT FAMILY" <nyitfamily@gmail.com>', // sender address
@@ -83,6 +86,18 @@ const signup = async (req, res, next) => {
 const verify = async (req, res, next) => {
   const uniqueString = req.params.uniqueid;
 
+  let verifiedUser;
+  try {
+    verifiedUser = await User.findOne({ uniqueString });
+  } catch (error) {
+    return next(error);
+  }
+
+  if (!verifiedUser) {
+    return next(new HttpError("uniqueString not found", 404));
+  }
+
+  if (verifiedUser && verifiedUser.isValid === true)
 
   res.status(201).json({ userId: newUser.id, email: newUser.email });
 }
