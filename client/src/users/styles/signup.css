@@ -10,7 +10,7 @@
 .signup-container {
   width: 55%;
   height: 60%;
-  min-height: 470px;
+  min-height: 29.375rem;
   background-color: rgba(160, 197, 239, 0.49);
   border-radius: 50px;
 }
@@ -28,8 +28,8 @@
 
 .signup-content > span {
   color: #fff;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
 }
 
 .signup-form {
@@ -48,6 +48,7 @@
   border-top: none;
   border-right: none;
   color: #fff;
+  font-size: 0.875rem;
 }
 
 .signup-input:focus {
@@ -61,7 +62,7 @@
 .signup-form-row {
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 .google-login-img {
@@ -112,7 +113,7 @@
   background-color: #000;
   width: 98%;
   border: none;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   height: 3.125rem;
   font-size: 1.125rem;
   font-weight: 600;
@@ -143,7 +144,6 @@
 @media screen and (max-width: 1200px) {
   .signup-button {
     width: 60%;
-    max-width: 370px;
   }
 }
 
