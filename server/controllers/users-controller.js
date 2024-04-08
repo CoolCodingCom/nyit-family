@@ -1,6 +1,7 @@
 const HttpError = require("../models/http-error");
 const { validationResult } = require("express-validator");
 const User = require("../models/users");
+const sendAuthLink = require("../util/authlink");
 
 const getUsers = async (req, res, next) => {
   let allUsers;
@@ -50,6 +51,7 @@ const signup = async (req, res, next) => {
     email,
     password,
     image,
+    isValid: false,
     posts: []
   });
 
@@ -59,8 +61,31 @@ const signup = async (req, res, next) => {
     return next(error);
   }
 
-  res.status(201).json({ userId: newUser.id, email: newUser.email });
+  const backendUrl = `https://5000-${process.env.GITPOD_WORKSPACE_ID}.${process.env.GITPOD_WORKSPACE_CLUSTER_HOST}`;
+
+  console.log(backendUrl);
+
+  const uniqueString = "12345";
+
+	const message = {
+		from: '"NYIT FAMILY" <nyitfamily@gmail.com>', // sender address
+		to: "email",
+		subject: "Email Confirmation",
+		// text: "Happy Family?",
+		html: `Please click <a href=${backendUrl}/verify/${uniqueString}> this link </a> to verify your email`,
+	};
+
+  //sendAuthLink(message);
+
+  res.status(201).json({ message: "waiting for user email validation." });
 };
+
+const verify = async (req, res, next) => {
+  const uniqueString = req.params.uniqueid;
+
+
+  res.status(201).json({ userId: newUser.id, email: newUser.email });
+}
 
 const login = async (req, res, next) => {
   const { email, password } = req.body;
@@ -94,4 +119,5 @@ const login = async (req, res, next) => {
 
 exports.getUsers = getUsers;
 exports.signup = signup;
+exports.verify = verify;
 exports.login = login;
