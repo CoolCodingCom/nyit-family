@@ -30,7 +30,7 @@ app.use((error, req, res, next) => {
 
 const user = process.env.MONGODB_USER;
 const password = process.env.MONGODB_PASSWORD;
-const name = process.env.MONGODB_NAME;
+const name = process.env.MONGODB_DATABASE;
 const apiPort = 5000;
 
 const mongoStr = `mongodb+srv://${user}:${password}@leco-cluster.lzlo6mt.mongodb.net/${name}?retryWrites=true&w=majority&appName=LECO-Cluster`;

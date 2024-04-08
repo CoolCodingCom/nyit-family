@@ -2,6 +2,6 @@
 	"env": {
 		"MONGODB_USER": "leconyit",
 		"MONGODB_PASSWORD": "oxYmaTeZElwr6La8",
-		"MONGODB_NAME": "nyit-family-dev"
+		"MONGODB_DATABASE": "nyit-family-dev"
 	}
 }
