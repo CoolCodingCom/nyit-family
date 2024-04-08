@@ -2,6 +2,6 @@
 	"env": {
 		"MONGODB_USER": ***REMOVED***
 		"MONGODB_PASSWORD": ***REMOVED***
-		"MONGODB_NAME": ***REMOVED***
+		"MONGODB_DATABASE": ***REMOVED***
 	}
 }
