@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema(
         password: { type: String, required: true },
         image: { type: String, required: true },
         isValid: { type: Boolean, required: true },
+        uniqueString: { type: String, required: true },
         posts: [{ type: mongoose.Types.ObjectId, required: true, ref: "Post" }]
     }
 );
