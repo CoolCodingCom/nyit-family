@@ -66,7 +66,7 @@ const signup = async (req, res, next) => {
     return next(error);
   }
 
-  const backendUrl = "http://localhost:5000";
+  const backendUrl = "http://localhost:5000";  // the test only works with local environment
 
   // console.log(backendUrl);
 
