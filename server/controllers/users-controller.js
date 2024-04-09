@@ -66,16 +66,16 @@ const signup = async (req, res, next) => {
     return next(error);
   }
 
-  const backendUrl = `https://5000-${process.env.GITPOD_WORKSPACE_ID}.${process.env.GITPOD_WORKSPACE_CLUSTER_HOST}`;
+  const backendUrl = "http://localhost:5000";
 
-  console.log(backendUrl);
+  // console.log(backendUrl);
 
 	const message = {
 		from: '"NYIT FAMILY" <nyitfamily@gmail.com>', // sender address
 		to: "email",
 		subject: "Email Confirmation",
 		// text: "Happy Family?",
-		html: `Please click <a href=${backendUrl}/verify/${uniqueString}> this link </a> to verify your email`,
+		html: `Please click <a href=${backendUrl}/api/users/verify/${uniqueString}> this link </a> to verify your email`,
 	};
 
   //sendAuthLink(message);
