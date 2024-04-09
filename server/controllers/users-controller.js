@@ -97,9 +97,23 @@ const verify = async (req, res, next) => {
     return next(new HttpError("uniqueString not found", 404));
   }
 
-  if (verifiedUser && verifiedUser.isValid === true)
+  if (verifiedUser && verifiedUser.isValid === true) {
+    return next(new HttpError("The email has already been verified", 422));
+  }
 
-  res.status(201).json({ userId: newUser.id, email: newUser.email });
+  if (verifiedUser && verifiedUser.isValid === false && verifiedUser.uniqueString === uniqueString) {
+    verifiedUser.isValid = true;
+  } else {
+    return next(new HttpError("InValid confirmatiion link", 410)); // link expiration should also be taken into consideration
+  }
+
+  try {
+    await verifiedUser.save();
+  } catch (error) {
+    return next(error);
+  }
+
+  res.status(201).json({ userId: verifiedUser.id, email: verifiedUser.email });
 }
 
 const login = async (req, res, next) => {
