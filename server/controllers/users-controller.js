@@ -1,6 +1,9 @@
 const HttpError = require("../models/http-error");
 const { validationResult } = require("express-validator");
+const crypto = require('crypto');
+
 const User = require("../models/users");
+const sendAuthLink = require("../util/authlink");
 
 const getUsers = async (req, res, next) => {
   let allUsers;
@@ -45,11 +48,15 @@ const signup = async (req, res, next) => {
     );
   }
 
+  const uniqueString = crypto.randomBytes(32).toString('hex');
+
   const newUser = new User({
     name,
     email,
     password,
     image,
+    isValid: false,
+    uniqueString,
     posts: []
   });
 
@@ -59,8 +66,55 @@ const signup = async (req, res, next) => {
     return next(error);
   }
 
-  res.status(201).json({ userId: newUser.id, email: newUser.email });
+  const backendUrl = "http://localhost:5000";  // the test only works with local environment
+
+  // console.log(backendUrl);
+
+	const message = {
+		from: '"NYIT FAMILY" <nyitfamily@gmail.com>', // sender address
+		to: "email",
+		subject: "Email Confirmation",
+		// text: "Happy Family?",
+		html: `Please click <a href=${backendUrl}/api/users/verify/${uniqueString}> this link </a> to verify your email`,
+	};
+
+  //sendAuthLink(message);
+
+  res.status(201).json({ message: "waiting for user email validation." });
 };
+
+const verify = async (req, res, next) => {
+  const uniqueString = req.params.uniqueid;
+
+  let verifiedUser;
+  try {
+    verifiedUser = await User.findOne({ uniqueString });
+  } catch (error) {
+    return next(error);
+  }
+
+  if (!verifiedUser) {
+    return next(new HttpError("uniqueString not found", 404));
+  }
+
+  if (verifiedUser && verifiedUser.isValid === true) {
+    return next(new HttpError("The email has already been verified", 422));
+  }
+
+  if (verifiedUser && verifiedUser.isValid === false && verifiedUser.uniqueString === uniqueString) {
+    verifiedUser.isValid = true;
+  } else {
+    return next(new HttpError("InValid confirmatiion link", 410)); // link expiration should also be taken into consideration
+  }
+
+  try {
+    await verifiedUser.save();
+  } catch (error) {
+    return next(error);
+  }
+
+  res.status(201).json({ userId: verifiedUser.id, email: verifiedUser.email });
+}
 
 const login = async (req, res, next) => {
   const { email, password } = req.body;
@@ -94,4 +148,5 @@ const login = async (req, res, next) => {
 
 exports.getUsers = getUsers;
 exports.signup = signup;
+exports.verify = verify;
 exports.login = login;

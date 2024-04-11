@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get("/", usersController.getUsers);
 
+router.get("/verify/:uniqueid", usersController.verify);
+
 router.post(
   "/signup",
   [
