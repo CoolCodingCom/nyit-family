@@ -1,6 +1,8 @@
 const HttpError = require("../models/http-error");
 const { validationResult } = require("express-validator");
-const crypto = require('crypto');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const crypto = require("crypto");
 
 const User = require("../models/users");
 const sendAuthLink = require("../util/authlink");
@@ -48,16 +50,23 @@ const signup = async (req, res, next) => {
     );
   }
 
-  const uniqueString = crypto.randomBytes(32).toString('hex');
+  let hashedPassword;
+  try {
+    hashedPassword = await bcrypt.hash(password, 12);
+  } catch (error) {
+    return next(new HttpError("Can create a user, please try again", 500));
+  }
+
+  const uniqueString = crypto.randomBytes(32).toString("hex");
 
   const newUser = new User({
     name,
     email,
-    password,
+    password: hashedPassword,
     image,
     isValid: false,
     uniqueString,
-    posts: []
+    posts: [],
   });
 
   try {
@@ -66,9 +75,20 @@ const signup = async (req, res, next) => {
     return next(error);
   }
 
-  const backendUrl = "http://localhost:5000";  // the test only works with local environment
+  let token;
+  try {
+    token = jwt.sign(
+      { userId: newUser.id, email: newUser.email },
+      "leco_most_secure_secret",
+      { expiresIn: "1h" }
+    );
+  } catch (error) {
+    return next(error);
+  }
 
-  // console.log(backendUrl);
+  // this snippet of code is used for email confirmation and can't be tested in a CDE.
+  /*
+  const backendUrl = "http://localhost:5000";  // the test only works with local environment
 
 	const message = {
 		from: '"NYIT FAMILY" <nyitfamily@gmail.com>', // sender address
@@ -78,9 +98,14 @@ const signup = async (req, res, next) => {
 		html: `Please click <a href=${backendUrl}/api/users/verify/${uniqueString}> this link </a> to verify your email`,
 	};
 
-  //sendAuthLink(message);
+  sendAuthLink(message);
 
   res.status(201).json({ message: "waiting for user email validation." });
+  */
+
+  res
+    .status(201)
+    .json({ userId: newUser.id, email: newUser.email, token: token }); // jump email confirmation step
 };
 
 const verify = async (req, res, next) => {
@@ -101,7 +126,11 @@ const verify = async (req, res, next) => {
     return next(new HttpError("The email has already been verified", 422));
   }
 
-  if (verifiedUser && verifiedUser.isValid === false && verifiedUser.uniqueString === uniqueString) {
+  if (
+    verifiedUser &&
+    verifiedUser.isValid === false &&
+    verifiedUser.uniqueString === uniqueString
+  ) {
     verifiedUser.isValid = true;
   } else {
     return next(new HttpError("InValid confirmatiion link", 410)); // link expiration should also be taken into consideration
@@ -114,7 +143,7 @@ const verify = async (req, res, next) => {
   }
 
   res.status(201).json({ userId: verifiedUser.id, email: verifiedUser.email });
-}
+};
 
 const login = async (req, res, next) => {
   const { email, password } = req.body;
@@ -128,25 +157,57 @@ const login = async (req, res, next) => {
 
   if (!desiredUser) {
     return next(
-      new HttpError("Could not find the user, credentials seems to be wrong.", 403)
+      new HttpError(
+        "Could not find the user, credentials seems to be wrong.",
+        403
+      )
     );
   }
 
-  if (desiredUser.password !== password) {
+  let isValidPassword;
+  try {
+    isValidPassword = await bcrypt.compare(password, desiredUser.password);
+  } catch (error) {
+    return next(new HttpError("Can't sign in, please try again", 500));
+  }
+
+  if (!isValidPassword) {
     return next(
       new HttpError(
-        "Can't sign in, please try again", 500
+        "Could not identify user, credentials seems to be wrong.",
+        403
       )
     );
-  } 
+  }
+
+  let token;
+  try {
+    token = jwt.sign(
+      { userId: desiredUser.id, email: desiredUser.email },
+      "leco_most_secure_secret",
+      { expiresIn: "1h" }
+    );
+  } catch (error) {
+    return next(error);
+  }
 
   res.json({
     userId: desiredUser.id,
     email: desiredUser.email,
+    token: token,
   });
 };
+
+/* for testing use
+const tokenTester = async (req, res, next) => {
+  res
+    .status(200)
+    .json({ userId: req.userData.userId});
+};
+*/
 
 exports.getUsers = getUsers;
 exports.signup = signup;
 exports.verify = verify;
 exports.login = login;
+//exports.tokenTester = tokenTester;
