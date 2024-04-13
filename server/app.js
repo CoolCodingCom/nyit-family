@@ -5,6 +5,8 @@ const cors = require("cors");
 
 const usersRoutes = require("./routes/users-routes");
 const postsRoutes = require("./routes/posts-routes");
+const authRoutes = require("./routes/auth-routes");
+const passport = require("./util/passportUtil");
 
 const app = express();
 
@@ -12,6 +14,9 @@ app.use(bodyParser.json());
 
 app.use(cors()); // solve CORS
 
+passport(app);
+
+app.use("/api/auth", authRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/posts", postsRoutes);
 
