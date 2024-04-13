@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 
 const User = require("../models/users");
-const sendAuthLink = require("../util/authlink");
+const sendAuthLink = require("../util/authLink");
 
 const getUsers = async (req, res, next) => {
   let allUsers;
@@ -146,6 +146,10 @@ const verify = async (req, res, next) => {
 };
 
 const login = async (req, res, next) => {
+  if (req.profile) {
+    console.log(req.profile);
+  }
+
   const { email, password } = req.body;
 
   let desiredUser;
