@@ -146,10 +146,6 @@ const verify = async (req, res, next) => {
 };
 
 const login = async (req, res, next) => {
-  if (req.profile) {
-    console.log(req.profile);
-  }
-
   const { email, password } = req.body;
 
   let desiredUser;

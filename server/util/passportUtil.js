@@ -2,7 +2,9 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const passport = require("passport");
 const keys = require("../config/keys");
 const cookieSession = require("cookie-session");
+const { v4: uuidv4 } = require('uuid');
 
+const User = require("../models/users");
 
 const passportUtil = app => {
   app.use(
@@ -17,11 +19,40 @@ const passportUtil = app => {
   passport.use(new GoogleStrategy({
     clientID: keys.google.clientId,
     clientSecret: keys.google.clientSecret,
-    callbackURL: "https://5000-coolcodingco-nyitfamily-6w700g0gii9.ws-us110.gitpod.io/api/auth/google/callback"
+    callbackURL: "https://5000-coolcodingco-nyitfamily-17gz6xgwtxu.ws-us110.gitpod.io/api/auth/google/callback"
   },
-  (accessToken, refreshToken, profile, cb) => {
+  async (accessToken, refreshToken, profile, cb) => {
     // create new user and store the user into database ot just fetch the user
-    return cb(null, profile)
+    const email = profile._json.email;
+
+    let existedUser;
+    try {
+      existedUser = await User.findOne({ email });
+    } catch (error) {
+      throw error;
+    }
+  
+    if (existedUser) {
+      return cb(null, existedUser);
+    }
+  
+    const newUser = new User({
+      name: profile._json.name,
+      email,
+      password: uuidv4(),
+      image: profile._json.picture,
+      isValid: true,
+      uniqueString: uuidv4(),
+      posts: [],
+    });
+  
+    try {
+      await newUser.save();
+    } catch (error) {
+      throw error;
+    }
+  
+    return cb(null, newUser);
   }
 ));
 
