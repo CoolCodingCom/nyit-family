@@ -1,11 +1,26 @@
 import { useState } from "react";
-import { Link, Form } from "react-router-dom";
+import { Link, Form, redirect } from "react-router-dom";
 import "../styles/login.css";
 import loginIcon from "../../assets/loginIcon.svg";
 import googleIcon from "../../assets/google.svg";
 import loginImage from "../../assets/loginImage.svg";
 import hidePassword from "../../assets/hidePassword.svg";
 import showPassword from "../../assets/showPassword.svg";
+import { loginUser } from "../../apis";
+
+export async function action({ request }) {
+  const formData = await request.formData();
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const pathname = new URL(request.url).searchParams.get("redirectTo") || "/";
+  try {
+    const data = await loginUser({ email, password });
+    localStorage.setItem("token", data.token);
+    return redirect(pathname);
+  } catch (err) {
+    return err.message;
+  }
+}
 
 export default function Login() {
   const [isHide, setIsHide] = useState(true);
