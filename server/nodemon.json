@@ -1,7 +1,0 @@
-{
-	"env": {
-		"MONGODB_USER": ***REMOVED***
-		"MONGODB_PASSWORD": ***REMOVED***
-		"MONGODB_DATABASE": ***REMOVED***
-	}
-}

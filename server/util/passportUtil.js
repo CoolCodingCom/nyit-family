@@ -17,9 +17,9 @@ const passportUtil = app => {
   app.use(passport.session())
 
   passport.use(new GoogleStrategy({
-    clientID: keys.google.clientId,
-    clientSecret: keys.google.clientSecret,
-    callbackURL: "https://5000-coolcodingco-nyitfamily-17gz6xgwtxu.ws-us110.gitpod.io/api/auth/google/callback"
+    clientID: keys.google.CLIEND_ID,
+    clientSecret: keys.google.CLIEND_SECRET,
+    callbackURL: "https://5000-coolcodingco-nyitfamily-cl8vl21mdvt.ws-us110.gitpod.io/api/auth/google/callback"
   },
   async (accessToken, refreshToken, profile, cb) => {
     // create new user and store the user into database ot just fetch the user

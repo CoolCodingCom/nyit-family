@@ -1,13 +1,17 @@
 const express = require("express");
 const { check } = require("express-validator");
 const checkAuth = require("../middleware/check-auth");
-const usersController = require("../controllers/users-controller");
+const { getUsers } = require("../controllers/users-controller/getUsers");
+const { signup } = require("../controllers/users-controller/signup");
+const { verify } = require("../controllers/users-controller/verify");
+const { login } = require("../controllers/users-controller/login");
+
 
 const router = express.Router();
 
-router.get("/", usersController.getUsers);
+router.get("/", getUsers);
 
-router.get("/verify/:uniqueid", usersController.verify);
+router.get("/verify/:uniqueid", verify);
 
 router.post(
   "/signup",
@@ -22,10 +26,10 @@ router.post(
       minSymbols: 1,
     }),
   ],
-  usersController.signup
+  signup
 );
 
-router.post("/login", usersController.login);
+router.post("/login", login);
 
 /* for testing use
 router.use(checkAuth);
