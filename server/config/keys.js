@@ -14,5 +14,10 @@ module.exports = {
 	},
 	mailtrap: {
 		PASSWORD: ***REMOVED***
+	},
+	email: {
+		BACKEND_URL: ***REMOVED***
+		SENDER: ***REMOVED***
+		RECEIVER: ***REMOVED***
 	}
 };

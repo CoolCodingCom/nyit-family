@@ -6,6 +6,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const User = require("../../models/users");
 const keys = require("../../config/keys");
+const sendAuthLink = require("../../util/authLink");
 
 const signup = async (req, res, next) => {
   const error = validationResult(req);
@@ -70,11 +71,11 @@ const signup = async (req, res, next) => {
   }
 
   // this snippet of code is used for email confirmation and can't be tested in a CDE.
-  const backendUrl = "http://localhost:5000";  // the test only works with local environment
+  const backendUrl = keys.email.BACKEND_URL;  // the test only works with local environment
 
   const message = {
-      from: '"NYIT FAMILY" <www.nyitfamily.site>', // sender address
-      to: ***REMOVED***,
+      from: `"NYIT FAMILY" <${keys.email.SENDER}>`, // sender address
+      to: email,
       subject: "Email Confirmation",
       // text: "Happy Family?",
       html: `Please click <a href=${backendUrl}/api/users/verify/${uniqueString}> this link </a> to verify your email`,
