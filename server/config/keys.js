@@ -1,23 +1,22 @@
-
 module.exports = {
 	google: {
-		CLIEND_ID: ***REMOVED***
-		CLIEND_SECRET: ***REMOVED***
+		CLIEND_ID: your_client_id_from_google_cloud_console,
+		CLIEND_SECRET: your_client_secret_from_google_cloud_console
 	},
 	mongoDB: {
-		MONGODB_USER: ***REMOVED***
-		MONGODB_PASSWORD: ***REMOVED***
-		MONGODB_DATABASE: ***REMOVED***
+		MONGODB_USER: "",
+		MONGODB_PASSWORD: "",
+		MONGODB_DATABASE: ""
 	},
 	token: {
-		PRIVATE_KEY: ***REMOVED***
+		PRIVATE_KEY: ""
 	},
 	mailtrap: {
-		PASSWORD: ***REMOVED***
+		PASSWORD: ""
 	},
 	email: {
-		BACKEND_URL: ***REMOVED***
-		SENDER: ***REMOVED***
-		RECEIVER: ***REMOVED***
+		BACKEND_URL: "",
+		SENDER: "",
+		RECEIVER: ""
 	}
 };
