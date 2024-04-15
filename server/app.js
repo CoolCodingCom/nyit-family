@@ -7,6 +7,7 @@ const usersRoutes = require("./routes/users-routes");
 const postsRoutes = require("./routes/posts-routes");
 const authRoutes = require("./routes/auth-routes");
 const passport = require("./util/passportUtil");
+const keys = require("./config/keys");
 
 const app = express();
 
@@ -33,9 +34,9 @@ app.use((error, req, res, next) => {
 });
 
 
-const user = process.env.MONGODB_USER;
-const password = process.env.MONGODB_PASSWORD;
-const name = process.env.MONGODB_DATABASE;
+const user = keys.mongoDB.MONGODB_USER;
+const password = keys.mongoDB.MONGODB_PASSWORD;
+const name = keys.mongoDB.MONGODB_DATABASE;
 const apiPort = 5000;
 
 const mongoStr = `mongodb+srv://${user}:${password}@leco-cluster.lzlo6mt.mongodb.net/${name}?retryWrites=true&w=majority&appName=LECO-Cluster`;

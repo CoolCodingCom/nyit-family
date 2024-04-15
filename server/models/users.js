@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
         image: { type: String, required: true },
         isValid: { type: Boolean, required: true },
         uniqueString: { type: String, required: true },
-        posts: [{ type: mongoose.Types.ObjectId, required: true, ref: "Post" }]
+        // posts: [{ type: mongoose.Types.ObjectId, required: true, ref: "Post" }]
     }
 );
 
