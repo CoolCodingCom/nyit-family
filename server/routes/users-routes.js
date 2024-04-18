@@ -6,7 +6,6 @@ const { signup } = require("../controllers/users-controller/signup");
 const { verify } = require("../controllers/users-controller/verify");
 const { login } = require("../controllers/users-controller/login");
 
-
 const router = express.Router();
 
 router.get("/", getUsers);
