@@ -1,9 +1,26 @@
 import "../styles/signup.css";
 import googleIcon from "../../assets/google.svg";
 import { useState } from "react";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
 import hidePassword from "../../assets/hidePassword-white.svg";
 import showPassword from "../../assets/showPassword-white.svg";
+import { signUpUser } from "../../apis";
+
+export async function action({ request }) {
+  const formData = await request.formData();
+  const name = formData.get("fullname");
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const image = "/fakeImgUrl";
+  const pathname = new URL(request.url).searchParams.get("redirectTo") || "/";
+  try {
+    const data = await signUpUser({ name, email, password, image });
+    localStorage.setItem("token", data.token);
+    return redirect(pathname);
+  } catch (err) {
+    return err.message;
+  }
+}
 
 export default function Signup() {
   const [isHide, setIsHide] = useState(true);
