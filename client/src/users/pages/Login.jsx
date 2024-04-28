@@ -1,12 +1,10 @@
-import { useState } from "react";
-import { Link, Form, redirect } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import "../styles/login.css";
 import loginIcon from "../../assets/loginIcon.svg";
-import googleIcon from "../../assets/google.svg";
 import loginImage from "../../assets/loginImage.svg";
-import hidePassword from "../../assets/hidePassword.svg";
-import showPassword from "../../assets/showPassword.svg";
 import { loginUser } from "../../apis";
+import LoginForm from "../components/LoginForm";
+import GoogleButton from "../components/GoogleButton";
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -23,10 +21,6 @@ export async function action({ request }) {
 }
 
 export default function Login() {
-  const [isHide, setIsHide] = useState(true);
-  function toggleHide() {
-    setIsHide((prev) => !prev);
-  }
   return (
     <div className="login-page poppins-regular">
       <div className="login-welcome">
@@ -41,67 +35,12 @@ export default function Login() {
           <img className="login-icon" src={loginIcon} alt="loginIcon" />
           <h1>Welcome back!</h1>
           <p>Please enter your details</p>
-          <Form method="post" className="login-form" replace>
-            <div className="login-form-row login-email-row">
-              <label htmlFor="login-email" className="input-field-label">
-                Email
-              </label>
-              <input
-                className="login-input"
-                id="login-email"
-                name="email"
-                type="email"
-                placeholder="Email address"
-              />
-            </div>
-
-            <div className="login-form-row password-input-wrapper">
-              <label htmlFor="login-password" className="input-field-label">
-                password
-              </label>
-              <input
-                className="login-input"
-                id="login-password"
-                name="password"
-                type={isHide ? "password" : "text"}
-                placeholder="Password"
-              ></input>
-              <img
-                src={isHide ? showPassword : hidePassword}
-                alt="hide eye"
-                onClick={toggleHide}
-              ></img>
-            </div>
-
-            <div className="login-form-row below-password">
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <input type="checkbox" id="remember-30-days"></input>
-                <label
-                  htmlFor="remember-30-days"
-                  style={{ fontSize: "smaller" }}
-                >
-                  Remember for 30 days
-                </label>
-              </div>
-              <span className="forget-password">Forgot password?</span>
-            </div>
-            <div className="login-form-row login-button-row">
-              <button className="login-button black">Log In</button>
-            </div>
-            <div className="login-form-row">
-              <button
-                className="login-button light-purple button-with-image"
-                type="button"
-              >
-                <img
-                  className="google-login-img"
-                  src={googleIcon}
-                  alt="google"
-                />
-                Log in with Google
-              </button>
-            </div>
-          </Form>
+          <LoginForm />
+          <div className="form-row" style={{ width: "60%" }}>
+            <GoogleButton customClass="login-button light-purple">
+              Log in with Google
+            </GoogleButton>
+          </div>
         </div>
         <div className="login-footer">
           <div className="bottom-sign-up">
