@@ -14,6 +14,7 @@ export default function LoginForm() {
           name="email"
           type="email"
           placeholder="Email address"
+          required
         />
       </div>
 
