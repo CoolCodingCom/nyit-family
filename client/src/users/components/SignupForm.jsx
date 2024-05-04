@@ -1,5 +1,6 @@
 import { Form } from "react-router-dom";
 import Password from "./Password";
+import ErrorMessage from "./ErrorMessage";
 
 export default function SignupForm() {
   return (
@@ -37,6 +38,7 @@ export default function SignupForm() {
           required
         />
       </div>
+      <ErrorMessage />
       <div className="form-row">
         <button className="create-account-button">Create Account</button>
       </div>

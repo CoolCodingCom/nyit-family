@@ -1,5 +1,6 @@
 import { Form } from "react-router-dom";
 import Password from "./Password";
+import ErrorMessage from "./ErrorMessage";
 
 export default function LoginForm() {
   return (
@@ -33,6 +34,7 @@ export default function LoginForm() {
         </div>
         <span className="forget-password">Forgot password?</span>
       </div>
+      <ErrorMessage />
       <div className="form-row login-button-row">
         <button className="login-button black">Log In</button>
       </div>
