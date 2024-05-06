@@ -29,15 +29,6 @@ export default function SignupForm() {
         eyeTheme="white"
         patternEnabled="true"
       ></Password>
-      <div className="form-row">
-        <input
-          id="imageInput"
-          className="signup-input"
-          name="image"
-          type="file"
-          required
-        />
-      </div>
       <ErrorMessage />
       <div className="form-row">
         <button className="create-account-button">Create Account</button>
