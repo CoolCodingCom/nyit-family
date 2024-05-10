@@ -16,7 +16,7 @@ const login = async (req, res, next) => {
     return next(error);
   }
 
-  if (!desiredUser) {
+  if (!desiredUser || !desiredUser.isValid) {
     return next(
       new HttpError(
         "Could not find the user, credentials seems to be wrong.",
