@@ -21,12 +21,20 @@ export async function action({ request }) {
 }
 
 export default function Signup() {
+  const loginWithGoogleHandler = async () => {
+    try {
+      window.location.href = `http://localhost:5000/api/auth/google`;
+    } catch (err) {
+      return err.message;
+    }
+  }
+
   return (
     <div className="signup-page poppins-regular">
       <div className="signup-container">
         <h1 className="signup-title">Create Account</h1>
         <div className="signup-content">
-          <GoogleButton customClass="signup-button">
+          <GoogleButton customClass="signup-button" onClick={loginWithGoogleHandler}>
             Sign up with Google
           </GoogleButton>
           <span>-OR-</span>
