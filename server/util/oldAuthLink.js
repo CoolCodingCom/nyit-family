@@ -2,9 +2,9 @@ const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 
 async function sendAuthLink(message) {
-	const clientId = "966004257988-njq8ipuib0dgst6ia2lvi9ehpugd4ks9.apps.googleusercontent.com";
-	const clientSecret = "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";
-	const refreshToken = "1//04a85TPC2UW0CCgYIARAAGAQSNwF-L9IrK7zpIh6VsycVsL5JzD4L8h_5Bv3PJac5oqBV_UQW6goutEIORRPQE_95WYXmn91j2JE";
+	const clientId = "";
+	const clientSecret = "";
+	const refreshToken = "";
 	
 	const OAuth2 = google.auth.OAuth2;
 	
@@ -28,7 +28,7 @@ async function sendAuthLink(message) {
 		service: 'gmail',
 		auth: {
 			type: 'OAuth2',
-			user: 'nyitfamily@gmail.com',
+			user: 'user@gmail.com',
 			clientId: clientId,
 			clientSecret: clientSecret,
 			refreshToken: refreshToken,
