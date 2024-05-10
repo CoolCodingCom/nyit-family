@@ -15,7 +15,7 @@ const Verification = () => {
         if (!response.ok) {
           throw new Error(responseData.message);
         }
-        console.log(responseData);
+        console.log(responseData);  // after login, redirect to home page
       } catch (error) { }
     };
     sendRequest();
