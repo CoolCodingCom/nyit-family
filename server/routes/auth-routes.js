@@ -7,6 +7,8 @@ router = express.Router();
 
 router.get("/google", passport.authenticate('google', {scope: ['profile', 'email']}));
 
-router.get("/google/callback", passport.authenticate('google'), loginWithThirdParty);
+router.get("/google/callback", passport.authenticate('google', { successRedirect: keys.frontend.FRONTEND_URL }));
+
+router.get("/google/login/success", loginWithThirdParty);
 
 module.exports = router;

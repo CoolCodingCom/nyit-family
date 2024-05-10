@@ -7,7 +7,7 @@ const loginWithThirdParty = (req, res) => {
     let token;
     try {
       token = jwt.sign(
-        { userId: desiredUser.id, email: desiredUser.email },
+        { userId: desiredUser._id, email: desiredUser.email },
         keys.token.PRIVATE_KEY,
         { expiresIn: "1h" }
       );
@@ -16,7 +16,7 @@ const loginWithThirdParty = (req, res) => {
     }
   
     res.json({
-      userId: desiredUser.id,
+      userId: desiredUser._id,
       email: desiredUser.email,
       token: token,
     });
