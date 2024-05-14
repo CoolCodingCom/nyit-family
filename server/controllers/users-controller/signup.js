@@ -71,14 +71,15 @@ const signup = async (req, res, next) => {
   }
 
   // this snippet of code is used for email confirmation and can't be tested in a CDE.
-  const backendUrl = keys.email.BACKEND_URL;  // the test only works with local environment
+  const backendUrl = keys.email.BACKEND_URL; // the test only works with local environment
+  const frontendurl = keys.frontend.FRONTEND_URL;
 
   const message = {
-      from: `"NYIT FAMILY" <${keys.email.SENDER}>`, // sender address
-      to: email,
-      subject: "Email Confirmation",
-      // text: "Happy Family?",
-      html: `Please click <a href=${backendUrl}/api/users/verify/${uniqueString}> this link </a> to verify your email`,
+    from: `"NYIT FAMILY" <${keys.email.SENDER}>`, // sender address
+    to: email,
+    subject: "Email Confirmation",
+    // text: "Happy Family?",
+    html: `Please click <a href=${frontendurl}/verification/${uniqueString}> this link </a> to verify your email`,
   };
 
   sendAuthLink(message);
