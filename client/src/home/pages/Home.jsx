@@ -4,6 +4,7 @@ export default function Home() {
   const backendUrl = "http://localhost:5000";
 
   useEffect(() => {
+    const storedData = localStorage.getItem("token");
     const sendRequest = async () => {
       try {
         const response = await fetch(
@@ -21,7 +22,10 @@ export default function Home() {
         console.log(responseData);
       } catch (error) {}
     };
-    sendRequest();
+    
+    if (!storedData) {
+      sendRequest();
+    }
   }, []);
 
   return <div className="home-container">HomePage</div>;
