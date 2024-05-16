@@ -30,7 +30,7 @@ const signup = async (req, res, next) => {
 
   if (existedUser) {
     return next(
-      new HttpError("email exsiting, please change another one.", 422)
+      new HttpError("Email exsiting, please change another one.", 422)
     );
   }
 
@@ -84,7 +84,9 @@ const signup = async (req, res, next) => {
 
   sendAuthLink(message);
 
-  res.status(201).json({ message: "waiting for user email validation." });
+  res
+    .status(201)
+    .json({ message: "waiting for user email validation.", email });
 
   // res
   //   .status(201)
