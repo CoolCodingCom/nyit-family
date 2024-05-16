@@ -59,17 +59,6 @@ const signup = async (req, res, next) => {
     return next(error);
   }
 
-  let token;
-  try {
-    token = jwt.sign(
-      { userId: newUser.id, email: newUser.email },
-      keys.token.PRIVATE_KEY,
-      { expiresIn: "1h" }
-    );
-  } catch (error) {
-    return next(error);
-  }
-
   // this snippet of code is used for email confirmation and can't be tested in a CDE.
   const backendUrl = keys.email.BACKEND_URL; // the test only works with local environment
   const frontendurl = keys.frontend.FRONTEND_URL;
@@ -82,15 +71,15 @@ const signup = async (req, res, next) => {
     html: `Please click <a href=${frontendurl}/verification/${uniqueString}> this link </a> to verify your email`,
   };
 
-  sendAuthLink(message);
+  try {
+    sendAuthLink(message);
+  } catch (error) {
+    return next(error);
+  }
 
   res
     .status(201)
     .json({ message: "waiting for user email validation.", email });
-
-  // res
-  //   .status(201)
-  //   .json({ userId: newUser.id, email: newUser.email, token: token }); // jump email confirmation step
 };
 
 exports.signup = signup;

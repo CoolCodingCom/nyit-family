@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import SignupForm from "../components//SignupForm";
 import GoogleButton from "../components/GoogleButton";
 import { signUpUser } from "../../apis";
