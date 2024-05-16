@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import MainNavigation from "../../share/components/Navigation/MainNavigation";
+import PostForm from "../../share/components/NewPost/PostForm";
 
 export default function Home() {
   const backendUrl = "http://localhost:5000";
@@ -22,11 +24,14 @@ export default function Home() {
         console.log(responseData);
       } catch (error) {}
     };
-    
+
     if (!storedData) {
       sendRequest();
     }
   }, []);
 
-  return <div className="home-container">HomePage</div>;
+  return <div className="home-container">
+    <MainNavigation/>
+    <PostForm/>
+  </div>;
 }
