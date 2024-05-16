@@ -1,5 +1,5 @@
 import "../styles/signup.css";
-import { Outlet, redirect } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export default function Signup() {
   return (

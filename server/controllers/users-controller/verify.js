@@ -20,11 +20,12 @@ const verify = async (req, res, next) => {
     return next(new HttpError("The email has already been verified", 422));
   }
 
-  if (verifiedUser.uniqueString === uniqueString) {
-    verifiedUser.isValid = true;
-  } else {
-    return next(new HttpError("InValid confirmatiion link", 410)); // link expiration should also be taken into consideration
-  }
+  // if (verifiedUser.uniqueString === uniqueString) {
+  //   verifiedUser.isValid = true;
+  // } else {
+  //   return next(new HttpError("InValid confirmatiion link", 410)); // link expiration should also be taken into consideration
+  // }
+  verifiedUser.isValid = true;
 
   try {
     await verifiedUser.save();
