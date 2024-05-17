@@ -1,7 +1,7 @@
 import emailImg from "../../assets/email.svg";
 import { useSearchParams } from "react-router-dom";
 
-export default function SignupVerification() {
+export default function SignupNeedVerify() {
   const [searchParams] = useSearchParams();
   const emailAddress = searchParams.get("email");
   return (
