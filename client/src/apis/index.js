@@ -43,6 +43,19 @@ export async function signUpUser(userData) {
   }
 }
 
+export async function verifyEmail(uniqueString) {
+  try {
+    const res = await api.get(`/users/verify/${uniqueString}`);
+    return res.data;
+  } catch (err) {
+    throw {
+      message: err.response.data.message,
+      statusText: err.response.statusText,
+      status: err.response.status,
+    };
+  }
+}
+
 const apis = {
   loginUser,
   signUpUser,

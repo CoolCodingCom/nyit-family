@@ -68,7 +68,7 @@ const signup = async (req, res, next) => {
     to: email,
     subject: "Email Confirmation",
     // text: "Happy Family?",
-    html: `Please click <a href=${frontendurl}/verification/${uniqueString}> this link </a> to verify your email`,
+    html: `Please click <a href=${frontendurl}/signup/verification/${uniqueString}> this link </a> to verify your email`,
   };
 
   try {
