@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import AvadarIcon from "./svg/avadar.svg";
 import "./PostForm.css";
+import AccessoryList from "./AccessoryList";
 
 const PostForm = () => {
   const [message, setMessage] = useState("");
@@ -40,8 +41,11 @@ const PostForm = () => {
             ref={textareaRef}
             onChange={textareaChangeHandler}
           />
-          <div className="postform__btn">
-            <button type="submit">Post</button>
+          <div className="postform__accessroy-btn">
+            <AccessoryList />
+            <div className="postform__btn">
+              <button type="submit">Post</button>
+            </div>
           </div>
         </form>
       </div>
