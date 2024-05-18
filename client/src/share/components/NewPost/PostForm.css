@@ -47,7 +47,16 @@ form.post_form textarea {
   color: black;
 }
 
+.postform__accessroy-btn {
+  display: table;
+  height: 100%;
+  width: 100%;
+  padding: 15px;
+}
+
 .postform__btn {
-  padding: 12px;
-  float: right;
+  display: table-cell;
+  padding-left: 10px;
+  vertical-align: middle;
+  text-align: right; 
 }
