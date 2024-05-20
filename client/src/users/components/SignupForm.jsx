@@ -1,8 +1,9 @@
-import { Form } from "react-router-dom";
+import { Form, useNavigation } from "react-router-dom";
 import Password from "./Password";
 import ErrorMessage from "./ErrorMessage";
 
 export default function SignupForm() {
+  const navigation = useNavigation();
   return (
     <Form method="post" className="signup-form" replace>
       <div className="form-row">
@@ -31,7 +32,14 @@ export default function SignupForm() {
       ></Password>
       <ErrorMessage />
       <div className="form-row">
-        <button className="create-account-button">Create Account</button>
+        <button
+          className="create-account-button"
+          disabled={navigation.state === "submitting"}
+        >
+          {navigation.state === "submitting"
+            ? "Creating ..."
+            : "Create Account"}
+        </button>
       </div>
     </Form>
   );
