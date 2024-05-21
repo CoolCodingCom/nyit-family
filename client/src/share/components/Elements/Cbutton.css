@@ -1,0 +1,18 @@
+.button {
+  border: none;
+  background: none;
+  height: 35px;
+  width: 35px;
+}
+
+.button:hover,
+.button:active {
+  background: #dce3ed;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+}
+
+.button img{
+    width: 19px;
+  }
