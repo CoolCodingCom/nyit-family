@@ -1,13 +1,12 @@
 .postform__body {
   position: relative;
-  float: left;
+  display: flex;
   width: 45vw;
   border-top: 1px solid rgb(238, 232, 232);
   border-bottom: 1px solid rgb(238, 232, 232);
 }
 
 .postform__navlink {
-  float: left;
   padding-top: 16px;
   padding-left: 16px;
   padding-right: 2px;
@@ -18,11 +17,8 @@
 }
 
 form.post_form {
-  float: left;
   padding-top: 23px;
   width: 85%;
-  /* display: flex; */
-  /* flex-direction: column; */
 }
 
 form.post_form textarea::placeholder {
@@ -48,15 +44,13 @@ form.post_form textarea {
 }
 
 .postform__accessroy-btn {
-  display: table;
+  display: flex;
   height: 100%;
   width: 100%;
   padding: 15px;
+  justify-content: space-between;
 }
 
 .postform__btn {
-  display: table-cell;
-  padding-left: 10px;
-  vertical-align: middle;
-  text-align: right; 
+  padding-right: 10px;
 }

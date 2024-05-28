@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import MainNavigation from "../../share/components/Navigation/MainNavigation";
-import PostForm from "../../share/components/NewPost/PostForm";
-import PostList from "../../share/components/Posts/PostList";
+import MiddleColumn from "../../share/components/MiddleColumn/MiddleColumn";
+
+import "./Home.css";
+
 
 export default function Home() {
   const backendUrl = "http://localhost:5000";
@@ -33,7 +35,6 @@ export default function Home() {
 
   return <div className="home-container">
     <MainNavigation/>
-    <PostForm/>
-    <PostList/>
+    <MiddleColumn/>
   </div>;
 }
