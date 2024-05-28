@@ -1,4 +1,4 @@
-import Cbutton from "../Elements/Cbutton";
+import Cbutton from "../../Elements/Cbutton";
 
 import "./Attribute.css";
 
