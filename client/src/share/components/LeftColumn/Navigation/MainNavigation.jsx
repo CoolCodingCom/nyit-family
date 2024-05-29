@@ -7,7 +7,7 @@ const MainNavigation = (props) => {
   return (
     <div className="navigation__container">
       <nav>
-        {/* <Logo className="logo" /> */}
+        <NavigationLink url="/" handle="logo" />
         <NavigationLink url="/" name="Home" handle="home" />
         <NavigationLink url="/login" name="Explore" handle="explore" />
         <NavigationLink
