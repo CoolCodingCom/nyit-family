@@ -1,13 +1,13 @@
-nav {
-  float: left;
-  flex-shrink: 1;
+.navigation__container {
+  flex-shrink: 0;
+  position: sticky;
+  top: 0px;
   width: 350px;
   height: 100vh;
   padding-top: 50px;
   padding-left: 24px;
   border-right: 1px solid rgb(238, 232, 232);
 }
-
 /* nav .logo {
   width: 48px;
   height: 48px;

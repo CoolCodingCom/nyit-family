@@ -1,7 +1,5 @@
 .postform__body {
-  position: relative;
   display: flex;
-  width: 45vw;
   border-top: 1px solid rgb(238, 232, 232);
   border-bottom: 1px solid rgb(238, 232, 232);
 }
