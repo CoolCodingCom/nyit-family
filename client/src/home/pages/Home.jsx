@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import MainNavigation from "../../share/components/Navigation/MainNavigation";
+import LeftColumn from "../../share/components/LeftColumn/LeftColumn";
 import MiddleColumn from "../../share/components/MiddleColumn/MiddleColumn";
+import RightColumn from "../../share/components/RightColumn/RightColumn";
 
 import "./Home.css";
 
@@ -34,8 +35,8 @@ export default function Home() {
   }, []);
 
   return <div className="home-container">
-    <MainNavigation/>
+    <LeftColumn/>
     <MiddleColumn/>
-    <MainNavigation/>
+    <RightColumn/>
   </div>;
 }

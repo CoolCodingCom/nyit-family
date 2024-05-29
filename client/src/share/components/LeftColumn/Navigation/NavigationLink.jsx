@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import LogoIcon from "./svg/logo.svg";
 import HomeIcon from "./svg/home.svg";
 import ExploreIcon from "./svg/explore.svg";
 import NotificationsIcon from "./svg/notifications.svg";
@@ -20,6 +21,9 @@ const NavigationLink = (props) => {
 
   const icon = () => {
     switch (props.handle) {
+      case "logo":
+        return <img className="icon" src={LogoIcon} alt="LogoIcon" />;
+        break;
       case "home":
         return <img className="icon" src={HomeIcon} alt="HomeIcon" />;
         break;
@@ -54,7 +58,7 @@ const NavigationLink = (props) => {
     <div className="navlink">
     <NavLink to={props.url} className={classes()} href="#">
       {icon()}
-      <span>{props.name}</span>
+      {props.name && <span>{props.name}</span>}
     </NavLink>
     </div>
   );
