@@ -36,5 +36,6 @@ export default function Home() {
   return <div className="home-container">
     <MainNavigation/>
     <MiddleColumn/>
+    <MainNavigation/>
   </div>;
 }
