@@ -24,31 +24,26 @@ const PostForm = () => {
   };
 
   return (
-    <div>
-      <div>
-        <h3>Home</h3>
-      </div>
-      <div className="postform__body">
-        <NavLink to="/login" className="postform__navlink" href="#">
-          <img className="icon" src={AvadarIcon} alt="AvadarIcon" />
-        </NavLink>
-        <form className="post_form" onSubmit={onsubmit}>
-          <textarea
-            type="text"
-            placeholder="What is happening?!"
-            value={message}
-            rows={1}
-            ref={textareaRef}
-            onChange={textareaChangeHandler}
-          />
-          <div className="postform__accessroy-btn">
-            <AccessoryList />
-            <div className="postform__btn">
-              <button type="submit">Post</button>
-            </div>
+    <div className="postform__body">
+      <NavLink to="/login" className="postform__navlink" href="#">
+        <img className="icon" src={AvadarIcon} alt="AvadarIcon" />
+      </NavLink>
+      <form className="post_form" onSubmit={onsubmit}>
+        <textarea
+          type="text"
+          placeholder="What is happening?!"
+          value={message}
+          rows={1}
+          ref={textareaRef}
+          onChange={textareaChangeHandler}
+        />
+        <div className="postform__accessroy-btn">
+          <AccessoryList />
+          <div className="postform__btn">
+            <button type="submit">Post</button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };
