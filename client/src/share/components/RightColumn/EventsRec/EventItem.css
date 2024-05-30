@@ -1,0 +1,40 @@
+.eventitem__container {
+  display: flex;
+	padding: 15px;
+	border-top: 1px solid rgb(238, 232, 232);
+}
+
+.eventitem__context {
+	padding-right: 10px;
+	flex-basis: 72%;
+}
+
+.eventitem__context-head {
+	font-size: 90%;
+}
+
+.eventitem__context-content {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 90%;
+	line-height: 1.3;
+	font-weight: 800;
+}
+
+.eventitem__context-tag{
+	font-size: 90%;
+}
+
+.eventitem__context-tag span{
+	color: blue; 
+}
+
+.eventitem__image {
+	padding-top: 5px;
+	flex-grow: 1;
+}
+
+.eventitem__image img{
+	width: 100%;
+}
