@@ -40,7 +40,7 @@ const PostForm = () => {
         <div className="postform__accessroy-btn">
           <AccessoryList />
           <div className="postform__btn">
-            <button type="submit">Post</button>
+            <button type="submit" disabled="false">Post</button>
           </div>
         </div>
       </form>
