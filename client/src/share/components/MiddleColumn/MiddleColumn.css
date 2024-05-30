@@ -3,3 +3,26 @@
   width: 45vw;
   border-right: 1px solid rgb(238, 232, 232);
 }
+
+.middlecol__head {
+  position: sticky;
+  top: 0px;
+  display: flex;
+  height: 50px;
+}
+
+.middlecol__head button{
+  text-align: center;
+  width: 50%;
+  background: #fff;
+  opacity: 0.9;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 95%;
+  font-weight: 700;
+}
+
+.middlecol__head button:hover{
+  background: rgb(238, 232, 232);
+}
+
