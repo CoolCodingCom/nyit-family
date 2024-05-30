@@ -15,25 +15,25 @@ const DUMMY_POSTS = [
     content: "Amy is a watermelon!",
   },
   {
-    userid: "@Amy56789",
+    userid: "@Amy5678",
     username: "Amy",
     timestamp: "2 days ago",
     content: "Amy is a watermelon!",
   },
   {
-    userid: "@Amy56789",
+    userid: "@Amy567",
     username: "Amy",
     timestamp: "2 days ago",
     content: "Amy is a watermelon!",
   },
   {
-    userid: "@Amy56789",
+    userid: "@Amy56",
     username: "Amy",
     timestamp: "2 days ago",
     content: "Amy is a watermelon!",
   },
   {
-    userid: "@Amy56789",
+    userid: "@Amy5",
     username: "Amy",
     timestamp: "2 days ago",
     content: "Amy is a watermelon!",
@@ -45,6 +45,7 @@ const PostList = () => {
     <div>
       {DUMMY_POSTS.map((post) => (
         <PostItem
+          key={post.userid}
           userid={post.userid}
           username={post.username}
           timestamp={post.timestamp}

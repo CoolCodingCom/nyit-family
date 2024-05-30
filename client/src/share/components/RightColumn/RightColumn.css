@@ -1,6 +1,9 @@
 .rightcol__container {
+  position: sticky;
+  top: 0px;
   border: none;
   flex-shrink: 0;
   width: 350px;
+  height: 200vh;
   margin-left: 50px;
 }

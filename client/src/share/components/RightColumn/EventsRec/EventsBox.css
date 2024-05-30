@@ -1,4 +1,6 @@
 .events__container {
 	margin-top: 20px;
+	border-radius: 10px;
 	border: 1px solid rgb(238, 232, 232);
+	height: 110vw;
 }
