@@ -51,6 +51,7 @@ const EventsList = (props) => {
           tag={eitem.tag}
           NumOfPosts={eitem.NumOfPosts}
           image={eitem.image}
+          path="/signup"
         />
       ))}
     </div>

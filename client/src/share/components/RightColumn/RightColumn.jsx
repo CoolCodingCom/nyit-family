@@ -1,6 +1,6 @@
-
 import EventsBox from "./EventsRec/EventsBox";
 import SearchBox from "./Search/SearchBox";
+import PeopleBox from "./PeopleRec/PeopleBox";
 
 import "./RightColumn.css";
 
@@ -10,6 +10,7 @@ const RightColumn = (props) => {
     <div className="rightcol__container">
       <SearchBox/>
       <EventsBox/>
+      <PeopleBox/>
     </div>
   );
 };
