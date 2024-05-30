@@ -42,12 +42,31 @@ form.post_form textarea {
 
 .postform__accessroy-btn {
   display: flex;
-  height: 100%;
   width: 100%;
-  padding: 15px;
+  padding: 10px;
   justify-content: space-between;
+  align-items: center;
 }
 
 .postform__btn {
-  padding-right: 10px;
+  width: 12%;
+  text-align: right;
+}
+
+.postform__btn button {
+  width: 90%;
+  height: 36px;
+  border-radius: 20px;
+  background-color: rgb(80, 146, 238);
+  border: none;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.postform__btn button:disabled {
+  background-color: rgb(160, 193, 239);
+  border: none;
+  color: rgb(238, 232, 232);
 }
