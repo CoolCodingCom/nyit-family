@@ -1,17 +1,17 @@
-.events__container {
-  margin-top: 20px;
-  border-radius: 10px;
-  border: 1px solid rgb(238, 232, 232);
+.people__container {
+	margin-top: 20px;
+	border-radius: 10px;
+	border: 1px solid rgb(238, 232, 232);
 }
 
-.events__container h3 {
-  padding-left: 15px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.3rem;
-  font-weight: 800;
+.people__container h3{
+	padding-left: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.3rem;
+	font-weight: 800;
 }
 
-.events__showmore {
+.people__showmore {
 	display: inline-block;
 	padding-top: 15px;
 	padding-bottom: 15px;
@@ -26,7 +26,6 @@
 	text-decoration: none;
 }
 
-.events__showmore:hover {
+.people__showmore:hover {
 	background-color: rgba(210, 197, 197, 0.5);
 }
-

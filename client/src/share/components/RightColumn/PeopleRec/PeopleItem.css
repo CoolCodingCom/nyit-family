@@ -1,0 +1,52 @@
+.peopleitem__container {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid rgb(238, 232, 232);
+  text-decoration: none;
+  color: black;
+	align-items: center;
+}
+
+.peopleitem__container:hover {
+  background-color: rgba(210, 197, 197, 0.5);
+}
+
+
+.peopleitem__avadar {
+  flex-basis: 15%;
+}
+
+.peopleitem__avadar img{
+	margin-top: 5px;
+  border-radius: 50%;
+}
+
+
+.peopleitem__profile {
+	flex-basis: 60%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1rem;
+	line-height: 1.4;
+}
+
+.peopleitem__profile-name {
+	font-weight: 800;
+}
+
+.peopleitem__follow {
+  flex-grow: 1;
+	text-align: right;
+}
+
+.peopleitem__follow button {
+	width: 90%;
+	height: 30px;
+	border-radius: 20px;
+	background-color: white;
+	border: 1.5px solid #4170e5;
+	color: #4170e5;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.9rem;
+	font-weight: 700;
+}
+
