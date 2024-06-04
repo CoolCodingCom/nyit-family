@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import "./EventItem.css";
 
 const EventItem = (props) => {
-  console.log(props.image);
   return (
     <NavLink className="eventitem__container" to={props.path}>
       <div className="eventitem__context">

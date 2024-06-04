@@ -19,6 +19,10 @@ form.post_form {
   width: 85%;
 }
 
+.postform__contentbody {
+  border-bottom: 1px solid rgb(238, 232, 232);
+}
+
 form.post_form textarea::placeholder {
   font-size: 20px;
 }
@@ -35,15 +39,17 @@ form.post_form textarea {
   resize: none;
   width: 100%;
   padding: 10px;
-  border-bottom: 1px solid rgb(238, 232, 232);
   background: white;
   color: black;
 }
 
 .postform__accessroy-btn {
+  position: sticky;
+  bottom: 0px;
   display: flex;
   width: 100%;
   padding: 10px;
+  background-color: white;
   justify-content: space-between;
   align-items: center;
 }

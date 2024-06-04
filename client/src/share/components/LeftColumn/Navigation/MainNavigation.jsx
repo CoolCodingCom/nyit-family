@@ -23,8 +23,12 @@ const MainNavigation = (props) => {
           name="Setting and Privacy"
           handle="settingandprivacy"
         />
-        <NavigationLink url="/signup" name="Signup" />
       </nav>
+      <div className="navipost__btn">
+        <button type="submit">
+          Post
+        </button>
+      </div>
     </div>
   );
 };

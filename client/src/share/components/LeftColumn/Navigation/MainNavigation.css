@@ -1,6 +1,6 @@
-/* .navigation__container {
-
-} */
+.navigation__container {
+  border-color: rgba(210, 197, 197, 0.5);
+}
 /* nav .logo {
   width: 48px;
   height: 48px;
@@ -69,4 +69,33 @@ nav button.post {
   font-weight: 600;
   text-align: center;
   margin-top: 24px;
+}
+
+.navipost__btn {
+  padding-top: 10px;
+  width: 70%;
+  text-align: left;
+}
+
+.navipost__btn button {
+  width: 86%;
+  height: 49px;
+  border-radius: 25px;
+  background-color: rgb(80, 146, 238);
+  border: none;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.navipost__btn button:disabled {
+  background-color: rgb(160, 193, 239);
+  border: none;
+  color: rgb(238, 232, 232);
+}
+
+.navipost__btn button:hover {
+  border: none;
+  background-color: rgb(53, 130, 239);
 }

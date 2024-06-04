@@ -1,34 +1,54 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { NavLink } from "react-router-dom";
 
+import ImageUpload from "../../Elements/ImageUpload";
+import AccessoryList from "./AccessoryList";
 import AvadarIcon from "./svg/avadar.svg";
 import "./PostForm.css";
-import AccessoryList from "./AccessoryList";
+
+
 
 const PostForm = () => {
   const [message, setMessage] = useState("");
   const textareaRef = useRef(null);
+  const [isValid, setIsValid] = useState(false);
+  const [mediaUploadState, setMediaUploadState] = useState(null);
+  const mediaUploadRef = useRef();
 
   useEffect(() => {
     textareaRef.current.style.height = "0px";
     const scrollHeight = textareaRef.current.scrollHeight;
     textareaRef.current.style.height = scrollHeight + "px";
-    console.log(textareaRef.current.style.height);
+    // console.log(textareaRef.current.style.height);
   }, [message]);
 
-  const classes = [];
+  useEffect(() => {
+    setMediaUploadState(mediaUploadRef.current);
+  }, [mediaUploadRef])
 
   const textareaChangeHandler = (event) => {
-    // setCount(event.target.value.length);
     setMessage(event.target.value);
+    // just a temporarily simple validation method 
+    if (event.target.value.length > 0) {
+      setIsValid(true);
+    }
+    else {
+      setIsValid(false);
+    }
   };
+
+  const onPostSubmissionHandler = (event) => {
+    event.preventDefault();
+    console.log(message);
+  }
 
   return (
     <div className="postform__body">
       <NavLink to="/login" className="postform__navlink" href="#">
         <img className="icon" src={AvadarIcon} alt="AvadarIcon" />
       </NavLink>
-      <form className="post_form" onSubmit={onsubmit}>
+      <form className="post_form" onSubmit={onPostSubmissionHandler}>
+        <div className="postform__contentbody">
         <textarea
           type="text"
           placeholder="What is happening?!"
@@ -37,10 +57,12 @@ const PostForm = () => {
           ref={textareaRef}
           onChange={textareaChangeHandler}
         />
+        <ImageUpload ref={mediaUploadRef}/>
+        </div>
         <div className="postform__accessroy-btn">
-          <AccessoryList />
+          <AccessoryList onClickMedia={mediaUploadRef.current && mediaUploadRef.current.pickMedia}/>
           <div className="postform__btn">
-            <button type="submit" disabled="false">Post</button>
+            <button type="submit" disabled={!isValid}>Post</button>
           </div>
         </div>
       </form>

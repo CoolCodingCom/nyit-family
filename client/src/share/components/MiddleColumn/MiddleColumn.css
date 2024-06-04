@@ -9,6 +9,7 @@
   top: 0px;
   display: flex;
   height: 50px;
+  z-index: 1;
 }
 
 .middlecol__head button{

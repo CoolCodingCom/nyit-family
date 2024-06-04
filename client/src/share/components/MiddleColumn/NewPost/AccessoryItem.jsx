@@ -4,6 +4,7 @@ import ImageIcon from "./svg/image.svg";
 import MediasIcon from "./svg/media.svg";
 import PollIcon from "./svg/poll.svg";
 import ScheduleIcon from "./svg/schedule.svg";
+import Cbutton from "../../Elements/Cbutton";
 
 import "./AccessoryItem.css";
 
@@ -19,19 +20,19 @@ const AccessoryItem = (props) => {
   const icon = () => {
     switch (props.handle) {
       case "media":
-        return <img className="icon" src={MediasIcon} alt="MediasIcon" />;
+        return <Cbutton image={MediasIcon} alt="Media" onClick={props.onClick}/>;
         break;
       case "image":
-        return <img className="icon" src={ImageIcon} alt="ImageIcon" />;
+        return <Cbutton image={ImageIcon} alt="GIF" />;
         break;
       case "poll":
-        return <img className="icon" src={PollIcon} alt="PollIcon" />;
+        return <Cbutton image={PollIcon} alt="Poll" />;
         break;
       case "emoji":
-        return <img className="icon" src={EmojiIcon} alt="EmojiIcon" />;
+        return <Cbutton image={EmojiIcon} alt="Emoji" />;
         break;
       case "schedule":
-        return <img className="icon" src={ScheduleIcon} alt="ScheduleIcon" />;
+        return <Cbutton image={ScheduleIcon} alt="Schedule" />;
         break;
     }
   };

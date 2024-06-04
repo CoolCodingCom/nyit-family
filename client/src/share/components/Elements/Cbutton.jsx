@@ -2,8 +2,9 @@ import "./Cbutton.css";
 
 const Cbutton = (props) => {
   return (
-    <button className="button">
+    <button className="button" onClick={props.onClick}>
       <img src={props.image} />
+      <span className="button__alt">{props.alt}</span>
     </button>
   );
 };
