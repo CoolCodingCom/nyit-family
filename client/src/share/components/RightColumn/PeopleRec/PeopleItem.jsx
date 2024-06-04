@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import "./PeopleItem.css";
 
 const PeopleItem = (props) => {
-  console.log(props.image);
   return (
     <NavLink className="peopleitem__container" to={props.path}>
       <div className="peopleitem__avadar">

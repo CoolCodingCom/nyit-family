@@ -1,0 +1,49 @@
+.image-upload__preview {
+	position: relative;
+	width: 100%;
+	text-align: center;
+}
+
+.image-upload__preview img {
+	width: 85%;
+	border-radius: 20px;
+}
+
+.image-upload__edit {
+	position: absolute;
+	width: 52px;
+	height: 33px;
+	top: 0.5%;
+	left: 8%;
+	font-size: 0.8rem;
+	font-weight: 700;
+	color: white;
+	border-radius: 20px;
+	border: none;
+	opacity: 0.65;
+	background-color: black;
+}
+
+.image-upload__edit:hover {
+	opacity: 0.55;
+}
+
+
+.image-upload__cancel {
+	position: absolute;
+	width: 33px;
+	height: 33px;
+	top: 0.5%;
+	right: 8%;
+	font-size: 1rem;
+	font-weight: 700;
+	color: white;
+	border-radius: 50%;
+	border: none;
+	opacity: 0.65;
+	background-color: black;
+}
+
+.image-upload__cancel:hover {
+	opacity: 0.55;
+}
