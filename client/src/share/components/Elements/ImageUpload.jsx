@@ -1,10 +1,18 @@
-import { useState, useRef, useCallback, forwardRef, useImperativeHandle, useEffect } from "react";
+import {
+  useState,
+  useRef,
+  useCallback,
+  forwardRef,
+  useImperativeHandle,
+  useEffect,
+} from "react";
 
-import "./ImageUpload.css"
+import "./ImageUpload.css";
 
 const ImageUpload = forwardRef((props, ref) => {
-	const [file, setFile] = useState(null);
-	const [previewUrl, setPreviewUrl] = useState("");
+  const [fileList, setFileList] = useState([]);
+  const [previewUrlList, setPreviewUrlList] = useState([]);
+  const [deletedIndex, setDeletedIndex] = useState(-1);
   const filePickerRef = useRef();
   const fileReader = new FileReader();
 
@@ -14,33 +22,42 @@ const ImageUpload = forwardRef((props, ref) => {
     };
   });
 
-	useEffect(() => {
-		if (!file) {
-      setPreviewUrl("");
-			return;
-		}
+  useEffect(() => {
+    if (fileList.length === 0) {
+      setPreviewUrlList([]);
+      return;
+    }
+    if (fileList.length < previewUrlList.length) {
+      setPreviewUrlList((previousUrlList) => previousUrlList.filter((_, i) => i !== deletedIndex));
+      setDeletedIndex(-1);
+      return;
+    }
     fileReader.onload = () => {
-      setPreviewUrl(fileReader.result);
+      setPreviewUrlList((previousUrlList) => [
+        ...previousUrlList,
+        fileReader.result,
+      ]);
     };
-    fileReader.readAsDataURL(file);
-	}, [file]);
+    fileReader.readAsDataURL(fileList[fileList.length - 1]);
+  }, [fileList]);
 
   const pickImageHandler = () => {
     filePickerRef.current.click();
   };
 
-	const pickHandler = (event) => {
-		let pickedFile;
-		if (event.target.files && event.target.files.length === 1) {
-			pickedFile = event.target.files[0];
-			setFile(pickedFile);
-		}
-	}
+  const pickHandler = (event) => {
+    let pickedFile;
+    if (event.target.files && event.target.files.length === 1) {
+      pickedFile = event.target.files[0];
+      setFileList((previousFile) => [...previousFile, pickedFile]);
+    }
+  };
 
-  const CancelImageHandler = () => {
-    filePickerRef.current.value="";
-    setFile(null);
-  }
+  const CancelImageHandler = (index) => {
+    filePickerRef.current.value = "";
+    setFileList((previousFile) => previousFile.filter((_, i) => i !== index));
+    setDeletedIndex(index);
+  };
 
   return (
     <div>
@@ -49,13 +66,26 @@ const ImageUpload = forwardRef((props, ref) => {
         accept=".jpg,.png,.jpeg"
         style={{ display: "none" }}
         ref={filePickerRef}
-				onChange={pickHandler}
+        onChange={pickHandler}
       />
-      <div className="image-upload__preview">
-        {previewUrl && <button className="image-upload__edit">Edit</button>}
-        {previewUrl && <button className="image-upload__cancel" onClick={CancelImageHandler}>✕</button>}
-        {previewUrl && <img src={previewUrl} alt="Preview" />}
-      </div>
+      {previewUrlList.map((previewUrlItem, index) => (
+        <div className="image-upload__preview">
+          {previewUrlList.length > 0 && (
+            <button className="image-upload__edit">Edit</button>
+          )}
+          {previewUrlList.length > 0 && (
+            <button
+              className="image-upload__cancel"
+              onClick={() => CancelImageHandler(index)}
+            >
+              ✕
+            </button>
+          )}
+          {previewUrlList.length > 0 && (
+            <img src={previewUrlItem} alt="Preview" />
+          )}
+        </div>
+      ))}
     </div>
   );
 });
