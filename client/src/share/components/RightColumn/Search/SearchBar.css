@@ -1,0 +1,31 @@
+.search__wrap {
+  display: inline-block;
+	margin-top: 10px;
+  width: 100%;
+  border: 1.2px solid #4170e5;
+  height: 40px;
+  border-radius: 30px;
+  outline: none;
+}
+
+.search__inner {
+  display: flex;
+  height: 100%;
+}
+
+.search__inner img {
+  padding-left: 15px;
+  width: 20px;
+}
+
+.search__item {
+  text-align: none;
+  margin-left: 10px;
+  height: 90%;
+  width: 70%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  border: none;
+  outline: none;
+}
+  

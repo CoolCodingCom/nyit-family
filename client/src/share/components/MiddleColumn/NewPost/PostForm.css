@@ -1,0 +1,78 @@
+.postform__body {
+  display: flex;
+  border-top: 1px solid rgb(238, 232, 232);
+  border-bottom: 1px solid rgb(238, 232, 232);
+}
+
+.postform__navlink {
+  padding-top: 16px;
+  padding-left: 16px;
+  padding-right: 2px;
+}
+
+.postform__navlink img {
+  border-radius: 50%;
+}
+
+form.post_form {
+  padding-top: 23px;
+  width: 85%;
+}
+
+.postform__contentbody {
+  border-bottom: 1px solid rgb(238, 232, 232);
+}
+
+form.post_form textarea::placeholder {
+  font-size: 20px;
+}
+
+form.post_form textarea {
+  flex: 1;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  border-radius: 4px;
+  border: none;
+  overflow: hidden;
+  outline: none;
+  display: block;
+  resize: none;
+  width: 100%;
+  padding: 10px;
+  background: white;
+  color: black;
+}
+
+.postform__accessroy-btn {
+  position: sticky;
+  bottom: 0px;
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.postform__btn {
+  width: 12%;
+  text-align: right;
+}
+
+.postform__btn button {
+  width: 90%;
+  height: 36px;
+  border-radius: 20px;
+  background-color: rgb(80, 146, 238);
+  border: none;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.postform__btn button:disabled {
+  background-color: rgb(160, 193, 239);
+  border: none;
+  color: rgb(238, 232, 232);
+}

@@ -1,0 +1,10 @@
+.rightcol__container {
+  position: sticky;
+  bottom: 0px;
+  margin-top: auto;
+  border: none;
+  flex-shrink: 0;
+  width: 400px;
+  height: 130vh;
+  margin-left: 50px;
+}

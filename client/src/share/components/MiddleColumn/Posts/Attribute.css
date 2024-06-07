@@ -1,0 +1,18 @@
+.attribute__container {
+  display: block;
+}
+
+.attribute__btn {
+  display: inline-block;
+}
+
+.attribute__number {
+  display: inline-block;
+  margin-left: -4px;
+  vertical-align: 5px;
+}
+
+.attribute__gap {
+  display: inline-block;
+  margin-left: 6vw;
+}
