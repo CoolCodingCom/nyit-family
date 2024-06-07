@@ -15,7 +15,7 @@ const PostForm = () => {
   const mediaUploadRef = useRef();
 
   const backendUrl = "http://localhost:5000";
-  
+
   useEffect(() => {
     textareaRef.current.style.height = "0px";
     const scrollHeight = textareaRef.current.scrollHeight;
@@ -42,9 +42,9 @@ const PostForm = () => {
     console.log("123");
     try {
       const formData = new FormData();
-      formData.append("author", "Levi");
+      formData.append("author", "66478537d649d8bfa2785161");
       formData.append("content", message);
-      formData.append("media", mediaList);
+      mediaList.forEach((file) => formData.append("media", file));
 
       const response = await fetch(backendUrl + "/api/posts", {
         method: "POST",

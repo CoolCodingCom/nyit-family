@@ -17,7 +17,7 @@ const getHomePosts = async (req, res) => {
     const homePosts = await Post.find({ parentPost: { $exists: false } }).sort({
       createdAt: -1,
     });
-    res.status(200).json(homePosts);
+    res.status(200).json({ posts: homePosts });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -133,7 +133,8 @@ const getPostByUser = async (req, res) => {
 const createPost = async (req, res) => {
   try {
     const { author, content } = req.body;
-    await Post.create({ author, content });
+    const media = req.files.map((file) => file.path);
+    await Post.create({ author, content, media });
     res.status(200).json({ message: "Post created successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
