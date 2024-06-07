@@ -42,7 +42,8 @@ const PostForm = () => {
     console.log("123");
     try {
       const formData = new FormData();
-      formData.append("author", "66478537d649d8bfa2785161");
+      formData.append("userId", "66478537d649d8bfa2785161");
+      formData.append("username", "Levi Zhu");
       formData.append("content", message);
       mediaList.forEach((file) => formData.append("media", file));
 
