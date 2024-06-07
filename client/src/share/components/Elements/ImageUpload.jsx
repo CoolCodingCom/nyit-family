@@ -13,6 +13,9 @@ const ImageUpload = forwardRef((props, ref) => {
   const [fileList, setFileList] = useState([]);
   const [previewUrlList, setPreviewUrlList] = useState([]);
   const [deletedIndex, setDeletedIndex] = useState(-1);
+  const [leftMost, setleftMost] = useState(true);
+  const imageListRef = useRef();
+  const rightButtonRef = useRef();
   const filePickerRef = useRef();
   const fileReader = new FileReader();
 
@@ -61,8 +64,29 @@ const ImageUpload = forwardRef((props, ref) => {
     setDeletedIndex(index);
   };
 
+  const horizontalScrollHandler = (element, speed, step) => {
+    const tolerance = 1;
+    const slideTimer = setInterval(() => {
+      element.scrollLeft += step;
+      console.log(element.scrollLeft);
+      // console.log(element.scrollWidth - element.clientWidth);
+      if (
+        element.scrollLeft === 0 ||
+        element.scrollWidth - element.clientWidth - element.scrollLeft <=
+          tolerance
+      ) {
+        clearInterval(slideTimer);
+        if (element.scrollLeft === 0) {
+          setleftMost(true);
+        } else {
+          setleftMost(false);
+        }
+      }
+    }, speed);
+  };
+
   return (
-    <div>
+    <div className="image-upload__container">
       <input
         type="file"
         accept=".jpg,.png,.jpeg"
@@ -70,15 +94,24 @@ const ImageUpload = forwardRef((props, ref) => {
         ref={filePickerRef}
         onChange={pickHandler}
       />
-      <div className="image-upload__list">
-        {previewUrlList.length > 2 && (
-          <button
-            className="image-upload__arrowleft"
-            onClick={() => CancelImageHandler(index)}
-          >
-            {String.fromCharCode(0x2B05)}
-          </button>
-        )}
+      {previewUrlList.length > 2 && leftMost && (
+        <button
+          className="image-upload__arrowleft"
+          onClick={() => horizontalScrollHandler(imageListRef.current, 10, 20)}
+        >
+          {String.fromCharCode(0x2b60)}
+        </button>
+      )}
+      {previewUrlList.length > 2 && !leftMost && (
+        <button
+          className="image-upload__arrowright"
+          onClick={() => horizontalScrollHandler(imageListRef.current, 10, -20)}
+          ref={rightButtonRef}
+        >
+          {String.fromCharCode(0x2b62)}
+        </button>
+      )}
+      <div className="image-upload__list" ref={imageListRef}>
         {previewUrlList.map((previewUrlItem, index) => (
           <div className="image-upload__preview">
             {previewUrlList.length > 0 && (

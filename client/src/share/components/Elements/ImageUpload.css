@@ -1,5 +1,8 @@
-.image-upload__list {
+.image-upload__container {
 	position: relative;
+}
+
+.image-upload__list {
 	display: flex;
 	width: 100%;
 	overflow: hidden;
@@ -22,6 +25,26 @@
 }
 
 .image-upload__arrowleft:hover {
+	opacity: 0.55;
+}
+
+.image-upload__arrowright {
+	position: absolute;
+	width: 43px;
+	height: 43px;
+	top: 45%;
+	right: 2%;
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: white;
+	border-radius: 50%;
+	border: none;
+	opacity: 0.65;
+	background-color: black;
+	z-index: 1;
+}
+
+.image-upload__arrowright:hover {
 	opacity: 0.55;
 }
 
