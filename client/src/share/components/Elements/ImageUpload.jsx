@@ -1,7 +1,6 @@
 import {
   useState,
   useRef,
-  useCallback,
   forwardRef,
   useImperativeHandle,
   useEffect,
@@ -45,6 +44,7 @@ const ImageUpload = forwardRef((props, ref) => {
     };
     fileReader.readAsDataURL(fileList[fileList.length - 1]);
     filePickerRef.current.value = "";
+    props.onInput(fileList);  // pass all the files to its parental component
   }, [fileList]);
 
   const pickImageHandler = () => {
@@ -68,7 +68,7 @@ const ImageUpload = forwardRef((props, ref) => {
     const tolerance = 1;
     const slideTimer = setInterval(() => {
       element.scrollLeft += step;
-      console.log(element.scrollLeft);
+      // console.log(element.scrollLeft);
       // console.log(element.scrollWidth - element.clientWidth);
       if (
         element.scrollLeft === 0 ||
