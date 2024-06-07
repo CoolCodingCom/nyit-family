@@ -1,9 +1,16 @@
 import { useEffect } from "react";
+import LeftColumn from "../../share/components/LeftColumn/LeftColumn";
+import MiddleColumn from "../../share/components/MiddleColumn/MiddleColumn";
+import RightColumn from "../../share/components/RightColumn/RightColumn";
+
+import "./Home.css";
+
 
 export default function Home() {
   const backendUrl = "http://localhost:5000";
 
   useEffect(() => {
+    const storedData = localStorage.getItem("token");
     const sendRequest = async () => {
       try {
         const response = await fetch(
@@ -21,8 +28,15 @@ export default function Home() {
         console.log(responseData);
       } catch (error) {}
     };
-    sendRequest();
+
+    if (!storedData) {
+      sendRequest();
+    }
   }, []);
 
-  return <div className="home-container">HomePage</div>;
+  return <div className="home-container">
+    <LeftColumn/>
+    <MiddleColumn/>
+    <RightColumn/>
+  </div>;
 }

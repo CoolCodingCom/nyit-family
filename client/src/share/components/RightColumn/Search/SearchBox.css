@@ -1,0 +1,10 @@
+.search__container {
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  border: none;
+  outline: none;
+  background-color: white;
+}

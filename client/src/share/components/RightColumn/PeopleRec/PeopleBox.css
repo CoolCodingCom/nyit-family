@@ -1,0 +1,31 @@
+.people__container {
+	margin-top: 20px;
+	border-radius: 10px;
+	border: 1px solid rgb(238, 232, 232);
+}
+
+.people__container h3{
+	padding-left: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.3rem;
+	font-weight: 800;
+}
+
+.people__showmore {
+	display: inline-block;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top: 1px solid rgb(238, 232, 232);
+	width: 383px;
+	color: blue;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 90%;
+	text-decoration: none;
+}
+
+.people__showmore:hover {
+	background-color: rgb(238, 232, 232);
+}
