@@ -8,7 +8,8 @@ const repostSchema = new Schema({
 
 const postSchema = new Schema(
   {
-    author: { type: Schema.Types.ObjectId, ref: "Users", required: true },
+    userId: { type: Schema.Types.ObjectId, ref: "Users", required: true },
+    username: { type: String, required: true },
     content: { type: String, required: true, maxlength: 280 },
     isQuote: { type: Boolean, default: false },
     originalPost: { type: Schema.Types.ObjectId, ref: "Post" },

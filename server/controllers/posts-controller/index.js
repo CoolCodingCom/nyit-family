@@ -26,7 +26,7 @@ const getHomePosts = async (req, res) => {
 const getPostByAuthor = async (req, res) => {
   try {
     const { id } = req.params;
-    const posts = await Post.find({ author: id }).sort({ createdAt: -1 });
+    const posts = await Post.find({ userId: id }).sort({ createdAt: -1 });
     res.status(200).json(posts);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -89,7 +89,7 @@ const getPostByUser = async (req, res) => {
         $facet: {
           authored: [
             // Author type is ObjectId, or this will not be filtered out
-            { $match: { author: new mongoose.Types.ObjectId(id) } },
+            { $match: { userId: new mongoose.Types.ObjectId(id) } },
             { $addFields: { displayTime: "$createdAt" } },
           ],
           reposted: [
@@ -132,9 +132,9 @@ const getPostByUser = async (req, res) => {
 
 const createPost = async (req, res) => {
   try {
-    const { author, content } = req.body;
+    const { userId, username, content } = req.body;
     const media = req.files.map((file) => file.path);
-    await Post.create({ author, content, media });
+    await Post.create({ userId, username, content, media });
     res.status(200).json({ message: "Post created successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -143,10 +143,15 @@ const createPost = async (req, res) => {
 
 const createComment = async (req, res) => {
   try {
-    const { author, content, parentPost } = req.body;
+    const { userId, username, content, parentPost } = req.body;
     const parent = await Post.findById(parentPost);
     if (parent) {
-      const newComment = await Post.create({ author, content, parentPost });
+      const newComment = await Post.create({
+        userId,
+        username,
+        content,
+        parentPost,
+      });
       parent.comments.push(newComment._id);
       await parent.save();
     } else {
