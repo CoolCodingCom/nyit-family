@@ -8,7 +8,6 @@ import PostImage from "./svg/postimage.svg";
 
 import "./PostItem.css";
 
-
 const PostItem = (props) => {
   return (
     <div className="post__container">
@@ -32,9 +31,11 @@ const PostItem = (props) => {
         <div className="post__content">
           <div className="post__content-text">{props.text}</div>
           <div className="post__content-image">
-          <NavLink to="/login" href="#">
-            <img src={PostImage} alt="PostImage" />
-          </NavLink>
+            {props.medialist.map((media) => (
+              <NavLink to="/login" href="#">
+                <img src={backendUrl+`/${media}`} alt={media} />
+              </NavLink>
+            ))}
           </div>
         </div>
 

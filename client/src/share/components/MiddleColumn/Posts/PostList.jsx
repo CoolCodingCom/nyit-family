@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import PostItem from "./PostItem";
 
 const DUMMY_POSTS = [
@@ -41,15 +42,39 @@ const DUMMY_POSTS = [
 ];
 
 const PostList = () => {
+  const [postList, setPostList] = useState();
+  const backendUrl = "http://localhost:5000";
+
+  useEffect(() => {
+    const sendRequest = async () => {
+      try {
+        const response = await fetch(backendUrl + "/api/posts/home");
+        const responseData = await response.json();
+
+        if (!response.ok) {
+          throw new Error(responseData.message);
+        }
+
+        setPostList(responseData.posts);
+        console.log(responseData.posts);
+      } catch (error) {
+        throw error;
+      }
+    };
+    sendRequest();
+  }, []);
+
+
   return (
     <div>
-      {DUMMY_POSTS.map((post) => (
+      {postList && postList.map((post) => (
         <PostItem
-          key={post.userid}
-          userid={post.userid}
-          username={post.username}
-          timestamp={post.timestamp}
+          key={post._id}
+          userid={post.author}
+          username={post.author}
+          timestamp={post.createdAt}
           text={post.content}
+          medialist={post.media}
         />
       ))}
     </div>
