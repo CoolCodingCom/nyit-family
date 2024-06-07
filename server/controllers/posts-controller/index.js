@@ -1,9 +1,130 @@
 const Post = require("../../models/posts.js");
+const User = require("../../models/users.js");
+const mongoose = require("mongoose");
 
-const getPosts = async (req, res) => {
+// Except this getAllPosts API, others sort from newest to oldest by default (for display purpose)
+const getAllPosts = async (req, res) => {
   try {
     const posts = await Post.find({});
     res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getHomePosts = async (req, res) => {
+  try {
+    const homePosts = await Post.find({ parentPost: { $exists: false } }).sort({
+      createdAt: -1,
+    });
+    res.status(200).json(homePosts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getPostByAuthor = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const posts = await Post.find({ author: id }).sort({ createdAt: -1 });
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getRepostByUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    const justRepostsArray = Object.entries(user.justReposts).map(
+      ([postId, repostTime]) => ({
+        postId: new mongoose.Types.ObjectId(postId),
+        repostTime,
+      })
+    );
+    const repostedPosts = await Post.aggregate([
+      { $match: { _id: { $in: justRepostsArray.map((item) => item.postId) } } },
+      {
+        $addFields: {
+          isReposted: true,
+          repostedBy: user.name,
+          displayTime: {
+            $arrayElemAt: [
+              justRepostsArray.map((item) => item.repostTime),
+              {
+                $indexOfArray: [
+                  justRepostsArray.map((item) => item.postId),
+                  "$_id",
+                ],
+              },
+            ],
+          },
+        },
+      },
+      { $sort: { displayTime: -1 } },
+    ]);
+    res.status(200).json(repostedPosts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getPostByUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    const justRepostsArray = Object.entries(user.justReposts).map(
+      ([postId, repostTime]) => ({
+        postId: new mongoose.Types.ObjectId(postId),
+        repostTime,
+      })
+    );
+    const postIds = Object.keys(user.justReposts).map(
+      (postId) => new mongoose.Types.ObjectId(postId)
+    );
+    // Use mongoDB aggregation pipeline
+    const combinedPosts = await Post.aggregate([
+      {
+        $facet: {
+          authored: [
+            // Author type is ObjectId, or this will not be filtered out
+            { $match: { author: new mongoose.Types.ObjectId(id) } },
+            { $addFields: { displayTime: "$createdAt" } },
+          ],
+          reposted: [
+            {
+              $match: {
+                _id: { $in: postIds },
+              },
+            },
+            {
+              $addFields: {
+                isReposted: true,
+                repostedBy: user.name,
+                displayTime: {
+                  $arrayElemAt: [
+                    justRepostsArray.map((item) => item.repostTime),
+                    {
+                      $indexOfArray: [
+                        justRepostsArray.map((item) => item.postId),
+                        "$_id",
+                      ],
+                    },
+                  ],
+                },
+              },
+            },
+          ],
+        },
+      },
+      { $project: { combined: { $concatArrays: ["$authored", "$reposted"] } } },
+      { $unwind: "$combined" },
+      { $replaceRoot: { newRoot: "$combined" } },
+      { $sort: { displayTime: -1 } },
+    ]);
+
+    res.status(200).json(combinedPosts);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -22,10 +143,16 @@ const createPost = async (req, res) => {
 const createComment = async (req, res) => {
   try {
     const { author, content, parentPost } = req.body;
-    const newComment = await Post.create({ author, content, parentPost });
-    await Post.findByIdAndUpdate(parentPost, {
-      $push: { comments: newComment._id },
-    });
+    const parent = await Post.findById(parentPost);
+    if (parent) {
+      const newComment = await Post.create({ author, content, parentPost });
+      parent.comments.push(newComment._id);
+      await parent.save();
+    } else {
+      return res
+        .status(404)
+        .json({ message: "The post you are commenting on does not exist!" });
+    }
     res.status(200).json({ message: "Comment created successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -87,7 +214,11 @@ const deletePost = async (req, res) => {
 };
 
 module.exports = {
-  getPosts,
+  getAllPosts,
+  getHomePosts,
+  getPostByAuthor,
+  getRepostByUser,
+  getPostByUser,
   createPost,
   deletePost,
   createComment,

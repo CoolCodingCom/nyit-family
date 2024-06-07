@@ -1,6 +1,11 @@
 const express = require("express");
+const upload = require("../middleware/upload-multer");
 const {
-  getPosts,
+  getAllPosts,
+  getHomePosts,
+  getPostByAuthor,
+  getRepostByUser,
+  getPostByUser,
   createPost,
   deletePost,
   createComment,
@@ -22,9 +27,19 @@ const {
 
 const router = express.Router();
 
-router.get("/", getPosts);
+router.get("/", getAllPosts);
 
-router.post("/", createPost);
+router.get("/home", getHomePosts);
+
+router.get("/:id", getPostByAuthor);
+
+router.get("/reposts/:id", getRepostByUser);
+
+router.get("/all/:id", getPostByUser);
+
+// router.post("/", createPost);
+
+router.post("/", upload.array("media", 4), createPost);
 
 router.delete("/delete", deletePost);
 
