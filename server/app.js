@@ -26,17 +26,6 @@ app.use("/api/posts", postsRoutes);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// for test temporaily
-app.post("/profile", upload.single("avatar"), function (req, res, next) {
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
-  res.json({
-    message: "upload successfully!",
-    fileInfo: req.file,
-    textInfo: req.body,
-  });
-});
-
 app.use((req, res, next) => {
   throw new Error("Could not find this route!");
 });
