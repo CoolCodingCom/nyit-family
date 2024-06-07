@@ -9,6 +9,8 @@ import PostImage from "./svg/postimage.svg";
 import "./PostItem.css";
 
 const PostItem = (props) => {
+  const backendUrl = "https://5000-coolcodingco-nyitfamily-zzt5pgimwpf.ws-us114.gitpod.io";
+
   return (
     <div className="post__container">
       <div className="post__avadar">

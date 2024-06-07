@@ -1,7 +1,7 @@
 module.exports = {
 	google: {
-		CLIEND_ID: " ",
-		CLIEND_SECRET: ""
+		CLIEND_ID: your_client_id_from_google_cloud_console,
+		CLIEND_SECRET: your_client_secret_from_google_cloud_console
 	},
 	mongoDB: {
 		MONGODB_USER: "",
@@ -15,11 +15,8 @@ module.exports = {
 		PASSWORD: ""
 	},
 	email: {
-		BACKEND_URL: "http://localhost:5000",
+		BACKEND_URL: "",
 		SENDER: "",
 		RECEIVER: ""
-	},
-	frontend: {
-		FRONTEND_URL: "http://localhost:5173",
 	}
 };

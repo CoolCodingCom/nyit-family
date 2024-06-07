@@ -15,7 +15,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use(cors({ credentials: true, origin: "http://localhost:5173" })); // solve CORS
+app.use(cors({ credentials: true })); // solve CORS
 
 passport(app);
 
