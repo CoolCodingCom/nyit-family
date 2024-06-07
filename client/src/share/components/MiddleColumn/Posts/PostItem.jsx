@@ -9,7 +9,7 @@ import PostImage from "./svg/postimage.svg";
 import "./PostItem.css";
 
 const PostItem = (props) => {
-  const backendUrl = "https://5000-coolcodingco-nyitfamily-zzt5pgimwpf.ws-us114.gitpod.io";
+  const backendUrl = "http://localhost:5000";
 
   return (
     <div className="post__container">
