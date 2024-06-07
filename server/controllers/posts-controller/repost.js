@@ -19,7 +19,9 @@ const addJustRepost = async (req, res) => {
       post.reposts.push({ userId, count: 1 });
     }
     await post.save();
-    await User.findByIdAndUpdate(userId, { $push: { justReposts: postId } });
+    await User.findByIdAndUpdate(userId, {
+      $set: { [`justReposts.${postId}`]: new Date() },
+    });
     res.status(200).json({ message: "Repost successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -47,10 +49,14 @@ const removeJustRepost = async (req, res) => {
         post.reposts.splice(repostIndex, 1);
       }
     } else {
-      return res.status(404).json({ message: "Repost not found" });
+      console.log(
+        "original post already has no repost records for this repost!"
+      );
     }
     await post.save();
-    await User.findByIdAndUpdate(userId, { $pull: { justReposts: postId } });
+    await User.findByIdAndUpdate(userId, {
+      $unset: { [`justReposts.${postId}`]: "" },
+    });
     res.status(200).json({ message: "Unrepost successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });

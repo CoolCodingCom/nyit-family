@@ -17,6 +17,7 @@ const postSchema = new Schema(
     reposts: [repostSchema],
     likes: [{ type: Schema.Types.ObjectId, ref: "Users" }],
     bookmarks: [{ type: Schema.Types.ObjectId, ref: "Users" }],
+    media: [{ type: String }],
   },
   {
     timestamps: true,

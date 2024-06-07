@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   uniqueString: { type: String, required: true },
   liked: [{ type: mongoose.Types.ObjectId, ref: "Post" }],
   bookmarked: [{ type: mongoose.Types.ObjectId, ref: "Post" }],
-  justReposts: [{ type: mongoose.Types.ObjectId, ref: "Post" }],
+  justReposts: { type: mongoose.Schema.Types.Mixed, default: {} },
 });
 
 module.exports = mongoose.model("Users", userSchema);
