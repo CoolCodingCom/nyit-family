@@ -43,7 +43,8 @@ const DUMMY_POSTS = [
 
 const PostList = () => {
   const [postList, setPostList] = useState();
-  const backendUrl = "http://localhost:5000";
+  // const backendUrl = "http://localhost:5000";
+  const backendUrl = "https://5000-coolcodingco-nyitfamily-zzt5pgimwpf.ws-us114.gitpod.io";
 
   useEffect(() => {
     const sendRequest = async () => {
