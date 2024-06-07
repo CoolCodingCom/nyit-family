@@ -7,7 +7,6 @@ import AvadarIcon from "./svg/avadar.svg";
 import "./PostForm.css";
 
 
-
 const PostForm = () => {
   const [message, setMessage] = useState("");
   const textareaRef = useRef(null);

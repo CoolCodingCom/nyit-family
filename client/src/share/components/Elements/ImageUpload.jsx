@@ -28,7 +28,9 @@ const ImageUpload = forwardRef((props, ref) => {
       return;
     }
     if (fileList.length < previewUrlList.length) {
-      setPreviewUrlList((previousUrlList) => previousUrlList.filter((_, i) => i !== deletedIndex));
+      setPreviewUrlList((previousUrlList) =>
+        previousUrlList.filter((_, i) => i !== deletedIndex)
+      );
       setDeletedIndex(-1);
       return;
     }
@@ -39,6 +41,7 @@ const ImageUpload = forwardRef((props, ref) => {
       ]);
     };
     fileReader.readAsDataURL(fileList[fileList.length - 1]);
+    filePickerRef.current.value = "";
   }, [fileList]);
 
   const pickImageHandler = () => {
@@ -54,7 +57,6 @@ const ImageUpload = forwardRef((props, ref) => {
   };
 
   const CancelImageHandler = (index) => {
-    filePickerRef.current.value = "";
     setFileList((previousFile) => previousFile.filter((_, i) => i !== index));
     setDeletedIndex(index);
   };
@@ -68,24 +70,34 @@ const ImageUpload = forwardRef((props, ref) => {
         ref={filePickerRef}
         onChange={pickHandler}
       />
-      {previewUrlList.map((previewUrlItem, index) => (
-        <div className="image-upload__preview">
-          {previewUrlList.length > 0 && (
-            <button className="image-upload__edit">Edit</button>
-          )}
-          {previewUrlList.length > 0 && (
-            <button
-              className="image-upload__cancel"
-              onClick={() => CancelImageHandler(index)}
-            >
-              ✕
-            </button>
-          )}
-          {previewUrlList.length > 0 && (
-            <img src={previewUrlItem} alt="Preview" />
-          )}
-        </div>
-      ))}
+      <div className="image-upload__list">
+        {previewUrlList.length > 2 && (
+          <button
+            className="image-upload__arrowleft"
+            onClick={() => CancelImageHandler(index)}
+          >
+            {String.fromCharCode(0x2B05)}
+          </button>
+        )}
+        {previewUrlList.map((previewUrlItem, index) => (
+          <div className="image-upload__preview">
+            {previewUrlList.length > 0 && (
+              <button className="image-upload__edit">Edit</button>
+            )}
+            {previewUrlList.length > 0 && (
+              <button
+                className="image-upload__cancel"
+                onClick={() => CancelImageHandler(index)}
+              >
+                ✕
+              </button>
+            )}
+            {previewUrlList.length > 0 && (
+              <img src={previewUrlItem} alt="Preview" />
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 });
