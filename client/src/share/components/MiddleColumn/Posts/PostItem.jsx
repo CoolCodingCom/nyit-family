@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 import AttributeList from "./AttributeList";
-
+import MediaArrange from "./MediaArrange";
 import AvadarIcon from "./svg/avadar.svg";
 
 import "./PostItem.css";
 
+
 const PostItem = (props) => {
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   return (
     <div className="post__container">
@@ -31,13 +31,7 @@ const PostItem = (props) => {
 
         <div className="post__content">
           <div className="post__content-text">{props.text}</div>
-          <div className="post__content-image">
-            {props.medialist.map((media) => (
-              <NavLink to="/login" href="#">
-                <img src={backendUrl+`/${media}`} alt={media} />
-              </NavLink>
-            ))}
-          </div>
+          <MediaArrange medialist={props.medialist}/>
         </div>
 
         <div className="post__accessory">
