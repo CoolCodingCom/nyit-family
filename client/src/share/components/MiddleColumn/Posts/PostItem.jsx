@@ -4,12 +4,11 @@ import { NavLink } from "react-router-dom";
 import AttributeList from "./AttributeList";
 
 import AvadarIcon from "./svg/avadar.svg";
-import PostImage from "./svg/postimage.svg";
 
 import "./PostItem.css";
 
 const PostItem = (props) => {
-  const backendUrl = "http://localhost:5000";
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   return (
     <div className="post__container">

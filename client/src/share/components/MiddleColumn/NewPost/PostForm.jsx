@@ -14,7 +14,7 @@ const PostForm = () => {
   const [mediaUploadState, setMediaUploadState] = useState(null);
   const mediaUploadRef = useRef();
 
-  const backendUrl = "http://localhost:5000";
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     textareaRef.current.style.height = "0px";
