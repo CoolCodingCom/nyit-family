@@ -5,9 +5,9 @@ import "./MoreList.css";
 const MoreList = (props) => {
   const morelist = [
 		{
-			name: "button 1",
+			name: "Delete",
 			onClickHandler: () => {
-				console.log("button 1");
+				console.log("Delete");
 			}
 		},
 		{
