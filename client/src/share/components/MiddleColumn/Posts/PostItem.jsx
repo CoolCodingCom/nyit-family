@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import AttributeList from "./AttributeList";
@@ -7,8 +7,12 @@ import AvadarIcon from "./svg/avadar.svg";
 
 import "./PostItem.css";
 
-
 const PostItem = (props) => {
+  const [moreHidden, setMoreHidden] = useState(true);
+
+  const showListHandler = () => {
+    setMoreHidden((moreHidden) => !moreHidden);
+  };
 
   return (
     <div className="post__container">
@@ -18,6 +22,24 @@ const PostItem = (props) => {
         </NavLink>
       </div>
       <div className="post__body">
+        <div className="post__extension">
+          <button onClick={showListHandler}>
+            <span>...</span>
+          </button>
+          {!moreHidden && (
+            <ul className="post__extension-list">
+              <li>
+                <button>Choice 1</button>
+              </li>
+              <li>
+                <button>Choice 2</button>
+              </li>
+              <li>
+                <button>Choice 3</button>
+              </li>
+            </ul>
+          )}
+        </div>
         <div className="post__profile">
           <div className="post__profile-username">
             <NavLink to={`/${props.userid}`} href="#">
@@ -25,13 +47,13 @@ const PostItem = (props) => {
             </NavLink>
           </div>
           <div className="post__profile-info">
+            <span>@</span>
             {props.userid}·{props.timestamp}
           </div>
         </div>
-
         <div className="post__content">
           <div className="post__content-text">{props.text}</div>
-          <MediaArrange medialist={props.medialist}/>
+          <MediaArrange medialist={props.medialist} />
         </div>
 
         <div className="post__accessory">
