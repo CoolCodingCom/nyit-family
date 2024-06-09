@@ -3,15 +3,17 @@ import { NavLink } from "react-router-dom";
 
 import AttributeList from "./AttributeList";
 import MediaArrange from "./MediaArrange";
+import MoreList from "./MoreList";
 import AvadarIcon from "./svg/avadar.svg";
 
 import "./PostItem.css";
 
+
 const PostItem = (props) => {
-  const [moreHidden, setMoreHidden] = useState(true);
+  const [moreIsShow, setMoreIsShow] = useState(false);
 
   const showListHandler = () => {
-    setMoreHidden((moreHidden) => !moreHidden);
+    setMoreIsShow((moreIsShow) => !moreIsShow);
   };
 
   return (
@@ -23,21 +25,11 @@ const PostItem = (props) => {
       </div>
       <div className="post__body">
         <div className="post__extension">
-          <button onClick={showListHandler}>
+          <button className="post__extension-show-button" onClick={showListHandler}>
             <span>...</span>
           </button>
-          {!moreHidden && (
-            <ul className="post__extension-list">
-              <li>
-                <button>Choice 1</button>
-              </li>
-              <li>
-                <button>Choice 2</button>
-              </li>
-              <li>
-                <button>Choice 3</button>
-              </li>
-            </ul>
+          {moreIsShow && (
+            <MoreList show={moreIsShow} onClick={showListHandler}/>
           )}
         </div>
         <div className="post__profile">
