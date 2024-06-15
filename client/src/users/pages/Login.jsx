@@ -5,6 +5,7 @@ import loginImage from "../../assets/loginImage.svg";
 import { loginUser } from "../../apis";
 import LoginForm from "../components/LoginForm";
 import GoogleButton from "../components/GoogleButton";
+import { updateUser } from "../../share/components/ProtectedRoute/AuthProvider";
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -14,6 +15,8 @@ export async function action({ request }) {
   try {
     const data = await loginUser({ email, password });
     localStorage.setItem("token", data.token);
+    localStorage.setItem("userId", data.userId);
+    updateUser({ id: data.userId });
     return redirect(pathname);
   } catch (err) {
     return err.message;
