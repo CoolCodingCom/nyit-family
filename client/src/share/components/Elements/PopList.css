@@ -1,0 +1,38 @@
+.poplist__container {
+  position: absolute;
+  top: -15px;
+  right: 5px;
+  width: 180px;
+  padding: 0;
+  z-index: 100;
+  background-color: white;
+  border: 2px solid rgb(238, 232, 232);
+  list-style-type: none;
+  border-radius: 10px;
+}
+
+.poplist__container button {
+  width: 100%;
+  padding: 15px;
+  background-color: white;
+  border: none;
+  color: black;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.poplist__container-first {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.poplist__container-last {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.poplist__container button:hover {
+  background-color: rgb(238, 232, 232);
+}
