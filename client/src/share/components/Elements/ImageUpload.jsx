@@ -44,7 +44,7 @@ const ImageUpload = forwardRef((props, ref) => {
     };
     fileReader.readAsDataURL(fileList[fileList.length - 1]);
     filePickerRef.current.value = "";
-    props.onInput(fileList);  // pass all the files to its parental component
+    props.onInput(fileList); // pass all the files to its parental component
   }, [fileList]);
 
   const pickImageHandler = () => {
@@ -96,6 +96,7 @@ const ImageUpload = forwardRef((props, ref) => {
       />
       {previewUrlList.length > 2 && leftMost && (
         <button
+          type="button"
           className="image-upload__arrowleft"
           onClick={() => horizontalScrollHandler(imageListRef.current, 10, 20)}
         >
@@ -104,6 +105,7 @@ const ImageUpload = forwardRef((props, ref) => {
       )}
       {previewUrlList.length > 2 && !leftMost && (
         <button
+          type="button"
           className="image-upload__arrowright"
           onClick={() => horizontalScrollHandler(imageListRef.current, 10, -20)}
           ref={rightButtonRef}
@@ -115,10 +117,13 @@ const ImageUpload = forwardRef((props, ref) => {
         {previewUrlList.map((previewUrlItem, index) => (
           <div className="image-upload__preview">
             {previewUrlList.length > 0 && (
-              <button className="image-upload__edit">Edit</button>
+              <button type="button" className="image-upload__edit">
+                Edit
+              </button>
             )}
             {previewUrlList.length > 0 && (
               <button
+                type="button"
                 className="image-upload__cancel"
                 onClick={() => CancelImageHandler(index)}
               >
