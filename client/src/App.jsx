@@ -6,8 +6,9 @@ import {
 } from "react-router-dom";
 import Layout from "./home/components/Layout";
 import Home from "./home/pages/Home";
-import ProtectedRoute from "./share/components/ProtectedRoute/ProtectedRoute";
-import AuthProvider from "./share/components/ProtectedRoute/AuthProvider";
+import ProtectedRoute, {
+  protectedLoader,
+} from "./share/components/ProtectedRoute/ProtectedRoute";
 import NotFound from "./share/components/NotFound";
 import Login from "./users/pages/Login";
 import Signup from "./users/pages/Signup";
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
             <Layout />
           </ProtectedRoute>
         }
+        loader={async ({ request }) => await protectedLoader(request)}
       >
         <Route index element={<Home />} />
       </Route>
@@ -45,11 +47,7 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return (
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

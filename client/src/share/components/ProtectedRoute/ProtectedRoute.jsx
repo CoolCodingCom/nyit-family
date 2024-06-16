@@ -1,17 +1,18 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
+import { requireAuth } from "../../../utils/util";
 
-import { useAuth } from "./AuthProvider";
+export async function protectedLoader(request) {
+  const pathname = new URL(request.url).pathname;
+  const isLoggedIn = await requireAuth();
+  if (!isLoggedIn) {
+    throw redirect(
+      `/login?message=You must log in first.&redirectTo=${pathname}`
+    );
+  } else {
+    return null;
+  }
+}
 
 export default function ProtectedRoute({ children }) {
-  const { user } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (user === null) {
-      navigate("/login?message=You need to login first", { replace: true });
-    }
-  }, [navigate, user]);
-
   return children;
 }
