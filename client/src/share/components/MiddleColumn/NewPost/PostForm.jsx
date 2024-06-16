@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import ImageUpload from "../../Elements/ImageUpload";
 import AccessoryList from "./AccessoryList";
@@ -13,8 +13,9 @@ const PostForm = () => {
   const [isValid, setIsValid] = useState(false);
   const [mediaUploadState, setMediaUploadState] = useState(null);
   const mediaUploadRef = useRef();
+  const navigateTo = useNavigate();
 
-  const backendUrl = "http://localhost:5000";
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     textareaRef.current.style.height = "0px";
@@ -52,6 +53,11 @@ const PostForm = () => {
         headers: {},
         body: formData,
       });
+
+      if (response.ok) {
+        setMediaList(mediaList => []);
+        navigateTo(0); // better solution? I just don't want to reload all this page.
+      }
     } catch (error) {
       console.log(error);
     }

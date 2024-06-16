@@ -43,7 +43,7 @@ const DUMMY_POSTS = [
 
 const PostList = () => {
   const [postList, setPostList] = useState();
-  const backendUrl = "http://localhost:5000";
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const sendRequest = async () => {
@@ -70,8 +70,8 @@ const PostList = () => {
       {postList && postList.map((post) => (
         <PostItem
           key={post._id}
-          userid={post.author}
-          username={post.author}
+          userid={post._id}
+          username={post.username}
           timestamp={post.createdAt}
           text={post.content}
           medialist={post.media}
