@@ -45,6 +45,39 @@
   color: grey;
 }
 
+.post__profile-info span {
+  font-size: 85%;
+  vertical-align: top;
+}
+
+.post__extension {
+  float: right;
+  position: relative;
+}
+
+.post__extension-show-button {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: white;
+  border: none;
+  color: darkslategray;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.post__extension-show-button:hover{
+  background-color: rgb(232, 236, 241);
+}
+
+.post__extension span{
+  position: absolute;
+  top: 0px;
+  left: 9px;
+}
+
 .post__content {
   padding-left: 10px;
   padding-top: 5px;
@@ -55,16 +88,6 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 110%;
   color: black;
-}
-
-.post__content-image {
-  display: block;
-  padding-top: 16px;
-}
-
-.post__content-image img{
-  border-radius: 2%;
-  width: 100%;
 }
 
 .post__accessory {
