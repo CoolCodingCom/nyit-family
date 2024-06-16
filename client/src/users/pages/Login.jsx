@@ -2,10 +2,9 @@ import { Link, redirect } from "react-router-dom";
 import "../styles/login.css";
 import loginIcon from "../../assets/loginIcon.svg";
 import loginImage from "../../assets/loginImage.svg";
-import { loginUser } from "../../apis";
+import { loginUser } from "../../apis/user";
 import LoginForm from "../components/LoginForm";
 import GoogleButton from "../components/GoogleButton";
-import { updateUser } from "../../share/components/ProtectedRoute/AuthProvider";
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -16,7 +15,6 @@ export async function action({ request }) {
     const data = await loginUser({ email, password });
     localStorage.setItem("token", data.token);
     localStorage.setItem("userId", data.userId);
-    updateUser({ id: data.userId });
     return redirect(pathname);
   } catch (err) {
     return err.message;
