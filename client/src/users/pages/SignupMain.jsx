@@ -1,7 +1,7 @@
 import { Link, redirect } from "react-router-dom";
 import SignupForm from "../components//SignupForm";
 import GoogleButton from "../components/GoogleButton";
-import { signUpUser } from "../../apis";
+import { signUpUser } from "../../apis/user";
 
 export async function action({ request }) {
   const formData = await request.formData();

@@ -1,21 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: import.meta.env.VITE_BACKEND_URL + "/api",
 });
-// add token if it exists to header ['authorization']
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
 
 export async function loginUser(creds) {
   try {
@@ -56,9 +43,17 @@ export async function verifyEmail(uniqueString) {
   }
 }
 
-const apis = {
-  loginUser,
-  signUpUser,
-};
-
-export default apis;
+export async function getTokenFromGoogle() {
+  try {
+    const res = await api.get("/auth/google/login/success", {
+      withCredentials: true,
+    });
+    return res.data;
+  } catch (error) {
+    throw {
+      message: err.response.data.message,
+      statusText: err.response.statusText,
+      status: err.response.status,
+    };
+  }
+}
