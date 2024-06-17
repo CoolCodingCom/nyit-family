@@ -21,6 +21,7 @@ module.exports = {
 	  RECEIVER: "txu4031@gmail.com",
 	},
 	frontend: {
-	  FRONTEND_URL: "http://localhost:5173",
+	//   FRONTEND_URL: "http://localhost:5173",
+		FRONTEND_URL: "https://5173-coolcodingco-nyitfamily-ecyp8ty0xgk.ws-us114.gitpod.io"
 	},
   };

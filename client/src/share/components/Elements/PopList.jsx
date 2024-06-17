@@ -4,7 +4,7 @@ import "./PopList.css";
 const PopList = (props) => {
   return (
     <>
-      {props.show && <Backdrop onClick={props.onClick} />}
+      {props.show && <Backdrop onClick={props.onClick}/>}
       {props.show && (
         <ul className="poplist__container">
           {props.list.map((item, index) => (
