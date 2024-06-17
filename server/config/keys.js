@@ -22,5 +22,6 @@ module.exports = {
   },
   frontend: {
     FRONTEND_URL: "http://localhost:5173",
+    // FRONTEND_URL: "https://urban-garbanzo-jjj64rp7974ghqqx5-5173.app.github.dev",
   },
 };
