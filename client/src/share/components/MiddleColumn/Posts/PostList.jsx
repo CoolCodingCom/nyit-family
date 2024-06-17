@@ -64,6 +64,10 @@ const PostList = () => {
     sendRequest();
   }, []);
 
+  const postDeleteHandler = (deletedPid) => {
+    setPostList(prevPosts => prevPosts.filter(post => post._id !== deletedPid));
+  }
+
 
   return (
     <div>
@@ -76,6 +80,7 @@ const PostList = () => {
           timestamp={post.createdAt}
           text={post.content}
           medialist={post.media}
+          onDelete={postDeleteHandler}
         />
       ))}
     </div>
