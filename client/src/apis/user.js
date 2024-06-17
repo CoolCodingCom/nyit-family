@@ -3,19 +3,6 @@ import axios from "axios";
 const api = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL + "/api",
 });
-// add token if it exists to header ['authorization']
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
 
 export async function loginUser(creds) {
   try {
@@ -56,11 +43,21 @@ export async function verifyEmail(uniqueString) {
   }
 }
 
+<<<<<<< HEAD:client/src/apis/index.js
 export async function deletePost(pid) {
   try {
     const res = await api.delete(`/posts/delete/${pid}`);
     return res.data;
   } catch (err) {
+=======
+export async function getTokenFromGoogle() {
+  try {
+    const res = await api.get("/auth/google/login/success", {
+      withCredentials: true,
+    });
+    return res.data;
+  } catch (error) {
+>>>>>>> 3b11a2feb55367309ce193d86c0e52abb84f48bb:client/src/apis/user.js
     throw {
       message: err.response.data.message,
       statusText: err.response.statusText,
@@ -68,6 +65,7 @@ export async function deletePost(pid) {
     };
   }
 }
+<<<<<<< HEAD:client/src/apis/index.js
 
 
 const apis = {
@@ -77,3 +75,5 @@ const apis = {
 };
 
 export default apis;
+=======
+>>>>>>> 3b11a2feb55367309ce193d86c0e52abb84f48bb:client/src/apis/user.js
