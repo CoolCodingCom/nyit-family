@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import { useScroll } from "../../../context/scroll-context.jsx";
+import { deletePost } from "../../../../apis/post.js";
 import AttributeList from "./AttributeList";
 import MediaArrange from "./MediaArrange";
 import MoreList from "./MoreList";
@@ -10,8 +11,6 @@ import Nbutton from "../../Elements/Nbutton";
 import AvadarIcon from "./svg/avadar.svg";
 
 import "./PostItem.css";
-import { deletePost } from "../../../../apis/index.js";
-
 
 
 const PostItem = (props) => {
