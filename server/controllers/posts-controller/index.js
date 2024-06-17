@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const Post = require("../../models/posts.js");
 const User = require("../../models/users.js");
 const mongoose = require("mongoose");
@@ -165,14 +167,18 @@ const createComment = async (req, res) => {
   }
 };
 
-const deletePost = async (req, res) => {
+const deletePost = async (req, res, next) => {
   try {
-    const { postId, userId } = req.body;
+    // const { postId, userId } = req.body;
+    const postId = req.params.pid;
 
     const post = await Post.findById(postId);
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
+
+    const userId = post.userId.toString();
+
     // If this is a quote, decrement 1 from original post's repost list
     if (post.isQuote) {
       const originalPost = await Post.findById(post.originalPost);
@@ -198,22 +204,40 @@ const deletePost = async (req, res) => {
       }
     }
     // If this has a parent post, delete this post's id from parent post's comments list
-    if (post.parentPost) {
-      const parentPost = await Post.findById(post.parentPost);
-      if (parentPost) {
-        const index = parentPost.comments.indexOf(postId);
-        if (index !== -1) {
-          parentPost.comments.splice(index, 1);
-          await parentPost.save();
-        } else {
-          console.log(
-            "original post already has no comment record for this post!"
-          );
-        }
-      }
+    // if (post.parentPost) {
+    //   const parentPost = await Post.findById(post.parentPost);
+    //   if (parentPost) {
+    //     const index = parentPost.comments.indexOf(postId);
+    //     if (index !== -1) {
+    //       parentPost.comments.splice(index, 1);
+    //       await parentPost.save();
+    //     } else {
+    //       console.log(
+    //         "original post already has no comment record for this post!"
+    //       );
+    //     }
+    //   }
+    // }
+    const meidaList = post.media;
+
+    try {
+      const sess = await mongoose.startSession();
+      await sess.startTransaction();
+      // post.creator.posts.pull(place);
+      // await post.creator.save({ session: sess});
+      await post.deleteOne().session(sess);
+      await sess.commitTransaction();
+    } catch (error) {
+      return next(error);
     }
-    await Post.deleteOne({ _id: postId });
-    res.status(200).json({ message: "Post deleted successfully" });
+
+    meidaList.forEach(mediaUrl => fs.unlink(mediaUrl, err => {
+      if (err) {
+        console.log(err);
+      }
+    }))
+
+    res.status(200).json({ message: "post has been deleted." });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
