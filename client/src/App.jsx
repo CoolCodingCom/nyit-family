@@ -6,6 +6,9 @@ import {
 } from "react-router-dom";
 import Layout from "./home/components/Layout";
 import Home from "./home/pages/Home";
+import ProtectedRoute, {
+  protectedLoader,
+} from "./share/components/ProtectedRoute/ProtectedRoute";
 import NotFound from "./share/components/NotFound";
 import Login from "./users/pages/Login";
 import Signup from "./users/pages/Signup";
@@ -18,16 +21,29 @@ import { ScrollProvider } from "./share/context/scroll-context.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} />
-      <Route path="login" element={<Login />} action={loginAction} />
-      <Route path="signup" element={<Signup />}>
+    <>
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Layout />
+          </ProtectedRoute>
+        }
+        loader={async ({ request }) => await protectedLoader(request)}
+      >
+        <Route index element={<Home />} />
+      </Route>
+
+      <Route path="/login" element={<Login />} action={loginAction} />
+
+      <Route path="/signup" element={<Signup />}>
         <Route index element={<SignupMain />} action={signUpAction}></Route>
         <Route path="verification" element={<SignupNeedVerify />}></Route>
         <Route path="verification/:uniqueString" element={<Verification />} />
       </Route>
+
       <Route path="*" element={<NotFound />} />
-    </Route>
+    </>
   )
 );
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { verifyEmail } from "../../apis";
+import { verifyEmail } from "../../apis/user";
 
 const Verification = () => {
   const uString = useParams().uniqueString;
