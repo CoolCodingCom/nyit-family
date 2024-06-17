@@ -41,7 +41,7 @@ router.get("/all/:id", getPostByUser);
 
 router.post("/", upload.array("media", 4), createPost);
 
-router.delete("/delete", deletePost);
+router.delete("/delete/:pid", deletePost);
 
 router.post("/comment", createComment);
 
