@@ -43,13 +43,6 @@ export async function verifyEmail(uniqueString) {
   }
 }
 
-<<<<<<< HEAD:client/src/apis/index.js
-export async function deletePost(pid) {
-  try {
-    const res = await api.delete(`/posts/delete/${pid}`);
-    return res.data;
-  } catch (err) {
-=======
 export async function getTokenFromGoogle() {
   try {
     const res = await api.get("/auth/google/login/success", {
@@ -57,7 +50,6 @@ export async function getTokenFromGoogle() {
     });
     return res.data;
   } catch (error) {
->>>>>>> 3b11a2feb55367309ce193d86c0e52abb84f48bb:client/src/apis/user.js
     throw {
       message: err.response.data.message,
       statusText: err.response.statusText,
@@ -65,15 +57,3 @@ export async function getTokenFromGoogle() {
     };
   }
 }
-<<<<<<< HEAD:client/src/apis/index.js
-
-
-const apis = {
-  loginUser,
-  signUpUser,
-  deletePost,
-};
-
-export default apis;
-=======
->>>>>>> 3b11a2feb55367309ce193d86c0e52abb84f48bb:client/src/apis/user.js
