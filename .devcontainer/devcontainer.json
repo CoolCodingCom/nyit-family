@@ -1,0 +1,24 @@
+{
+	"name": "NYIT-FAMILY",
+	"postCreateCommand": "cd client && npm i",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"ms-python.python",
+				"vscodevim.vim",
+				"esbenp.prettier-vscode",
+				"christian-kohler.path-intellisense",
+				"PKief.material-icon-theme"
+			],
+			"settings": {
+				"terminal.integrated.fontSize": 18,
+				"editor.fontSize": 18,
+				"workbench.colorTheme": "GitHub Dark"
+			}
+		}
+	},
+	"remoteEnv": {
+		"WDS_SOCKET_PORT": "0"
+	}
+}
