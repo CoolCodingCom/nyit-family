@@ -70,7 +70,8 @@ const PostList = () => {
       {postList && postList.map((post) => (
         <PostItem
           key={post._id}
-          userid={post._id}
+          id={post._id}
+          userid={post.userid}
           username={post.username}
           timestamp={post.createdAt}
           text={post.content}

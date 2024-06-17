@@ -14,6 +14,7 @@ import SignupNeedVerify from "./users/pages/SignupNeedVerify";
 import Verification from "./users/pages/Verification";
 import { action as loginAction } from "./users/pages/Login";
 import { action as signUpAction } from "./users/pages/SignupMain";
+import { ScrollProvider } from "./share/context/scroll-context.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,7 +32,11 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ScrollProvider>
+      <RouterProvider router={router} />{" "}
+    </ScrollProvider>
+  );
 }
 
 export default App;

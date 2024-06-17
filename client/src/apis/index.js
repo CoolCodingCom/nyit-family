@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: import.meta.env.VITE_BACKEND_URL,
 });
 // add token if it exists to header ['authorization']
 api.interceptors.request.use(
@@ -55,6 +55,20 @@ export async function verifyEmail(uniqueString) {
     };
   }
 }
+
+export async function deletePost(pid) {
+  try {
+    const res = await api.post(`/users/login/${pid}`,);
+    return res.data;
+  } catch (err) {
+    throw {
+      message: err.response.data.message,
+      statusText: err.response.statusText,
+      status: err.response.status,
+    };
+  }
+}
+
 
 const apis = {
   loginUser,
