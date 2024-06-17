@@ -10,6 +10,7 @@ import Nbutton from "../../Elements/Nbutton";
 import AvadarIcon from "./svg/avadar.svg";
 
 import "./PostItem.css";
+import { deletePost } from "../../../../apis/index.js";
 
 
 
@@ -35,7 +36,15 @@ const PostItem = (props) => {
   };
 
   const deleteConfirmHandler = async () => {
-    
+    try {
+      setModalIsShow((modalIsShow) => !modalIsShow);
+      setIsScrollDisabled(false);
+
+      const res = await deletePost(props.id);
+      props.onDelete(props.id);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

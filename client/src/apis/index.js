@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL,
+  baseURL: import.meta.env.VITE_BACKEND_URL + "/api",
 });
 // add token if it exists to header ['authorization']
 api.interceptors.request.use(
@@ -58,7 +58,7 @@ export async function verifyEmail(uniqueString) {
 
 export async function deletePost(pid) {
   try {
-    const res = await api.post(`/users/login/${pid}`,);
+    const res = await api.delete(`/posts/delete/${pid}`);
     return res.data;
   } catch (err) {
     throw {
@@ -73,6 +73,7 @@ export async function deletePost(pid) {
 const apis = {
   loginUser,
   signUpUser,
+  deletePost,
 };
 
 export default apis;
