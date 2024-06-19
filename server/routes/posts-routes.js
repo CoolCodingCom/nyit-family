@@ -1,5 +1,6 @@
 const express = require("express");
 const upload = require("../middleware/upload-multer");
+const checkAuth = require("../middleware/check-auth");
 const {
   getAllPosts,
   getHomePosts,
@@ -26,6 +27,8 @@ const {
 } = require("../controllers/posts-controller/bookmark");
 
 const router = express.Router();
+
+router.use(checkAuth);
 
 router.get("/", getAllPosts);
 

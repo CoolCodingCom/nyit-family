@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 const Post = require("../../models/posts.js");
 const User = require("../../models/users.js");
@@ -169,7 +169,6 @@ const createComment = async (req, res) => {
 
 const deletePost = async (req, res, next) => {
   try {
-    // const { postId, userId } = req.body;
     const postId = req.params.pid;
 
     const post = await Post.findById(postId);
@@ -204,20 +203,20 @@ const deletePost = async (req, res, next) => {
       }
     }
     // If this has a parent post, delete this post's id from parent post's comments list
-    // if (post.parentPost) {
-    //   const parentPost = await Post.findById(post.parentPost);
-    //   if (parentPost) {
-    //     const index = parentPost.comments.indexOf(postId);
-    //     if (index !== -1) {
-    //       parentPost.comments.splice(index, 1);
-    //       await parentPost.save();
-    //     } else {
-    //       console.log(
-    //         "original post already has no comment record for this post!"
-    //       );
-    //     }
-    //   }
-    // }
+    if (post.parentPost) {
+      const parentPost = await Post.findById(post.parentPost);
+      if (parentPost) {
+        const index = parentPost.comments.indexOf(postId);
+        if (index !== -1) {
+          parentPost.comments.splice(index, 1);
+          await parentPost.save();
+        } else {
+          console.log(
+            "original post already has no comment record for this post!"
+          );
+        }
+      }
+    }
     const meidaList = post.media;
 
     try {
@@ -231,11 +230,13 @@ const deletePost = async (req, res, next) => {
       return next(error);
     }
 
-    meidaList.forEach(mediaUrl => fs.unlink(mediaUrl, err => {
-      if (err) {
-        console.log(err);
-      }
-    }))
+    meidaList.forEach((mediaUrl) =>
+      fs.unlink(mediaUrl, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      })
+    );
 
     res.status(200).json({ message: "post has been deleted." });
   } catch (error) {
