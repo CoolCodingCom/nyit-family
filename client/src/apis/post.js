@@ -17,6 +17,19 @@ api.interceptors.request.use(
   }
 );
 
+export async function getHomePosts() {
+  try {
+    const res = await api.get("/posts/home");
+    return res.data;
+  } catch (err) {
+    throw {
+      message: err.response.data.message,
+      statusText: err.response.statusText,
+      status: err.response.status,
+    };
+  }
+}
+
 export async function deletePost(pid) {
   try {
     const res = await api.delete(`/posts/delete/${pid}`);
