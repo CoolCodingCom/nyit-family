@@ -3,7 +3,7 @@ import { requireAuth } from "../../../utils/util";
 
 export async function protectedLoader(request) {
   const pathname = new URL(request.url).pathname;
-  const isLoggedIn = await requireAuth();
+  const isLoggedIn = await requireAuth(request);
   if (!isLoggedIn) {
     throw redirect(
       `/login?message=You must log in first.&redirectTo=${pathname}`
