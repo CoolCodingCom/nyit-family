@@ -1,8 +1,11 @@
 import { getTokenFromGoogle } from "../apis/user";
+import { checkToken } from "../apis/auth";
 
-export async function requireAuth() {
-  const token = localStorage.getItem("token");
-  if (!token) {
+export async function requireAuth(request) {
+  // check if first google login
+  const ifGoogleFirstLogin =
+    new URL(request.url).searchParams.get("google") || false;
+  if (ifGoogleFirstLogin) {
     try {
       const data = await getTokenFromGoogle();
       localStorage.setItem("token", data.token);
@@ -13,6 +16,18 @@ export async function requireAuth() {
       return false;
     }
   } else {
-    return true;
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return false;
+    } else {
+      let isValid = false;
+      try {
+        const data = await checkToken(token);
+        isValid = data.isValid;
+      } catch (err) {
+        console.error("Error during authenticating token:", err.message);
+      }
+      return isValid;
+    }
   }
 }

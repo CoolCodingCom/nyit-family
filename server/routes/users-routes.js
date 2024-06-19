@@ -1,6 +1,6 @@
 const express = require("express");
 const { check } = require("express-validator");
-const checkAuth = require("../middleware/check-auth");
+const checkToken = require("../middleware/check-token");
 const { getUsers } = require("../controllers/users-controller/getUsers");
 const { signup } = require("../controllers/users-controller/signup");
 const { verify } = require("../controllers/users-controller/verify");
@@ -31,7 +31,7 @@ router.post(
 router.post("/login", login);
 
 /* for testing use
-router.use(checkAuth);
+router.use(checkToken);
 router.get("/tokentester", usersController.tokenTester);
 */
 
