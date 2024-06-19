@@ -1,6 +1,6 @@
 const express = require("express");
 const upload = require("../middleware/upload-multer");
-const checkAuth = require("../middleware/check-auth");
+const checkToken = require("../middleware/check-token");
 const {
   getAllPosts,
   getHomePosts,
@@ -28,7 +28,7 @@ const {
 
 const router = express.Router();
 
-router.use(checkAuth);
+router.use(checkToken);
 
 router.get("/", getAllPosts);
 

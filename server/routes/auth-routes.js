@@ -7,6 +7,8 @@ const {
   loginWithThirdParty,
 } = require("../controllers/auth-controller/loginWithThirdParty");
 
+const authenticateToken = require("../controllers/auth-controller/authenticateToken");
+
 router = express.Router();
 
 router.get(
@@ -22,5 +24,7 @@ router.get(
 );
 
 router.get("/google/login/success", loginWithThirdParty);
+
+router.post("/token", authenticateToken);
 
 module.exports = router;
