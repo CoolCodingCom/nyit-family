@@ -50,7 +50,6 @@ const PostList = () => {
     getHomePosts()
       .then((data) => {
         setPostList(data.posts);
-        console.log("changed!");
       })
       .catch((error) => {
         console.error("Error fetching posts:", error);
