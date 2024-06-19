@@ -1,22 +1,24 @@
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
+const HttpError = require("../models/http-error");
 
-module.exports = (req, res, next) => {
-  if (req.method === "OPTIONS") {
-    return next();
+const authenticateToken = (req, res, next) => {
+  // if (req.method === "OPTIONS") {
+  //   return next();
+  // }
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (!token) {
+    // return res.status(401).json({ message: "Missing token" });
+    return next(new HttpError("Missing token.", 401));
   }
-  let token;
   try {
-    token = req.headers.authorization.split(" ")[1]; // authorization: 'Bearer token'
-    if (!token) {
-      throw new Error("Authorization Failed.");
-    }
-
     const decodedToken = jwt.verify(token, keys.token.PRIVATE_KEY);
-
     req.userData = { userId: decodedToken.userId };
     next();
   } catch (error) {
-    return next(new Error("Authorization Failed."));
+    return next(new HttpError("Authorization Failed.", 403));
   }
 };
+
+module.exports = authenticateToken;
