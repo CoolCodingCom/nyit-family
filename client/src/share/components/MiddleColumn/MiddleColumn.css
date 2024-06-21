@@ -1,6 +1,6 @@
 .middlecol__container {
   /* flex-grow: 1; */
-  width: 45vw;
+  width: 600px;
   border-right: 1px solid rgb(238, 232, 232);
 }
 
