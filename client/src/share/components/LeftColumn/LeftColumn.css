@@ -2,8 +2,14 @@
   position: sticky;
   top: 0px;
   flex-shrink: 0;
-  width: 350px;
+  width: 280px;
   height: 100vh;
   padding-left: 24px;
   border-right: 1px solid rgb(238, 232, 232);
+}
+
+@media (max-width: 1345px) {
+  .leftcol__container {
+    width: 50px;
+  }
 }
