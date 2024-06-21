@@ -5,10 +5,11 @@
   width: 280px;
   height: 100vh;
   padding-left: 24px;
-  border-right: 1px solid rgb(238, 232, 232);
+  /* border-right: 1px solid rgb(238, 232, 232); */
+  border: 1px solid rgb(16, 16, 16);
 }
 
-@media (max-width: 1345px) {
+@media (max-width: 1300px) {
   .leftcol__container {
     width: 50px;
   }
