@@ -1,9 +1,9 @@
 // import { ReactComponent as Logo } from "./svg/logo.svg";
 import NavigationLink from "./NavigationLink";
 
-import "./MainNavigation.css";
+import "./MainNavigationLong.css";
 
-const MainNavigation = (props) => {
+const MainNavigationLong = (props) => {
   return (
     <div className="navigation__container">
       <nav>
@@ -33,4 +33,4 @@ const MainNavigation = (props) => {
   );
 };
 
-export default MainNavigation;
+export default MainNavigationLong;
