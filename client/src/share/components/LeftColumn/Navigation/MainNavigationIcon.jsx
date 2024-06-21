@@ -1,7 +1,7 @@
 // import { ReactComponent as Logo } from "./svg/logo.svg";
 import NavigationLink from "./NavigationLink";
 
-import "./MainNavigationIcon.css";
+import "./MainNavigation.css";
 
 const MainNavigationIcon = (props) => {
   return (
