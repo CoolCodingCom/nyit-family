@@ -12,9 +12,11 @@
 @media (max-width: 1030px) {
   .rightcol__container {
     width: 260px;
+  }
 }
 
-/* @media (max-width: 1100px) {
+@media (max-width: 990px) {
   .rightcol__container {
     display: none;
-} */
+  }
+}
