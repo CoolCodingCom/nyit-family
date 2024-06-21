@@ -17,12 +17,12 @@ module.exports = {
   },
   email: {
     // BACKEND_URL: "http://localhost:5000",
-    BACKEND_URL: "https://glorious-disco-4jj4gqpv6w5vc7jv5-5000.app.github.dev",
+    BACKEND_URL: "https://didactic-disco-7vvqr7j5w797fwvr-5000.app.github.dev",
     SENDER: "verification@nyitfamily.site",
     RECEIVER: "txu4031@gmail.com",
   },
   frontend: {
     // FRONTEND_URL: "http://localhost:5173",
-    FRONTEND_URL: "https://glorious-disco-4jj4gqpv6w5vc7jv5-5173.app.github.dev",
+    FRONTEND_URL: "https://didactic-disco-7vvqr7j5w797fwvr-5173.app.github.dev",
   },
 };

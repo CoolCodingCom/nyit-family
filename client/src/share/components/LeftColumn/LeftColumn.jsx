@@ -11,7 +11,7 @@ const LeftColumn = (props) => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 1345) {
+      if (window.innerWidth < 1300) {
         setShowLongSideBar(false);
         setShowSimSideBar(true);
       } else {
