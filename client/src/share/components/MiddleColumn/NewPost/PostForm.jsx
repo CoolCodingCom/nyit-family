@@ -3,8 +3,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import ImageUpload from "../../Elements/ImageUpload";
 import AccessoryList from "./AccessoryList";
+import { newPost } from "../../../../apis/post";
 import AvadarIcon from "./svg/avadar.svg";
 import "./PostForm.css";
+
 
 const PostForm = () => {
   const [message, setMessage] = useState("");
@@ -48,13 +50,14 @@ const PostForm = () => {
       formData.append("content", message);
       mediaList.forEach((file) => formData.append("media", file));
 
-      const response = await fetch(backendUrl + "/api/posts", {
-        method: "POST",
-        headers: {},
-        body: formData,
-      });
+      // const response = await fetch(backendUrl + "/api/posts", {
+      //   method: "POST",
+      //   headers: {},
+      //   body: formData,
+      // });
+      const response = await newPost(formData);
 
-      if (response.ok) {
+      if (response.status >= 200 && response.status < 300) {
         setMediaList(mediaList => []);
         navigateTo(0); // better solution? I just don't want to reload all this page.
       }

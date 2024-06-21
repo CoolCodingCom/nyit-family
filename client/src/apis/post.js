@@ -42,3 +42,16 @@ export async function deletePost(pid) {
     };
   }
 }
+
+export async function newPost(postData) {
+  try {
+    const res = await api.post(`/posts`, postData);
+    return res;
+  } catch (err) {
+    throw {
+      message: err.response.data.message,
+      statusText: err.response.statusText,
+      status: err.response.status,
+    };
+  }
+}
