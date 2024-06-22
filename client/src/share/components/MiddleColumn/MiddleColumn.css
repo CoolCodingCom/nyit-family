@@ -2,6 +2,7 @@
   /* flex-grow: 1; */
   width: 600px;
   border-right: 1px solid rgb(238, 232, 232);
+  border: 2px solid black;
 }
 
 .middlecol__head {
