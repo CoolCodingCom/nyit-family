@@ -1,0 +1,10 @@
+.main-container {
+	display: flex;
+	justify-content: center;
+    border: 1px solid blue;
+}
+
+/* .leftCol-wrapper {
+    height: 100%;
+    overflow: hidden;
+} */
