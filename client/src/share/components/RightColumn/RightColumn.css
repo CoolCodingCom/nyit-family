@@ -1,13 +1,29 @@
+.rightcol__wrapper {
+  margin-left: 30px;
+}
+
+.basement {
+  width: 310px;
+  height: 300px;
+  margin-left: 30px;
+}
+
+/* scrolling up */
 .rightcol__container {
-  /* position: sticky;
-  bottom: 0;
-  margin-top: auto; */
+  position: sticky;
+  top: 0;
+  /* margin-bottom: auto; */
   border: none;
   flex-shrink: 0;
   width: 310px;
-  height: 1000px;
+  /* height: 100%; */
   margin-left: 30px;
-  border: 2px solid black;
+}
+
+/* scrolling down */
+.rightcol__container-bottomfix {
+  position: sticky;
+  /* top: -555px; */
 }
 
 @media (max-width: 1030px) {
