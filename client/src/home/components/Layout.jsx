@@ -6,10 +6,8 @@ import "./Layout.css";
 export default function Layout() {
   return (
     <div className="main-container">
-      {/* <div className="leftCol-wrapper"> */}
         <LeftColumn />
-      {/* </div> */}
-      <Outlet/>
+        <Outlet />
     </div>
   );
 }

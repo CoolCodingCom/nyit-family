@@ -1,10 +1,5 @@
 .main-container {
-	display: flex;
+    display: flex;
 	justify-content: center;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
 }
-
-/* .leftCol-wrapper {
-    height: 100%;
-    overflow: hidden;
-} */
