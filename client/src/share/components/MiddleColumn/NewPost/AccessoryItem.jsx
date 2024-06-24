@@ -9,21 +9,13 @@ import Cbutton from "../../Elements/Cbutton";
 import "./AccessoryItem.css";
 
 const AccessoryItem = (props) => {
-  //   const classes = () => {
-  //     const classes = ["primary"];
-  //     // if (props.handle === props.active) {
-  //     //   classes.push('active')
-  //     // }
-  //     return classes.join(" ");
-  //   };
-
   const icon = () => {
     switch (props.handle) {
       case "media":
-        return <Cbutton image={MediasIcon} alt="Media" onClick={props.onClick}/>;
+        return <Cbutton image={MediasIcon} alt="Media" disabled={props.disabled} onClick={props.onClick}/>;
         break;
       case "image":
-        return <Cbutton image={ImageIcon} alt="GIF" />;
+        return <Cbutton image={ImageIcon} alt="GIF" disabled={props.disabled}/>;
         break;
       case "poll":
         return <Cbutton image={PollIcon} alt="Poll" />;
