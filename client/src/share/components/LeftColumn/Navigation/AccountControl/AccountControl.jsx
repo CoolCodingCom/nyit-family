@@ -20,23 +20,31 @@ const AccountControl = (props) => {
 
   return (
     <div className="accountcontrol__container">
-        {moreIsShow && (
-          <AccountList
-            show={moreIsShow}
-            onClick={showListHandler}
-            onDeleteShow={onDeleteShowHandler}
-          />
-        )}
+      {moreIsShow && (
+        <AccountList
+          show={moreIsShow}
+          posTop={props.posTop}
+          posRight={props.posRight}
+          onClick={showListHandler}
+          onDeleteShow={onDeleteShowHandler}
+        />
+      )}
       <button className="accountcontrol__button" onClick={showListHandler}>
         <div className="accountcontrol__avadar">
           {/* <img src={props.image} /> */}
           <img src={AvadarIcon} />
         </div>
-        <div className="accountcontrol__profile">
-          <div className="accountcontrol__profile-name">{props.username}</div>
-          <div className="accountcontrol__profile-id">@{props.userid}</div>
-        </div>
-        <span className="accountcontrol__decoration">...</span>
+        {props.username && (
+          <>
+            <div className="accountcontrol__profile">
+              <div className="accountcontrol__profile-name">
+                {props.username}
+              </div>
+              <div className="accountcontrol__profile-id">@{props.userid}</div>
+            </div>
+            <span className="accountcontrol__decoration">...</span>
+          </>
+        )}
       </button>
     </div>
   );

@@ -29,12 +29,14 @@ const MainNavigationLong = (props) => {
         <button type="submit">Post</button>
       </div>
       <div className="navigation__account">
-      <AccountControl
-        key={props.id}
-        username={props.username}
-        userid={props.userid}
-        // image={person.image}
-      />
+        <AccountControl
+          key={props.id}
+          posTop={-120}
+          posRight={15}
+          username={props.username}
+          userid={props.userid}
+          // image={person.image}
+        />
       </div>
     </div>
   );

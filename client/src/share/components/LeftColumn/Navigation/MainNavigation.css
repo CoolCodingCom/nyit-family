@@ -83,6 +83,11 @@ nav a.primary.active svg {
   background-color: rgb(53, 130, 239);
 }
 
+.navigation__account {
+  margin-top: auto;
+  width: 100%;
+}
+
 @media (max-width: 1300px) {
   .navigation__container {
     align-items: center;
@@ -100,8 +105,4 @@ nav a.primary.active svg {
     vertical-align: middle;
     border-radius: 50%;
   }
-}
-
-.navigation__account {
-  margin-top: auto;
 }
