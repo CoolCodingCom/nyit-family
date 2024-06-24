@@ -15,6 +15,7 @@ import Signup from "./users/pages/Signup";
 import SignupMain from "./users/pages/SignupMain";
 import SignupNeedVerify from "./users/pages/SignupNeedVerify";
 import Verification from "./users/pages/Verification";
+import Profile from "./users/pages/Profile.jsx";
 import { action as loginAction } from "./users/pages/Login";
 import { action as signUpAction } from "./users/pages/SignupMain";
 import { ScrollProvider } from "./share/context/scroll-context.jsx";
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
         loader={async ({ request }) => await protectedLoader(request)}
       >
         <Route index element={<Home />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
 
       <Route path="/login" element={<Login />} action={loginAction} />

@@ -16,7 +16,7 @@ const MainNavigationIcon = (props) => {
         />
         <NavigationLink url="/login" handle="messages" />
         <NavigationLink url="/login" handle="bookmarks" />
-        <NavigationLink url="/login" handle="profile" />
+        <NavigationLink url="/profile" handle="profile" />
         <NavigationLink
           url="/login"
           handle="settingandprivacy"
