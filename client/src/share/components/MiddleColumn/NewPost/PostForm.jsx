@@ -37,12 +37,22 @@ const PostForm = () => {
     const pct = (text.length * 100) / 280;
     const leftchar = 280 - text.length;
 
-    setMessage(text);
+    const wrappedText = text.split("").map((char, index) =>
+      index >= 280 ? (
+        <span key={index} style={{ backgroundColor: "rgba(255, 0, 0, 0.2)" }}>
+          {char}
+        </span>
+      ) : (
+        <span key={index}>{char}</span>
+      )
+    );
+
+    setMessage(wrappedText);
     setTextPct(pct);
     setLeftChar(leftchar);
 
     // just a temporarily simple validation method
-    if (event.target.value.length > 0 && leftchar >= 0) {
+    if (text.length > 0 && leftchar >= 0) {
       setIsValid(true);
     } else {
       setIsValid(false);
@@ -81,14 +91,16 @@ const PostForm = () => {
       </NavLink>
       <form className="post_form" onSubmit={onPostSubmissionHandler}>
         <div className="postform__contentbody">
-          <textarea
-            type="text"
-            placeholder="What is happening?!"
-            value={message}
-            rows={1}
-            ref={textareaRef}
-            onChange={textareaChangeHandler}
-          />
+          <div className="textarea__container">
+            <div className="textarea__outputarea">{message}</div>
+            <textarea
+              type="text"
+              placeholder="What is happening?!"
+              rows={1}
+              ref={textareaRef}
+              onChange={textareaChangeHandler}
+            />
+          </div>
           <ImageUpload ref={mediaUploadRef} onInput={onInputHandler} />
         </div>
         <div className="postform__accessroy-btn">
