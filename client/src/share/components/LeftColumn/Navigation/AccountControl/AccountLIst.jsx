@@ -21,8 +21,8 @@ const AccountList = (props) => {
     <PopList
       show={props.show}
       list={accountlist}
-      posTop={-120}
-      posRight={15}
+      posTop={props.posTop}
+      posRight={props.posRight}
       width={260}
       className="morelist__container"
       onClick={props.onClick}

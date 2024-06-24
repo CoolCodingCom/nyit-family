@@ -1,5 +1,6 @@
 // import { ReactComponent as Logo } from "./svg/logo.svg";
 import NavigationLink from "./NavigationLink";
+import AccountControl from "./AccountControl/AccountControl";
 
 import "./MainNavigation.css";
 
@@ -26,6 +27,14 @@ const MainNavigationIcon = (props) => {
         <button type="submit">
           Post
         </button>
+      </div>
+      <div className="navigation__account">
+        <AccountControl
+          key={props.id}
+          posTop={-120}
+          posRight={-200}
+          // image={person.image}
+        />
       </div>
     </div>
   );
