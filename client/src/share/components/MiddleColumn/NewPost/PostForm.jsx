@@ -6,6 +6,7 @@ import AccessoryList from "./AccessoryList";
 import { newPost } from "../../../../apis/post";
 import AvadarIcon from "./svg/avadar.svg";
 import "./PostForm.css";
+import Pie from "../../Elements/Pie";
 
 
 const PostForm = () => {
@@ -14,6 +15,7 @@ const PostForm = () => {
   const textareaRef = useRef(null);
   const [isValid, setIsValid] = useState(false);
   const [mediaUploadState, setMediaUploadState] = useState(null);
+  const [textPct, setTextPct] = useState(0);
   const mediaUploadRef = useRef();
   const navigateTo = useNavigate();
 
@@ -31,7 +33,11 @@ const PostForm = () => {
   }, [mediaUploadRef]);
 
   const textareaChangeHandler = (event) => {
-    setMessage(event.target.value);
+    const text = event.target.value;
+    const pct = (text.length) * 100 / 280;
+    setMessage(text);
+    setTextPct(pct);
+
     // just a temporarily simple validation method
     if (event.target.value.length > 0) {
       setIsValid(true);
@@ -50,11 +56,6 @@ const PostForm = () => {
       formData.append("content", message);
       mediaList.forEach((file) => formData.append("media", file));
 
-      // const response = await fetch(backendUrl + "/api/posts", {
-      //   method: "POST",
-      //   headers: {},
-      //   body: formData,
-      // });
       const response = await newPost(formData);
 
       if (response.status >= 200 && response.status < 300) {
@@ -94,6 +95,7 @@ const PostForm = () => {
             }
           />
           <div className="postform__btn">
+            {message.length > 0 && <Pie percentage={textPct} colour={'blue'}/>}
             <button type="submit" disabled={!isValid}>
               Post
             </button>
