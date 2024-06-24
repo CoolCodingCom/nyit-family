@@ -98,6 +98,10 @@ form.post_form textarea {
   font-weight: 700;
 }
 
+.postform__btn button:hover {
+  background-color: rgb(53, 130, 239);
+}
+
 .postform__btn button:disabled {
   background-color: rgb(160, 193, 239);
   border: none;
