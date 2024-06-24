@@ -1,0 +1,52 @@
+.accountcontrol__container {
+  position: relative;
+}
+
+.accountcontrol__button{
+  display: flex;
+  padding: 15px;
+	width: 95%;
+	height: 60px;
+	border-radius: 60px;
+  border: none;
+  background-color: white;
+  text-decoration: none;
+  color: black;
+  align-items: center;
+}
+
+.accountcontrol__button:hover {
+  background-color: rgb(238, 232, 232);
+}
+
+.accountcontrol__avadar {
+  flex-basis: 15%;
+}
+
+.accountcontrol__avadar img {
+  margin-top: 5px;
+  border-radius: 50%;
+}
+
+.accountcontrol__profile {
+  flex-basis: 60%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin-left: 5px;
+  margin-right: 10px;
+  text-align: left;
+  line-height: 1.4;
+  overflow: hidden;
+}
+
+.accountcontrol__profile-name {
+  font-weight: 800;
+}
+
+.accountcontrol__decoration {
+  flex-grow: 1;
+  text-align: right;
+	font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+}

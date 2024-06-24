@@ -5,10 +5,13 @@ const { getUsers } = require("../controllers/users-controller/getUsers");
 const { signup } = require("../controllers/users-controller/signup");
 const { verify } = require("../controllers/users-controller/verify");
 const { login } = require("../controllers/users-controller/login");
+const { getUserById } = require("../controllers/users-controller/getUserByid");
 
 const router = express.Router();
 
 router.get("/", getUsers);
+
+router.get("/:uid", getUserById);
 
 router.get("/verify/:uniqueid", verify);
 

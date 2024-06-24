@@ -1,5 +1,7 @@
 .navigation__container {
   display: flex;
+  position: relative;
+  height: 100%;
   flex-direction: column;
   border-color: rgba(210, 197, 197, 0.5);
   justify-content: center;
@@ -19,7 +21,7 @@ nav a.primary {
   display: flex;
   gap: 24px;
   align-items: center;
-  color: #0F1419;
+  color: #0f1419;
   font-family: Sans Serif;
   font-size: 18px;
   font-weight: bold;
@@ -44,7 +46,7 @@ nav a.primary:hover .icon {
 }
 
 nav a.primary.active {
-  color: #1DA1F2 !important;
+  color: #1da1f2 !important;
   font-weight: 600;
 }
 
@@ -98,4 +100,8 @@ nav a.primary.active svg {
     vertical-align: middle;
     border-radius: 50%;
   }
+}
+
+.navigation__account {
+  margin-top: auto;
 }

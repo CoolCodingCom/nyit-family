@@ -27,6 +27,8 @@ const MoreList = (props) => {
   return (
     <PopList
       show={props.show}
+      posTop={-15}
+      posRight={5}
       list={morelist}
       className="morelist__container"
       onClick={props.onClick}

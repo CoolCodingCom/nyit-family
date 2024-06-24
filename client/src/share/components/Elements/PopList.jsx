@@ -4,9 +4,16 @@ import "./PopList.css";
 const PopList = (props) => {
   return (
     <>
-      {props.show && <Backdrop onClick={props.onClick}/>}
+      {props.show && <Backdrop onClick={props.onClick} />}
       {props.show && (
-        <ul className="poplist__container">
+        <ul
+          className="poplist__container"
+          style={{
+            top: `${props.posTop}px`,
+            right: `${props.posRight}px`,
+            width: props.width && `${props.width}px`,
+          }}
+        >
           {props.list.map((item, index) => (
             <li>
               <button
