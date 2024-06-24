@@ -7,8 +7,8 @@ const AccessoryList = (props) => {
   return (
     <div className="accessorylist">
       {/* <Logo className="logo" /> */}
-      <AccessoryItem handle="media" onClick={props.onClickMedia}/>
-      <AccessoryItem handle="image" />
+      <AccessoryItem handle="media" disabled={props.mediaUpperLimit} onClick={props.onClickMedia}/>
+      <AccessoryItem handle="image" disabled={props.mediaUpperLimit}/>
       <AccessoryItem handle="poll" />
       <AccessoryItem handle="emoji" />
       <AccessoryItem handle="schedule" />

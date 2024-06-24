@@ -10,6 +10,7 @@ import Pie from "../../Elements/Pie";
 
 const PostForm = () => {
   const [message, setMessage] = useState("");
+  const [wrappedmMessage, setwrappedmMessage] = useState("");
   const [mediaList, setMediaList] = useState([]);
   const textareaRef = useRef(null);
   const [isValid, setIsValid] = useState(false);
@@ -32,6 +33,20 @@ const PostForm = () => {
     setMediaUploadState(mediaUploadRef.current);
   }, [mediaUploadRef]);
 
+  useEffect(() => {
+    if (leftChar < 0) {
+      setIsValid(false)
+    }
+    else {
+      if (message.length > 0 || mediaList.length > 0) {
+        setIsValid(true);
+      }
+      else {
+        setIsValid(false);
+      }
+    }
+  }, [message, mediaList]);
+
   const textareaChangeHandler = (event) => {
     const text = event.target.value;
     const pct = (text.length * 100) / 280;
@@ -47,16 +62,10 @@ const PostForm = () => {
       )
     );
 
-    setMessage(wrappedText);
+    setMessage(text);
+    setwrappedmMessage(wrappedText);
     setTextPct(pct);
     setLeftChar(leftchar);
-
-    // just a temporarily simple validation method
-    if (text.length > 0 && leftchar >= 0) {
-      setIsValid(true);
-    } else {
-      setIsValid(false);
-    }
   };
 
   const onPostSubmissionHandler = async (event) => {
@@ -92,11 +101,12 @@ const PostForm = () => {
       <form className="post_form" onSubmit={onPostSubmissionHandler}>
         <div className="postform__contentbody">
           <div className="textarea__container">
-            <div className="textarea__outputarea">{message}</div>
+            <div className="textarea__outputarea">{wrappedmMessage}</div>
             <textarea
               type="text"
               placeholder="What is happening?!"
               rows={1}
+              value={message}
               ref={textareaRef}
               onChange={textareaChangeHandler}
             />
@@ -105,6 +115,7 @@ const PostForm = () => {
         </div>
         <div className="postform__accessroy-btn">
           <AccessoryList
+            mediaUpperLimit={mediaList.length >= 4 ? true : false}
             onClickMedia={
               mediaUploadRef.current && mediaUploadRef.current.pickMedia
             }
@@ -120,7 +131,6 @@ const PostForm = () => {
                 leftChar={leftChar}
               />
             )}
-            {/* {message.length > 0 && leftChar <= 20 && <Pie radius={14} leftChar={leftChar} percentage={textPct} colour={'orange'}/>} */}
             <button type="submit" disabled={!isValid}>
               Post
             </button>
