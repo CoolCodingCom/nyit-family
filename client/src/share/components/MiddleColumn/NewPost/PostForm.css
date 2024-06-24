@@ -44,6 +44,10 @@ form.post_form textarea {
   color: black;
 }
 
+/* form.post_form textarea {
+  font-display: ;
+} */
+
 .postform__accessroy-btn {
   position: sticky;
   bottom: 0px;
