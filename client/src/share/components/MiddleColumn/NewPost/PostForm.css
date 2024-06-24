@@ -27,6 +27,25 @@ form.post_form textarea::placeholder {
   font-size: 20px;
 }
 
+.textarea__container {
+  position: relative;
+  width: 100%;
+
+}
+
+.textarea__outputarea {
+  position: absolute;
+  color: transparent;
+  pointer-events: none;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
 form.post_form textarea {
   flex: 1;
   font-family: Arial, Helvetica, sans-serif;
