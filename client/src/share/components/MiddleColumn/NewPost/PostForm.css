@@ -57,14 +57,14 @@ form.post_form textarea {
 }
 
 .postform__btn {
-  width: 67px;
+  display: flex;
   height: 36px;
   text-align: right;
   box-sizing: border-box;
 }
 
 .postform__btn button {
-  width: 100%;
+  width: 67px;
   height: 100%;
   border-radius: 20px;
   background-color: rgb(80, 146, 238);

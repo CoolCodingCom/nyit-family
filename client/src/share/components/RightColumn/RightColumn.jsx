@@ -13,7 +13,7 @@ const RightColumn = (props) => {
   const rightRef = useRef(null);
 
   useEffect(() => {
-    console.log(document.body.offsetWidth - window.innerWidth);
+    // console.log(document.body.offsetWidth - window.innerWidth);
     const right = rightRef.current;
     const viewpointHeight = window.innerHeight;
     // const rightHeight = right.getBoundingClientRect().height;
@@ -47,7 +47,6 @@ const RightColumn = (props) => {
         if (movement === 0) {
           bHeight = scrollTop;
           setBaseHeight(0);
-          console.log("up to the top");
           setIsFix(false);
         }
 
