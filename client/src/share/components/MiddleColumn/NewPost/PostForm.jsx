@@ -8,7 +8,6 @@ import AvadarIcon from "./svg/avadar.svg";
 import "./PostForm.css";
 import Pie from "../../Elements/Pie";
 
-
 const PostForm = () => {
   const [message, setMessage] = useState("");
   const [mediaList, setMediaList] = useState([]);
@@ -16,6 +15,7 @@ const PostForm = () => {
   const [isValid, setIsValid] = useState(false);
   const [mediaUploadState, setMediaUploadState] = useState(null);
   const [textPct, setTextPct] = useState(0);
+  const [leftChar, setLeftChar] = useState(280);
   const mediaUploadRef = useRef();
   const navigateTo = useNavigate();
 
@@ -34,12 +34,15 @@ const PostForm = () => {
 
   const textareaChangeHandler = (event) => {
     const text = event.target.value;
-    const pct = (text.length) * 100 / 280;
+    const pct = (text.length * 100) / 280;
+    const leftchar = 280 - text.length;
+
     setMessage(text);
     setTextPct(pct);
+    setLeftChar(leftchar);
 
     // just a temporarily simple validation method
-    if (event.target.value.length > 0) {
+    if (event.target.value.length > 0 && leftchar >= 0) {
       setIsValid(true);
     } else {
       setIsValid(false);
@@ -48,7 +51,7 @@ const PostForm = () => {
 
   const onPostSubmissionHandler = async (event) => {
     event.preventDefault();
-    console.log("123");
+
     try {
       const formData = new FormData();
       formData.append("userId", "66478537d649d8bfa2785161");
@@ -59,7 +62,7 @@ const PostForm = () => {
       const response = await newPost(formData);
 
       if (response.status >= 200 && response.status < 300) {
-        setMediaList(mediaList => []);
+        setMediaList((mediaList) => []);
         navigateTo(0); // better solution? I just don't want to reload all this page.
       }
     } catch (error) {
@@ -95,7 +98,17 @@ const PostForm = () => {
             }
           />
           <div className="postform__btn">
-            {message.length > 0 && <Pie percentage={textPct} colour={'blue'}/>}
+            {message.length > 0 && (
+              <Pie
+                radius={leftChar > 20 ? 10 : 14}
+                percentage={textPct}
+                colour={
+                  leftChar > 20 ? "blue" : leftChar > 0 ? "orange" : "red"
+                }
+                leftChar={leftChar}
+              />
+            )}
+            {/* {message.length > 0 && leftChar <= 20 && <Pie radius={14} leftChar={leftChar} percentage={textPct} colour={'orange'}/>} */}
             <button type="submit" disabled={!isValid}>
               Post
             </button>
