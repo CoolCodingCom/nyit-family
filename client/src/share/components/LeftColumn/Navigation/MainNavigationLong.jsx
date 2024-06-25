@@ -1,9 +1,10 @@
 // import { ReactComponent as Logo } from "./svg/logo.svg";
 import NavigationLink from "./NavigationLink";
+import AccountControl from "./AccountControl/AccountControl";
 
 import "./MainNavigation.css";
 
-const MainNavigation = (props) => {
+const MainNavigationLong = (props) => {
   return (
     <div className="navigation__container">
       <nav>
@@ -17,7 +18,7 @@ const MainNavigation = (props) => {
         />
         <NavigationLink url="/login" name="Messages" handle="messages" />
         <NavigationLink url="/login" name="Bookmarks" handle="bookmarks" />
-        <NavigationLink url="/login" name="Profile" handle="profile" />
+        <NavigationLink url="/profile" name="Profile" handle="profile" />
         <NavigationLink
           url="/login"
           name="Setting and Privacy"
@@ -25,12 +26,20 @@ const MainNavigation = (props) => {
         />
       </nav>
       <div className="navipost__btn">
-        <button type="submit">
-          Post
-        </button>
+        <button type="submit">Post</button>
+      </div>
+      <div className="navigation__account">
+        <AccountControl
+          key={props.id}
+          posTop={-120}
+          posRight={15}
+          username={props.username}
+          userid={props.userid}
+          // image={person.image}
+        />
       </div>
     </div>
   );
 };
 
-export default MainNavigation;
+export default MainNavigationLong;

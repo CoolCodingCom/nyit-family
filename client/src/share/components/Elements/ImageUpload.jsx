@@ -27,6 +27,7 @@ const ImageUpload = forwardRef((props, ref) => {
   useEffect(() => {
     if (fileList.length === 0) {
       setPreviewUrlList([]);
+      props.onInput(fileList);
       return;
     }
     if (fileList.length < previewUrlList.length) {
@@ -34,6 +35,7 @@ const ImageUpload = forwardRef((props, ref) => {
         previousUrlList.filter((_, i) => i !== deletedIndex)
       );
       setDeletedIndex(-1);
+      props.onInput(fileList);
       return;
     }
     fileReader.onload = () => {

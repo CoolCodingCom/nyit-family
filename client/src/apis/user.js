@@ -57,3 +57,16 @@ export async function getTokenFromGoogle() {
     };
   }
 }
+
+export async function getUserById(uid) {
+  try {
+    const res = await api.get(`/users/${uid}`);
+    return res.data;
+  } catch (err) {
+    throw {
+      message: err.response.data.message,
+      statusText: err.response.statusText,
+      status: err.response.status,
+    };
+  }
+}
