@@ -1,7 +1,13 @@
 .middlecol__container {
   /* flex-grow: 1; */
-  width: 45vw;
+  width: 600px;
+  height: 100%;
+  min-height: 100%;
   border-right: 1px solid rgb(238, 232, 232);
+  border-left: 1px solid rgb(238, 232, 232);
+  /* overflow-y: scroll;
+  scrollbar-width: none; */
+  /* border: 2px solid black; */
 }
 
 .middlecol__head {
