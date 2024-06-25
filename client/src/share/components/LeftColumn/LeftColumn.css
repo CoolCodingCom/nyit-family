@@ -2,8 +2,23 @@
   position: sticky;
   top: 0px;
   flex-shrink: 0;
-  width: 350px;
-  height: 100vh;
+  width: 280px;
+  height: 97vh;
   padding-left: 24px;
-  border-right: 1px solid rgb(238, 232, 232);
+  /* border-right: 1px solid rgb(238, 232, 232); */
+  /* border: 2px solid black; */
+  z-index: 2;
+}
+
+@media (max-width: 1300px) {
+  .leftcol__container {
+    width: 70px;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 510px) {
+  .leftcol__container {
+    display: none;
+  }
 }

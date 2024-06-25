@@ -16,7 +16,7 @@
 
 form.post_form {
   padding-top: 23px;
-  width: 85%;
+  width: 100%;
 }
 
 .postform__contentbody {
@@ -25,6 +25,25 @@ form.post_form {
 
 form.post_form textarea::placeholder {
   font-size: 20px;
+}
+
+.textarea__container {
+  position: relative;
+  width: 100%;
+
+}
+
+.textarea__outputarea {
+  position: absolute;
+  color: transparent;
+  pointer-events: none;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 form.post_form textarea {
@@ -39,9 +58,14 @@ form.post_form textarea {
   resize: none;
   width: 100%;
   padding: 10px;
+  box-sizing: border-box;
   background: white;
   color: black;
 }
+
+/* form.post_form textarea {
+  font-display: ;
+} */
 
 .postform__accessroy-btn {
   position: sticky;
@@ -49,19 +73,22 @@ form.post_form textarea {
   display: flex;
   width: 100%;
   padding: 10px;
+  box-sizing: border-box;
   background-color: white;
   justify-content: space-between;
   align-items: center;
 }
 
 .postform__btn {
-  width: 12%;
+  display: flex;
+  height: 36px;
   text-align: right;
+  box-sizing: border-box;
 }
 
 .postform__btn button {
-  width: 90%;
-  height: 36px;
+  width: 67px;
+  height: 100%;
   border-radius: 20px;
   background-color: rgb(80, 146, 238);
   border: none;
@@ -69,6 +96,10 @@ form.post_form textarea {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
+}
+
+.postform__btn button:hover {
+  background-color: rgb(53, 130, 239);
 }
 
 .postform__btn button:disabled {

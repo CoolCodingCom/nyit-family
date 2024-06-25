@@ -19,11 +19,12 @@
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 	border-top: 1px solid rgb(238, 232, 232);
-	width: 383px;
+	width: 100%;
 	color: blue;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 90%;
 	text-decoration: none;
+	box-sizing: border-box;
 }
 
 .events__showmore:hover {
