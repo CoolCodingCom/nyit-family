@@ -19,6 +19,7 @@ import Profile from "./users/pages/Profile.jsx";
 import { action as loginAction } from "./users/pages/Login";
 import { action as signUpAction } from "./users/pages/SignupMain";
 import { ScrollProvider } from "./share/context/scroll-context.jsx";
+import PostList from "./share/components/MiddleColumn/Posts/PostList.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,7 +34,13 @@ const router = createBrowserRouter(
         loader={async ({ request }) => await protectedLoader(request)}
       >
         <Route index element={<Home />} />
-        <Route path="profile" element={<Profile />} />
+        <Route path=":id" element={<Profile />}>
+          <Route index element={<PostList />} />
+          <Route path="replies" element={<h2>Replies</h2>} />
+          <Route path="subs" element={<h2>subs</h2>} />
+          <Route path="highlights" element={<h2>highlights</h2>} />
+          <Route path="media" element={<h2>media</h2>} />
+        </Route>
       </Route>
 
       <Route path="/login" element={<Login />} action={loginAction} />
