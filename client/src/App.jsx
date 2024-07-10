@@ -19,7 +19,7 @@ import Profile from "./users/pages/Profile.jsx";
 import { action as loginAction } from "./users/pages/Login";
 import { action as signUpAction } from "./users/pages/SignupMain";
 import { ScrollProvider } from "./share/context/scroll-context.jsx";
-import PostList from "./share/components/MiddleColumn/Posts/PostList.jsx";
+import ProfilePosts from "./users/pages/ProfilePosts.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,7 +35,7 @@ const router = createBrowserRouter(
       >
         <Route index element={<Home />} />
         <Route path=":id" element={<Profile />}>
-          <Route index element={<PostList />} />
+          <Route index element={<ProfilePosts />} />
           <Route path="replies" element={<h2>Replies</h2>} />
           <Route path="subs" element={<h2>subs</h2>} />
           <Route path="highlights" element={<h2>highlights</h2>} />

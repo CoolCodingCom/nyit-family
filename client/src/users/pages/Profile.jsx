@@ -1,5 +1,6 @@
 import "../styles/Profile.css";
 import { useParams, Outlet } from "react-router-dom";
+import MiddleColumn from "../../share/components/MiddleColumn/MiddleColumn";
 import RightColumn from "../../share/components/RightColumn/RightColumn";
 import ProfileHead from "../components/ProfileHead";
 import ProfileHeader from "../components/ProfileHeader";
@@ -29,16 +30,16 @@ export default function Profile() {
 
   return (
     <>
-      <div className="middlecol__container">
+      <MiddleColumn>
         <ProfileHead profileInfo={profileInfo}></ProfileHead>
 
         <ProfileHeader profileInfo={profileInfo}></ProfileHeader>
 
         <div className="profile__content">
           <ProfileNav></ProfileNav>
-          <Outlet />
+          <Outlet context={[profileInfo, setProfileInfo]} />
         </div>
-      </div>
+      </MiddleColumn>
       <RightColumn />
     </>
   );
