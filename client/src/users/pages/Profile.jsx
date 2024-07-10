@@ -4,17 +4,35 @@ import RightColumn from "../../share/components/RightColumn/RightColumn";
 import ProfileHead from "../components/ProfileHead";
 import ProfileHeader from "../components/ProfileHeader";
 import ProfileNav from "../components/ProfileNav";
+import { useUserInfo } from "../../share/context/user-info-context";
+import { useState, useEffect } from "react";
+import { getUserById } from "../../apis/user";
 
 export default function Profile() {
   const param = useParams();
-  console.log(param);
+  const userInfo = useUserInfo();
+  const [profileInfo, setProfileInfo] = useState({});
+
+  useEffect(() => {
+    if (param.id === userInfo.id) {
+      setProfileInfo(userInfo);
+    } else {
+      getUserById(param.id)
+        .then((data) => {
+          setProfileInfo(data.user);
+        })
+        .catch((error) => {
+          console.error("Error fetching user information:", error);
+        });
+    }
+  }, []);
 
   return (
     <>
       <div className="middlecol__container">
-        <ProfileHead></ProfileHead>
+        <ProfileHead profileInfo={profileInfo}></ProfileHead>
 
-        <ProfileHeader></ProfileHeader>
+        <ProfileHeader profileInfo={profileInfo}></ProfileHeader>
 
         <div className="profile__content">
           <ProfileNav></ProfileNav>

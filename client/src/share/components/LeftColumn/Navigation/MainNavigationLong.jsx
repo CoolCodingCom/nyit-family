@@ -18,7 +18,11 @@ const MainNavigationLong = (props) => {
         />
         <NavigationLink url="/login" name="Messages" handle="messages" />
         <NavigationLink url="/login" name="Bookmarks" handle="bookmarks" />
-        <NavigationLink url="/profile" name="Profile" handle="profile" />
+        <NavigationLink
+          url={`/${props.userid}`}
+          name="Profile"
+          handle="profile"
+        />
         <NavigationLink
           url="/login"
           name="Setting and Privacy"
