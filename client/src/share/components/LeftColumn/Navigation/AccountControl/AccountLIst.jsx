@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import PopList from "../../../Elements/PopList";
 import "./AccountList.css";
 
 const AccountList = (props) => {
+  const navigate = useNavigate();
   const accountlist = [
     {
       name: "Add an exsiting account",
@@ -12,7 +14,9 @@ const AccountList = (props) => {
     {
       name: "Log out",
       onClickHandler: () => {
-        console.log("button 2");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("token");
+        navigate("/login");
       },
     },
   ];
