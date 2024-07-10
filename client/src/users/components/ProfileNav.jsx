@@ -8,19 +8,19 @@ export default function ProfileNav() {
 
   return (
     <div className="profile__navbar poppins-regular">
-      <NavLink to="" end style={activeNavStyle}>
+      <NavLink to="" end style={activeNavStyle} replace>
         Posts
       </NavLink>
-      <NavLink to="replies" style={activeNavStyle}>
+      <NavLink to="replies" style={activeNavStyle} replace>
         Replies
       </NavLink>
-      <NavLink to="subs" style={activeNavStyle}>
+      <NavLink to="subs" style={activeNavStyle} replace>
         Subs
       </NavLink>
-      <NavLink to="highlights" style={activeNavStyle}>
+      <NavLink to="highlights" style={activeNavStyle} replace>
         Highlights
       </NavLink>
-      <NavLink to="media" style={activeNavStyle}>
+      <NavLink to="media" style={activeNavStyle} replace>
         Media
       </NavLink>
     </div>

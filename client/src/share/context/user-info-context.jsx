@@ -14,7 +14,6 @@ export const UserInfoProvider = ({ children }) => {
     getUserById(userid)
       .then((data) => {
         setUserInfo(data.user);
-        console.log("inside userInfo context!");
       })
       .catch((error) => {
         console.error("Error fetching user information:", error);
