@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import PostItem from "./PostItem";
-import { getHomePosts } from "../../../../apis/post";
 
 const DUMMY_POSTS = [
   {
@@ -42,20 +40,7 @@ const DUMMY_POSTS = [
   },
 ];
 
-const PostList = () => {
-  const [postList, setPostList] = useState();
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
-
-  useEffect(() => {
-    getHomePosts()
-      .then((data) => {
-        setPostList(data.posts);
-      })
-      .catch((error) => {
-        console.error("Error fetching posts:", error);
-      });
-  }, []);
-
+const PostList = ({ postList, setPostList }) => {
   const postDeleteHandler = (deletedPid) => {
     setPostList((prevPosts) =>
       prevPosts.filter((post) => post._id !== deletedPid)

@@ -28,8 +28,8 @@ const getHomePosts = async (req, res) => {
 const getPostByAuthor = async (req, res) => {
   try {
     const { id } = req.params;
-    const posts = await Post.find({ userId: id }).sort({ createdAt: -1 });
-    res.status(200).json(posts);
+    const authorPosts = await Post.find({ userId: id }).sort({ createdAt: -1 });
+    res.status(200).json({ posts: authorPosts });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
