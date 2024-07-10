@@ -22,7 +22,7 @@ export default function ProfileHead({ profileInfo }) {
     if (id) {
       getPostByAuthor(id)
         .then((data) => {
-          setPostsNum(data.length);
+          setPostsNum(data.posts.length);
         })
         .catch((error) => {
           console.error("Error fetching user posts:", error);
