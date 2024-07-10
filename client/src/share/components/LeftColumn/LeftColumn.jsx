@@ -1,17 +1,14 @@
 import { useState, useEffect } from "react";
 
-import { getUserById } from "../../../apis/user";
 import MainNavigationLong from "./Navigation/MainNavigationLong";
 import MainNavigationIcon from "./Navigation/MainNavigationIcon";
-
+import { useUserInfo } from "../../context/user-info-context";
 import "./LeftColumn.css";
-
-
 
 const LeftColumn = (props) => {
   const [showLongSideBar, setShowLongSideBar] = useState(true);
   const [showSimSideBar, setShowSimSideBar] = useState(false);
-	const [curUser, setCurUser] = useState();
+  const userInfo = useUserInfo();
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,32 +22,19 @@ const LeftColumn = (props) => {
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize); 
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize); 
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-
-	useEffect(() => {
-    const userid = localStorage.getItem('userId');
-
-    getUserById(userid)
-    .then((data) => {
-      setCurUser(data.user);
-    })
-    .catch((error) => {
-      console.error("Error fetching user information:", error);
-    });
-	}, [])
-
   return (
-
-
     <div className="leftcol__container">
-      {showLongSideBar && curUser && <MainNavigationLong username={curUser.name} userid={curUser.id}/>}
-      {showSimSideBar && <MainNavigationIcon/>}
+      {showLongSideBar && userInfo && (
+        <MainNavigationLong username={userInfo.name} userid={userInfo.id} />
+      )}
+      {showSimSideBar && <MainNavigationIcon />}
     </div>
   );
 };
