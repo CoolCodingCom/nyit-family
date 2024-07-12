@@ -12,7 +12,6 @@ import AvadarIcon from "./svg/avadar.svg";
 
 import "./PostItem.css";
 
-
 const PostItem = (props) => {
   const [moreIsShow, setMoreIsShow] = useState(false);
   const [modalIsShow, setModalIsShow] = useState(false);
@@ -44,6 +43,38 @@ const PostItem = (props) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  function formatTimestamp(timestamp) {
+    const now = new Date();
+    const date = new Date(timestamp);
+
+    const isToday = date.toDateString() === now.toDateString();
+    const isThisYear = date.getFullYear() === now.getFullYear();
+
+    if (!isThisYear) {
+      return date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      });
+    } else if (!isToday) {
+      return date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      });
+    } else {
+      const diffInSeconds = Math.floor((now - date) / 1000);
+      if (diffInSeconds < 60) {
+        return `${diffInSeconds}s`;
+      } else if (diffInSeconds < 3600) {
+        const diffInMinutes = Math.floor(diffInSeconds / 60);
+        return `${diffInMinutes}m`;
+      } else {
+        const diffInHours = Math.floor(diffInSeconds / 3600);
+        return `${diffInHours}h`;
+      }
+    }
   }
 
   return (
@@ -54,7 +85,9 @@ const PostItem = (props) => {
           onClick={showModalHandler}
           footer={
             <React.Fragment>
-              <Nbutton onClick={deleteConfirmHandler} danger>Delete</Nbutton>
+              <Nbutton onClick={deleteConfirmHandler} danger>
+                Delete
+              </Nbutton>
               <Nbutton onClick={showModalHandler}>Cancel</Nbutton>
             </React.Fragment>
           }
@@ -68,7 +101,7 @@ const PostItem = (props) => {
       )}
       <div className="post__container">
         <div className="post__avadar">
-          <NavLink to="/login" href="#">
+          <NavLink to={`/${props.userId}`} href="#">
             <img src={AvadarIcon} alt="AvadarIcon" />
           </NavLink>
         </div>
@@ -90,13 +123,13 @@ const PostItem = (props) => {
           </div>
           <div className="post__profile">
             <div className="post__profile-username">
-              <NavLink to={`/${props.userid}`} href="#">
+              <NavLink to={`/${props.userId}`} href="#">
                 {props.username}
               </NavLink>
             </div>
             <div className="post__profile-info">
               <span>@</span>
-              {props.userid}·{props.timestamp}
+              {props.userId}·{formatTimestamp(props.timestamp)}
             </div>
           </div>
           <div className="post__content">
