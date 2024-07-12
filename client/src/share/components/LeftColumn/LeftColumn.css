@@ -8,6 +8,7 @@
   /* border-right: 1px solid rgb(238, 232, 232); */
   /* border: 2px solid black; */
   z-index: 2;
+  box-sizing: content-box;
 }
 
 @media (max-width: 1300px) {
