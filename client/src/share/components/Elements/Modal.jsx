@@ -1,20 +1,20 @@
 import React from "react";
 import Backdrop from "./Backdrop";
 
-import "./Modal.css";
+import style from "./Modal.module.css";
 
 const ModalOverlay = (props) => {
   return (
-    <div className={`modal ${props.className}`} style={props.style}>
+    <div className={`${style.modal} ${props.className}`} style={props.style}>
       <form
         onSubmit={
           props.onSubmit ? props.onSubmit : (event) => event.preventDefault()
         }
       >
-        <div className={`modal__content ${props.contentClass}`}>
+        <div className={`${style.modal__content} ${props.contentClass}`}>
           {props.children}
         </div>
-        <footer className={`modal__footer ${props.footerClass}`}>
+        <footer className={`${style.modal__footer} ${props.footerClass}`}>
           {props.footer}
         </footer>
       </form>
