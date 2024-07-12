@@ -6,11 +6,25 @@ import testAvatar3 from "./testAvatar3.jpg";
 import testAvatar4 from "./testAvatar4.jpg";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
+import { mapMonthname } from "../../utils/util";
 
-export default function ProfileHeader() {
+export default function ProfileHeader({
+  profileInfo: { id, name, createdAt },
+}) {
   const style = {
     backgroundImage: `url(${testImg})`,
   };
+
+  function formatDate() {
+    if (createdAt) {
+      const year = new Date(createdAt).getFullYear();
+      const monthIndex = new Date(createdAt).getMonth();
+      const month = mapMonthname(monthIndex);
+      return month + " " + year;
+    } else {
+      return "unknown";
+    }
+  }
 
   return (
     <div className="profile__header">
@@ -27,16 +41,16 @@ export default function ProfileHeader() {
           </div>
         </div>
         <div className="info__row">
-          <span className="poppins-regular profile__fullname">Levi Zhu</span>
+          <span className="poppins-regular profile__fullname">{name}</span>
           <br />
-          <span className="profile__nickname">@8192381279</span>
+          <span className="profile__nickname">@{id}</span>
         </div>
         <div className="viewmore__row">
           <a href="">view more</a>
         </div>
         <div className="date__row">
           <Image src={calendarImg} fluid></Image>
-          Joined {"June 2009"}
+          Joined {formatDate()}
         </div>
         <div className="follow__status__row">
           <div className="follow__status__item">

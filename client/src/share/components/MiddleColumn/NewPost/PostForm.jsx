@@ -7,6 +7,7 @@ import { newPost } from "../../../../apis/post";
 import AvadarIcon from "./svg/avadar.svg";
 import "./PostForm.css";
 import Pie from "../../Elements/Pie";
+import { useUserInfo } from "../../../context/user-info-context";
 
 const PostForm = () => {
   const [message, setMessage] = useState("");
@@ -19,6 +20,7 @@ const PostForm = () => {
   const [leftChar, setLeftChar] = useState(280);
   const mediaUploadRef = useRef();
   const navigateTo = useNavigate();
+  const userInfo = useUserInfo();
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -35,13 +37,11 @@ const PostForm = () => {
 
   useEffect(() => {
     if (leftChar < 0) {
-      setIsValid(false)
-    }
-    else {
+      setIsValid(false);
+    } else {
       if (message.length > 0 || mediaList.length > 0) {
         setIsValid(true);
-      }
-      else {
+      } else {
         setIsValid(false);
       }
     }
@@ -73,8 +73,8 @@ const PostForm = () => {
 
     try {
       const formData = new FormData();
-      formData.append("userId", "66478537d649d8bfa2785161");
-      formData.append("username", "Levi Zhu");
+      formData.append("userId", userInfo.id);
+      formData.append("username", userInfo.name);
       formData.append("content", message);
       mediaList.forEach((file) => formData.append("media", file));
 
