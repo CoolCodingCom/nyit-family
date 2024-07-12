@@ -2,4 +2,11 @@
   display: flex;
   vertical-align: middle;
   width: 100%;
+  padding-bottom: 6px;
+  justify-content: space-between;
+}
+
+.combined-elements {
+  display: flex;
+  flex-direction: row;
 }
