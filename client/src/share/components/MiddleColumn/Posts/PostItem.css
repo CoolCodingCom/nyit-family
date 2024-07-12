@@ -82,6 +82,7 @@
   padding-left: 10px;
   padding-top: 5px;
   width: 90%;
+  box-sizing: content-box;
 }
 
 .post__content-text {
@@ -94,6 +95,7 @@
   padding-left: 10px;
   padding-top: 5px;
   width: 90%;
+  box-sizing: content-box;
 }
 
 .post__btn {
@@ -101,4 +103,13 @@
   padding-left: 10px;
   vertical-align: middle;
   text-align: right;
+}
+
+.deletepost__header {
+  font-weight: 700;
+}
+
+.deletepost__content {
+  color: rgb(129, 91, 91);
+  line-height: 1.3;
 }
