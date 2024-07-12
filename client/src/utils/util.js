@@ -31,3 +31,20 @@ export async function requireAuth(request) {
     }
   }
 }
+
+const monthMap = new Map();
+monthMap.set(0, "Jan");
+monthMap.set(1, "Feb");
+monthMap.set(2, "Mar");
+monthMap.set(3, "Apr");
+monthMap.set(4, "May");
+monthMap.set(5, "June");
+monthMap.set(6, "July");
+monthMap.set(7, "Aug");
+monthMap.set(8, "Sep");
+monthMap.set(9, "Oct");
+monthMap.set(10, "Nov");
+monthMap.set(11, "Dec");
+export function mapMonthname(monthIndex) {
+  return monthMap.get(monthIndex);
+}
