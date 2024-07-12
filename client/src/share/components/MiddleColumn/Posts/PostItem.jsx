@@ -68,7 +68,7 @@ const PostItem = (props) => {
       )}
       <div className="post__container">
         <div className="post__avadar">
-          <NavLink to="/login" href="#">
+          <NavLink to={`/${props.userId}`} href="#">
             <img src={AvadarIcon} alt="AvadarIcon" />
           </NavLink>
         </div>
@@ -90,7 +90,7 @@ const PostItem = (props) => {
           </div>
           <div className="post__profile">
             <div className="post__profile-username">
-              <NavLink to={`/${props.userid}`} href="#">
+              <NavLink to={`/${props.userId}`} href="#">
                 {props.username}
               </NavLink>
             </div>
