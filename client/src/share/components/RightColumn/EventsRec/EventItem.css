@@ -13,6 +13,7 @@
 .eventitem__context {
   padding-right: 10px;
   flex-basis: 72%;
+  box-sizing: content-box;
 }
 
 .eventitem__context-head {

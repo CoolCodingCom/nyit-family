@@ -92,8 +92,8 @@ const PostItem = (props) => {
             </React.Fragment>
           }
         >
-          <h2>Delete post?</h2>
-          <p>
+          <h4 className="deletepost__header">Delete post?</h4>
+          <p className="deletepost__content">
             This can't be undone and it will be removed from your profile, the
             timeline of any accounts that follow you, and from search results.
           </p>
