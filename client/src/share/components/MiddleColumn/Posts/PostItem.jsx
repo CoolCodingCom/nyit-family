@@ -16,7 +16,6 @@ const PostItem = (props) => {
   const [moreIsShow, setMoreIsShow] = useState(false);
   const [modalIsShow, setModalIsShow] = useState(false);
   const { setIsScrollDisabled } = useScroll();
-
   const showListHandler = () => {
     setMoreIsShow((moreIsShow) => !moreIsShow);
   };
@@ -102,7 +101,7 @@ const PostItem = (props) => {
       <div className="post__container">
         <div className="post__avadar">
           <NavLink to={`/${props.userId}`} href="#">
-            <img src={AvadarIcon} alt="AvadarIcon" />
+            <img src={props.userImage} alt="AvadarIcon" />
           </NavLink>
         </div>
         <div className="post__body">
