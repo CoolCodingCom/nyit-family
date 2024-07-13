@@ -96,7 +96,7 @@ const PostForm = () => {
   return (
     <div className="postform__body">
       <NavLink to={`/${userInfo.id}`} className="postform__navlink" href="#">
-        <img className="icon" src={AvadarIcon} alt="AvadarIcon" />
+        <img className="icon" src={userInfo.image} alt="AvadarIcon" />
       </NavLink>
       <form className="post_form" onSubmit={onPostSubmissionHandler}>
         <div className="postform__contentbody">
