@@ -17,12 +17,12 @@ module.exports = {
   },
   email: {
     // BACKEND_URL: "http://localhost:5000",
-    BACKEND_URL: "https://5000-coolcodingco-nyitfamily-k9fp58crqyj.ws-us115.gitpod.io",
+    BACKEND_URL: "https://5000-coolcodingco-nyitfamily-wosvfw7zif2.ws-us115.gitpod.io",
     SENDER: "verification@nyitfamily.site",
     RECEIVER: "txu4031@gmail.com",
   },
   frontend: {
     // FRONTEND_URL: "http://localhost:5173",
-    FRONTEND_URL: "https://5173-coolcodingco-nyitfamily-k9fp58crqyj.ws-us115.gitpod.io",
+    FRONTEND_URL: "https://5173-coolcodingco-nyitfamily-wosvfw7zif2.ws-us115.gitpod.io",
   },
 };

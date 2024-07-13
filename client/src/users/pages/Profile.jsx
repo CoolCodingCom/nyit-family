@@ -26,7 +26,7 @@ export default function Profile() {
           console.error("Error fetching user information:", error);
         });
     }
-  }, []);
+  }, [param]);
 
   return (
     <>
