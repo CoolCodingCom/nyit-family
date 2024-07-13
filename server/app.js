@@ -8,6 +8,7 @@ const upload = require("./middleware/upload-multer");
 const usersRoutes = require("./routes/users-routes");
 const postsRoutes = require("./routes/posts-routes");
 const authRoutes = require("./routes/auth-routes");
+const searchRoutes = require("./routes/search-routes");
 const passport = require("./util/passportUtil");
 const keys = require("./config/keys");
 
@@ -23,6 +24,7 @@ app.use("/api/auth", authRoutes);
 
 app.use("/api/users", usersRoutes);
 app.use("/api/posts", postsRoutes);
+app.use("/api/search", searchRoutes);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
