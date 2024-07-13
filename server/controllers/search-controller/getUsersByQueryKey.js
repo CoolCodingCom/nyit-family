@@ -19,8 +19,6 @@ const getUsersByQueryKey = async (req, res, next) => {
     return next(new HttpError("No user existing", 404));
   }
 
-  console.log(desiredUsers); // for testing
-
   res
     .status(200)
     .json({ users: desiredUsers.map((u) => u.toObject({ getters: true })) });

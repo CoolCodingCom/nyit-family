@@ -1,29 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import SearchIcon from "./svg/search.svg";
 
 import "./SearchBar.css";
 import PopList from "../../Elements/PopList";
+import { getUsersByQueryKey } from "../../../../apis/user";
 
 const SearchBar = (props) => {
   const [searchInput, setSearchInput] = useState("");
+  const [userList, setUserList] = useState();
 
-  const accountlist = [
-    {
-      userid: "Levi Zhu",
-      onClickHandler: () => {
-        // props.onDeleteShow();
-      },
-    },
-    {
-      userid: "Marco Shua",
-      onClickHandler: () => {
-        localStorage.removeItem("userId");
-        localStorage.removeItem("token");
-        navigate("/login");
-      },
-    },
-  ];
+  useEffect(() => {
+    if (searchInput.length > 0) {
+      getUsersByQueryKey(searchInput)
+        .then((data) => {
+          setUserList(data.users);
+        })
+        .catch((err) => {
+          console.error("Error fetching users:", err);
+        });
+    } else {
+      setUserList();
+    }
+    console.log(userList);
+  }, [searchInput]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -31,8 +31,8 @@ const SearchBar = (props) => {
   };
 
   const ContentClearHandler = () => {
-    setSearchInput('');
-  }
+    setSearchInput("");
+  };
 
   return (
     <>
@@ -57,12 +57,12 @@ const SearchBar = (props) => {
           )}
         </div>
       </div>
-      {searchInput.length > 0 && (
+      {searchInput.length > 0 && userList && (
         <PopList
           show
           isprofile
           nobackdrop
-          list={accountlist}
+          list={userList}
           posTop={51.5}
           width={310}
           className="morelist__container"
