@@ -23,6 +23,7 @@ const AccountList = (props) => {
 
   return (
     <PopList
+      istext
       show={props.show}
       list={accountlist}
       posTop={props.posTop}
