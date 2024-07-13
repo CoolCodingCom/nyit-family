@@ -70,3 +70,16 @@ export async function getUserById(uid) {
     };
   }
 }
+
+export async function getUsersByQueryKey(qkey) {
+  try {
+    const res = await api.get(`/search/${qkey}`);
+    return res.data;
+  } catch (err) {
+    throw {
+      message: err.response.data.message,
+      statusText: err.response.statusText,
+      status: err.response.status,
+    };
+  }
+}

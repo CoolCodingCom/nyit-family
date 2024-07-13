@@ -36,28 +36,13 @@ const PopList = (props) => {
           {props.isprofile &&
             props.list.map((item, index) => (
               <li key={index}>
-                {/* <button
-                  className={`${
-                    index === 0 ? "poplist__container-first" : ""
-                  } ${
-                    index === props.list.length - 1
-                      ? "poplist__container-last"
-                      : ""
-                  }`}
-                  type="button"
-                  onClick={item.onClickHandler}
-                >
-                  {item.name}
-                </button> */}
-                <NavLink className="peopleitem__container" to={props.path}>
-                  <div className="peopleitem__avadar">
+                <NavLink className="peoplelist__container" to={`/${item.id}`}>
+                  <div className="peoplelist__avadar">
                     <img src={item.image} />
                   </div>
-                  <div className="peopleitem__profile">
-                    <div className="peopleitem__profile-name">
-                      {item.username}
-                    </div>
-                    <div className="peopleitem__profile-id">{item.userid}</div>
+                  <div className="peoplelist__profile">
+                    <div className="peoplelist__profile-name">{item.name}</div>
+                    <div className="peoplelist__profile-id">@{item.id}</div>
                   </div>
                 </NavLink>
               </li>

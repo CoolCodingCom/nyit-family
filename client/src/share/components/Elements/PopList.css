@@ -36,3 +36,42 @@
 .poplist__container button:hover {
   background-color: rgb(238, 232, 232);
 }
+
+.peoplelist__container {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid rgb(238, 232, 232);
+  text-decoration: none;
+  color: black;
+  align-items: center;
+}
+
+.peoplelist__container:hover {
+  background-color: rgb(238, 232, 232);
+}
+
+.peoplelist__avadar {
+  flex-basis: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.peoplelist__avadar img{
+  width: 100%;
+  border-radius: 50%;
+}
+
+.peoplelist__profile {
+  flex-basis: 70%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.87rem;
+  margin-left: 5px;
+  line-height: 1.5;
+  text-align: left;
+  overflow: hidden;
+}
+
+.peoplelist__profile-name {
+  font-weight: 800;
+}
