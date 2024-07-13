@@ -11,8 +11,9 @@ const PopList = (props) => {
           className="poplist__container"
           style={{
             top: `${props.posTop}px`,
-            right: `${props.posRight}px`,
+            right: !props.staticpos && `${props.posRight}px`,
             width: props.width && `${props.width}px`,
+            // position: props.staticpos && 'sticky',
           }}
         >
           {props.istext &&
