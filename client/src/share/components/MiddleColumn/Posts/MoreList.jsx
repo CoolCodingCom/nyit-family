@@ -26,6 +26,7 @@ const MoreList = (props) => {
 
   return (
     <PopList
+      istext
       show={props.show}
       posTop={-15}
       posRight={5}
