@@ -39,7 +39,7 @@ export default function ProfileHeader({
             <Image src={image} fluid roundedCircle></Image>
           </div>
           <div className="profile__operation">
-            {userInfo.id === id && <EditProfile />}
+            {userInfo.id === id && <EditProfile avatar={image} name={name} />}
             {userInfo.id !== id && (
               <Button variant="dark" className="profile__follow__button">
                 Follow
