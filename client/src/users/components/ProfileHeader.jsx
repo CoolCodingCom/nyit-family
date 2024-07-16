@@ -1,6 +1,5 @@
 import calendarImg from "../../assets/calendar.svg";
 import testImg from "./testImg.jpeg";
-import testAvatar from "./testAvatar.jpg";
 import testAvatar2 from "./testAvatar2.jpg";
 import testAvatar3 from "./testAvatar3.jpg";
 import testAvatar4 from "./testAvatar4.jpg";
@@ -13,7 +12,7 @@ import EditProfile from "./EditProfile";
 export default function ProfileHeader({
   profileInfo: { id, name, createdAt, image },
 }) {
-  const userInfo = useUserInfo();
+  const { userInfo } = useUserInfo();
 
   const style = {
     backgroundImage: `url(${testImg})`,
@@ -39,7 +38,9 @@ export default function ProfileHeader({
             <Image src={image} fluid roundedCircle></Image>
           </div>
           <div className="profile__operation">
-            {userInfo.id === id && <EditProfile avatar={image} name={name} />}
+            {userInfo.id === id && (
+              <EditProfile id={id} avatar={image} name={name} />
+            )}
             {userInfo.id !== id && (
               <Button variant="dark" className="profile__follow__button">
                 Follow

@@ -6,7 +6,6 @@ const updateUserById = async (req, res, next) => {
   const userId = req.params.uid;
   const { name } = req.body;
   const newImage = req.file;
-
   try {
     const user = await User.findById(userId);
 
@@ -14,11 +13,10 @@ const updateUserById = async (req, res, next) => {
       return res.status(404).json({ message: "User not found." });
     }
 
-    // user.name = name;
+    user.name = name;
 
     if (newImage) {
       deleteImage(user.image);
-      console.log(newImage);
       const backendUrl = keys.email.BACKEND_URL;
       user.image = backendUrl + "/" + newImage.path;
     }
