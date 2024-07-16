@@ -5,7 +5,7 @@ import "./AccountControl.css";
 import { useUserInfo } from "../../../../context/user-info-context";
 
 const AccountControl = (props) => {
-  const userInfo = useUserInfo();
+  const { userInfo } = useUserInfo();
 
   const [moreIsShow, setMoreIsShow] = useState(false);
 

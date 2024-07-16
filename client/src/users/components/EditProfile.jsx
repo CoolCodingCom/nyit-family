@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import Modal from "react-bootstrap/Modal";
@@ -7,25 +7,48 @@ import crossImg from "../../assets/cross.svg";
 import styles from "../styles/editfile.module.css";
 import testImg from "./testImg.jpeg";
 import cameraIcon from "./camera.svg";
-import testAvatar from "./testAvatar.jpg";
+import { updateUserById } from "../../apis/user";
+import { useUserInfo } from "../../share/context/user-info-context";
 
-export default function EditProfile({ name, avatar }) {
+export default function EditProfile({ id, name, avatar }) {
   const [show, setShow] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState(avatar);
   const [avatarFile, setAvatarFile] = useState(null);
+  const [newName, setNewName] = useState(name);
   const inputFile = useRef(null);
-
+  const { userInfo, setUserInfo } = useUserInfo();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const handleFileSelect = () => {
     inputFile.current.click();
+  };
+
+  const handleNameChange = (e) => {
+    setNewName(e.target.value);
   };
 
   const handleChange = (e) => {
     setAvatarFile(e.target.files[0]);
     setAvatarUrl(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append("name", newName);
+    formData.append("avatar", avatarFile);
+
+    try {
+      const response = await updateUserById(id, formData);
+      setUserInfo((previous) => ({
+        ...previous,
+        name: response.user.name,
+        image: response.user.image,
+      }));
+      handleClose();
+    } catch (err) {
+      console.err(err);
+    }
   };
 
   const sourceStyle = {
@@ -60,7 +83,7 @@ export default function EditProfile({ name, avatar }) {
           <Button
             variant="dark"
             className="profile__follow__button"
-            onClick={handleClose}
+            onClick={handleSubmit}
           >
             Save
           </Button>
@@ -88,7 +111,12 @@ export default function EditProfile({ name, avatar }) {
 
           <div className={styles.name__field}>
             <Form.Label htmlFor="inputName">Name</Form.Label>
-            <Form.Control type="textarea" id="inputName" defaultValue={name} />
+            <Form.Control
+              type="textarea"
+              id="inputName"
+              value={newName}
+              onChange={handleNameChange}
+            />
           </div>
         </Modal.Body>
       </Modal>

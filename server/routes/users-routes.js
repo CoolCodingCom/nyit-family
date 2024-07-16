@@ -7,7 +7,6 @@ const { signup } = require("../controllers/users-controller/signup");
 const { verify } = require("../controllers/users-controller/verify");
 const { login } = require("../controllers/users-controller/login");
 const { getUserById } = require("../controllers/users-controller/getUserByid");
-
 const {
   updateUserById,
 } = require("../controllers/users-controller/updateUserByid");
@@ -18,7 +17,7 @@ router.get("/", getUsers);
 
 router.get("/:uid", getUserById);
 
-router.post("/:uid", upload.single("avatar"), updateUserById);
+router.post("/update/:uid", upload.single("avatar"), updateUserById);
 
 router.get("/verify/:uniqueid", verify);
 
