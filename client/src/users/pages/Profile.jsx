@@ -28,6 +28,12 @@ export default function Profile() {
     }
   }, []);
 
+  useEffect(() => {
+    if (param.id === userInfo.id) {
+      setProfileInfo(userInfo);
+    }
+  }, [userInfo]);
+
   return (
     <>
       <MiddleColumn>
