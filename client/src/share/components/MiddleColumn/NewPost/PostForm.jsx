@@ -20,9 +20,7 @@ const PostForm = () => {
   const [leftChar, setLeftChar] = useState(280);
   const mediaUploadRef = useRef();
   const navigateTo = useNavigate();
-  const userInfo = useUserInfo();
-
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const { userInfo } = useUserInfo();
 
   useEffect(() => {
     textareaRef.current.style.height = "0px";
