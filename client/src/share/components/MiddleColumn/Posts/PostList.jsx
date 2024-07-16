@@ -54,7 +54,7 @@ const PostList = ({ postList, setPostList }) => {
             key={post._id}
             id={post._id}
             userId={post.userId._id}
-            username={post.username}
+            username={post.userId.name}
             userImage={post.userId.image}
             timestamp={post.createdAt}
             text={post.content}
