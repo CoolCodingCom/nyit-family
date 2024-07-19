@@ -34,7 +34,9 @@ const LeftColumn = (props) => {
       {showLongSideBar && userInfo && (
         <MainNavigationLong username={userInfo.name} userid={userInfo.id} />
       )}
-      {showSimSideBar && <MainNavigationIcon />}
+      {showSimSideBar && (
+        <MainNavigationIcon username={userInfo.name} userid={userInfo.id} />
+      )}
     </div>
   );
 };
