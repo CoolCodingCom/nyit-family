@@ -20,7 +20,7 @@ app.use(cors({ credentials: true, origin: keys.frontend.FRONTEND_URL })); // sol
 
 passport(app);
 
-app.get('/health', (req, res) => {
+app.get('/api/health', (req, res) => {
   res.status(200).send('OK');
 });
 
