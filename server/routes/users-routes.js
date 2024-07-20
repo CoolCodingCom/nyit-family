@@ -1,17 +1,23 @@
 const express = require("express");
 const { check } = require("express-validator");
 const checkToken = require("../middleware/check-token");
+const upload = require("../middleware/upload-multer");
 const { getUsers } = require("../controllers/users-controller/getUsers");
 const { signup } = require("../controllers/users-controller/signup");
 const { verify } = require("../controllers/users-controller/verify");
 const { login } = require("../controllers/users-controller/login");
 const { getUserById } = require("../controllers/users-controller/getUserByid");
+const {
+  updateUserById,
+} = require("../controllers/users-controller/updateUserByid");
 
 const router = express.Router();
 
 router.get("/", getUsers);
 
 router.get("/:uid", getUserById);
+
+router.post("/update/:uid", upload.single("avatar"), updateUserById);
 
 router.get("/verify/:uniqueid", verify);
 

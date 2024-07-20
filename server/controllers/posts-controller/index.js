@@ -16,9 +16,11 @@ const getAllPosts = async (req, res) => {
 
 const getHomePosts = async (req, res) => {
   try {
-    const homePosts = await Post.find({ parentPost: { $exists: false } }).sort({
-      createdAt: -1,
-    });
+    const homePosts = await Post.find({ parentPost: { $exists: false } })
+      .populate("userId")
+      .sort({
+        createdAt: -1,
+      });
     res.status(200).json({ posts: homePosts });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -28,7 +30,9 @@ const getHomePosts = async (req, res) => {
 const getPostByAuthor = async (req, res) => {
   try {
     const { id } = req.params;
-    const authorPosts = await Post.find({ userId: id }).sort({ createdAt: -1 });
+    const authorPosts = await Post.find({ userId: id })
+      .populate("userId")
+      .sort({ createdAt: -1 });
     res.status(200).json({ posts: authorPosts });
   } catch (error) {
     res.status(500).json({ message: error.message });
