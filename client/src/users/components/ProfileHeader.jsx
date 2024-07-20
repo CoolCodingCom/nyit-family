@@ -1,16 +1,19 @@
 import calendarImg from "../../assets/calendar.svg";
 import testImg from "./testImg.jpeg";
-import testAvatar from "./testAvatar.jpg";
 import testAvatar2 from "./testAvatar2.jpg";
 import testAvatar3 from "./testAvatar3.jpg";
 import testAvatar4 from "./testAvatar4.jpg";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import { mapMonthname } from "../../utils/util";
+import { useUserInfo } from "../../share/context/user-info-context";
+import EditProfile from "./EditProfile";
 
 export default function ProfileHeader({
-  profileInfo: { id, name, createdAt },
+  profileInfo: { id, name, createdAt, image },
 }) {
+  const { userInfo } = useUserInfo();
+
   const style = {
     backgroundImage: `url(${testImg})`,
   };
@@ -32,12 +35,17 @@ export default function ProfileHeader({
       <div className="profile__header__content">
         <div className="first__row">
           <div className="profile__avatar">
-            <Image src={testAvatar} fluid roundedCircle></Image>
+            <Image src={image} fluid roundedCircle></Image>
           </div>
           <div className="profile__operation">
-            <Button variant="dark" className="profile__operation__button">
-              Follow
-            </Button>
+            {userInfo.id === id && (
+              <EditProfile id={id} avatar={image} name={name} />
+            )}
+            {userInfo.id !== id && (
+              <Button variant="dark" className="profile__follow__button">
+                Follow
+              </Button>
+            )}
           </div>
         </div>
         <div className="info__row">
