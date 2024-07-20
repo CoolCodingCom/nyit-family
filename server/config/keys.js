@@ -16,13 +16,14 @@ module.exports = {
     PASSWORD: "edbb47d4962e414565c07cb365f2ce38",
   },
   email: {
-    // BACKEND_URL: "http://localhost:5000",
-    BACKEND_URL: "https://5000-coolcodingco-nyitfamily-wosvfw7zif2.ws-us115.gitpod.io",
+    BACKEND_URL: "http://localhost:5000",
+    // BACKEND_URL:
+    //   "https://5000-coolcodingco-nyitfamily-lkvtobvun8b.ws-us115.gitpod.io",
     SENDER: "verification@nyitfamily.site",
     RECEIVER: "txu4031@gmail.com",
   },
   frontend: {
-    // FRONTEND_URL: "http://localhost:5173",
-    FRONTEND_URL: "https://5173-coolcodingco-nyitfamily-wosvfw7zif2.ws-us115.gitpod.io",
+    FRONTEND_URL: "http://localhost:5173",
+    // FRONTEND_URL: "https://5173-coolcodingco-nyitfamily-lkvtobvun8b.ws-us115.gitpod.io",
   },
 };

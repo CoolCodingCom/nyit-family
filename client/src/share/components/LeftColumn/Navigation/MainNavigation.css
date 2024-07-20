@@ -12,28 +12,46 @@ nav div.navlink {
   padding: 5px;
 }
 
-nav div.navlink:hover {
+/* nav div.navlink:hover {
   display: inline-block;
   background-color: rgba(210, 197, 197, 0.5);
-}
+} */
 
 nav a.primary {
   display: flex;
-  gap: 24px;
-  align-items: center;
   color: #0f1419;
   font-family: Sans Serif;
   font-size: 18px;
   font-weight: bold;
   text-decoration: none;
-  padding: 7px 0;
-  margin: 8px 0;
 }
 
-/* nav a.primary:hover {
-  display: inline-block;
+nav a.primary > .navitem {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  border-bottom-left-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+  padding: 7px 10px 7px 5px;
+  margin: 8px 0;
+  transition: 0.25s;
+}
+
+nav > .navlink:nth-child(1) > a.primary > .navitem {
+  padding: 7px 5px 7px 5px;
+}
+
+nav > .navlink:nth-child(1) > a.primary > .navitem:hover {
   background-color: rgba(210, 197, 197, 0.5);
-} */
+  transition: 0.25s;
+}
+
+nav > .navlink:nth-child(n + 2) > a.primary:hover > .navitem {
+  background-color: rgba(210, 197, 197, 0.5);
+  transition: 0.25s;
+}
 
 nav a.primary .icon {
   fill: rgb(255, 255, 255, 0.5);
@@ -104,5 +122,9 @@ nav a.primary.active svg {
     height: 50px;
     vertical-align: middle;
     border-radius: 50%;
+  }
+
+  nav a.primary > .navitem {
+    padding: 7px 5px 7px 5px;
   }
 }

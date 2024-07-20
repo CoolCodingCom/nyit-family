@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import AccountList from "./AccountLIst";
-import AvadarIcon from "./svg/avadar.svg";
 
 import "./AccountControl.css";
+import { useUserInfo } from "../../../../context/user-info-context";
 
 const AccountControl = (props) => {
+  const { userInfo } = useUserInfo();
+
   const [moreIsShow, setMoreIsShow] = useState(false);
 
   const showListHandler = () => {
@@ -32,7 +33,7 @@ const AccountControl = (props) => {
       <button className="accountcontrol__button" onClick={showListHandler}>
         <div className="accountcontrol__avadar">
           {/* <img src={props.image} /> */}
-          <img src={AvadarIcon} />
+          <img src={userInfo.image} />
         </div>
         {props.username && (
           <>
