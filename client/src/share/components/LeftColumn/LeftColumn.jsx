@@ -8,7 +8,7 @@ import "./LeftColumn.css";
 const LeftColumn = (props) => {
   const [showLongSideBar, setShowLongSideBar] = useState(true);
   const [showSimSideBar, setShowSimSideBar] = useState(false);
-  const userInfo = useUserInfo();
+  const { userInfo } = useUserInfo();
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,7 +34,9 @@ const LeftColumn = (props) => {
       {showLongSideBar && userInfo && (
         <MainNavigationLong username={userInfo.name} userid={userInfo.id} />
       )}
-      {showSimSideBar && <MainNavigationIcon />}
+      {showSimSideBar && (
+        <MainNavigationIcon username={userInfo.name} userid={userInfo.id} />
+      )}
     </div>
   );
 };

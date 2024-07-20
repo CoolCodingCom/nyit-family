@@ -20,9 +20,7 @@ const PostForm = () => {
   const [leftChar, setLeftChar] = useState(280);
   const mediaUploadRef = useRef();
   const navigateTo = useNavigate();
-  const userInfo = useUserInfo();
-
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const { userInfo } = useUserInfo();
 
   useEffect(() => {
     textareaRef.current.style.height = "0px";
@@ -95,8 +93,8 @@ const PostForm = () => {
 
   return (
     <div className="postform__body">
-      <NavLink to="/login" className="postform__navlink" href="#">
-        <img className="icon" src={AvadarIcon} alt="AvadarIcon" />
+      <NavLink to={`/${userInfo.id}`} className="postform__navlink" href="#">
+        <img className="icon" src={userInfo.image} alt="AvadarIcon" />
       </NavLink>
       <form className="post_form" onSubmit={onPostSubmissionHandler}>
         <div className="postform__contentbody">

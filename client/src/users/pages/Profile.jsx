@@ -11,7 +11,7 @@ import { getUserById } from "../../apis/user";
 
 export default function Profile() {
   const param = useParams();
-  const userInfo = useUserInfo();
+  const { userInfo } = useUserInfo();
   const [profileInfo, setProfileInfo] = useState({});
 
   useEffect(() => {
@@ -27,6 +27,12 @@ export default function Profile() {
         });
     }
   }, [param]);
+
+  useEffect(() => {
+    if (param.id === userInfo.id) {
+      setProfileInfo(userInfo);
+    }
+  }, [userInfo]);
 
   return (
     <>
