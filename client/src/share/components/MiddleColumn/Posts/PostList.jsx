@@ -46,7 +46,6 @@ const PostList = ({ postList, setPostList }) => {
       prevPosts.filter((post) => post._id !== deletedPid)
     );
   };
-
   return (
     <div>
       {postList &&
@@ -54,8 +53,9 @@ const PostList = ({ postList, setPostList }) => {
           <PostItem
             key={post._id}
             id={post._id}
-            userid={post.userid}
-            username={post.username}
+            userId={post.userId._id}
+            username={post.userId.name}
+            userImage={post.userId.image}
             timestamp={post.createdAt}
             text={post.content}
             medialist={post.media}
