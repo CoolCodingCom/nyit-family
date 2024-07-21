@@ -11,6 +11,8 @@
 
 .post__avadar img {
   border-radius: 50%;
+  width: 50px;
+  height: 50px;
 }
 
 .post__body {
@@ -28,7 +30,7 @@
   display: inline;
 }
 
-.post__profile-username a{
+.post__profile-username a {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 110%;
   font-weight: bold;
@@ -68,11 +70,11 @@
   font-weight: 700;
 }
 
-.post__extension-show-button:hover{
+.post__extension-show-button:hover {
   background-color: rgb(232, 236, 241);
 }
 
-.post__extension span{
+.post__extension span {
   position: absolute;
   top: 0px;
   left: 9px;

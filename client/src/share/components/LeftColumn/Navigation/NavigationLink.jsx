@@ -56,10 +56,12 @@ const NavigationLink = (props) => {
 
   return (
     <div className="navlink">
-    <NavLink to={props.url} className={classes()} href="#">
-      {icon()}
-      {props.name && <span>{props.name}</span>}
-    </NavLink>
+      <NavLink to={props.url} className={classes()} href="#">
+        <div className="navitem">
+          {icon()}
+          {props.name && <span>{props.name}</span>}
+        </div>
+      </NavLink>
     </div>
   );
 };
