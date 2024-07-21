@@ -12,6 +12,7 @@
 .search__inner {
   display: flex;
   height: 100%;
+  align-items: center;
 }
 
 .search__inner img {
@@ -23,6 +24,7 @@
 .search__item {
   text-align: none;
   margin-left: 10px;
+  padding-right: 10px;
   height: 90%;
   width: 70%;
   font-family: Arial, Helvetica, sans-serif;
@@ -31,4 +33,19 @@
   outline: none;
   box-sizing: content-box;
 }
-  
+
+.search__cancel {
+	width: 25px;
+	height: 25px;
+	font-size: 0.7rem;
+	font-weight: 700;
+	color: white;
+	border-radius: 50%;
+	border: none;
+	background-color: rgb(80, 146, 238);
+  vertical-align: middle;
+}
+
+.search__cancel:hover {
+  background-color: rgb(53, 130, 239);
+}
