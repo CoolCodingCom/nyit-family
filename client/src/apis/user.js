@@ -71,6 +71,19 @@ export async function getUserById(uid) {
   }
 }
 
+export async function updateUserById(uid, formData) {
+  try {
+    const res = await api.post(`/users/update/${uid}`, formData);
+    return res.data;
+  } catch (err) {
+    throw {
+      message: err.response.data.message,
+      statusText: err.response.statusText,
+      status: err.response.status,
+    };
+  }
+}
+
 export async function getUsersByQueryKey(qkey) {
   try {
     const res = await api.get(`/search/${qkey}`);
