@@ -1,5 +1,6 @@
 name: Deploy React Application to AWS
 on:
+  workflow_dispatch: {}
   # activates the workflow when there is a push on the main branch
   push:
     branches:
