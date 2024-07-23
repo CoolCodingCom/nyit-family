@@ -114,6 +114,7 @@ const PostItem = (props) => {
             </button>
             {moreIsShow && (
               <MoreList
+                userId={props.userId}
                 show={moreIsShow}
                 onClick={showListHandler}
                 onDeleteShow={onDeleteShowHandler}
