@@ -1,0 +1,42 @@
+name: Deploy React Application to AWS
+on:
+  # activates the workflow when there is a push on the main branch
+  push:
+    branches:
+      - M-CICD-TEST
+jobs:
+  build:
+    runs-on: ubuntu-latest # the OS your job should run on
+    # strategy:
+    #   matrix:
+    #     node-version: [16.x]
+    steps:
+      - name: Checkout Latest Repo
+        uses: actions/checkout@v4
+
+      - name: Login into docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build docker image
+        run: docker build -t nyitfamily-react-image .
+        working-directory: ./client
+
+      - name: Publish the image to the docker hub
+        run: docker push nyitfamily-react-image:latest
+        working-directory: ./client
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull nyitfamily-react-image:latest
+        working-directory: ./client
+
+      - name: Delete the old container
+        run: docker rm -f nyitfamily-react-container
+        working-directory: ./client
+
+      - name: Run docker container
+        run: docker run -d -p 5147:80 --name nyitfamily-react-container nyitfamily-react-image
+        working-directory: ./client
