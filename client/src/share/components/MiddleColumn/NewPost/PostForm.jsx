@@ -8,6 +8,7 @@ import AvadarIcon from "./svg/avadar.svg";
 import "./PostForm.css";
 import Pie from "../../Elements/Pie";
 import { useUserInfo } from "../../../context/user-info-context";
+import { getImageSrc } from "../../../../utils/util";
 
 const PostForm = () => {
   const [message, setMessage] = useState("");
@@ -94,7 +95,11 @@ const PostForm = () => {
   return (
     <div className="postform__body">
       <NavLink to={`/${userInfo.id}`} className="postform__navlink" href="#">
-        <img className="icon" src={userInfo.image} alt="AvadarIcon" />
+        <img
+          className="icon"
+          src={getImageSrc(userInfo.image)}
+          alt="AvadarIcon"
+        />
       </NavLink>
       <form className="post_form" onSubmit={onPostSubmissionHandler}>
         <div className="postform__contentbody">
