@@ -1,7 +1,7 @@
 module.exports = {
   google: {
     CLIEND_ID:
-      "",
+      " ",
     CLIEND_SECRET: "",
   },
   mongoDB: {
