@@ -9,6 +9,7 @@ import testImg from "./testImg.jpeg";
 import cameraIcon from "./camera.svg";
 import { updateUserById } from "../../apis/user";
 import { useUserInfo } from "../../share/context/user-info-context";
+import { getImageSrc } from "../../utils/util";
 
 export default function EditProfile({ id, name, avatar }) {
   const [show, setShow] = useState(false);
@@ -92,7 +93,7 @@ export default function EditProfile({ id, name, avatar }) {
           <div className={styles.background__image} style={sourceStyle}></div>
 
           <div className={styles.editfile__avatar}>
-            <Image src={avatarUrl} fluid roundedCircle></Image>
+            <Image src={getImageSrc(avatarUrl)} fluid roundedCircle></Image>
             <div className={styles.overlay}>
               <Image
                 src={cameraIcon}

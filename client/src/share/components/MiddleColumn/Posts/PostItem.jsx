@@ -8,8 +8,7 @@ import MediaArrange from "./MediaArrange";
 import MoreList from "./MoreList";
 import Modal from "../../Elements/Modal";
 import Nbutton from "../../Elements/Nbutton";
-import AvadarIcon from "./svg/avadar.svg";
-
+import { getImageSrc } from "../../../../utils/util.js";
 import "./PostItem.css";
 
 const PostItem = (props) => {
@@ -101,7 +100,7 @@ const PostItem = (props) => {
       <div className="post__container">
         <div className="post__avadar">
           <NavLink to={`/${props.userId}`} href="#">
-            <img src={props.userImage} alt="AvadarIcon" />
+            <img src={getImageSrc(props.userImage)} alt="AvadarIcon" />
           </NavLink>
         </div>
         <div className="post__body">
