@@ -19,11 +19,11 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build docker image
-        run: docker build -t nyitfamily-react-image .
+        run: docker build -t marcotengxu/nyitfamily-react-image .
         working-directory: ./client
 
       - name: Publish the image to the docker hub
-        run: docker push nyitfamily-react-image:latest
+        run: docker push marcotengxu/nyitfamily-react-image:latest
         working-directory: ./client
 
   deploy:
@@ -31,7 +31,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Pull image from docker hub
-        run: docker pull nyitfamily-react-image:latest
+        run: docker pull marcotengxu/nyitfamily-react-image:latest
         working-directory: ./client
 
       - name: Delete the old container
@@ -39,5 +39,5 @@ jobs:
         working-directory: ./client
 
       - name: Run docker container
-        run: docker run -d -p 5147:80 --name nyitfamily-react-container nyitfamily-react-image
+        run: docker run -d -p 5147:80 --name nyitfamily-react-container marcotengxu/nyitfamily-react-image
         working-directory: ./client
