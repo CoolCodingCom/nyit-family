@@ -32,12 +32,9 @@ jobs:
     steps:
       - name: Pull image from docker hub
         run: docker pull marcotengxu/nyitfamily-react-image:latest
-        working-directory: ./client
 
       - name: Delete the old container
         run: docker rm -f nyitfamily-react-container
-        working-directory: ./client
 
       - name: Run docker container
         run: docker run -d -p 5147:80 --name nyitfamily-react-container marcotengxu/nyitfamily-react-image
-        working-directory: ./client
