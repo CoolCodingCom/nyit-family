@@ -48,7 +48,7 @@ export default function EditProfile({ id, name, avatar }) {
       }));
       handleClose();
     } catch (err) {
-      console.err(err);
+      console.error(err);
     }
   };
 
