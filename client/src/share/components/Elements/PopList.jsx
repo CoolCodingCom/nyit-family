@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Backdrop from "./Backdrop";
 import "./PopList.css";
+import { getImageSrc } from "../../../utils/util";
 
 const PopList = (props) => {
   return (
@@ -39,7 +40,7 @@ const PopList = (props) => {
               <li key={index}>
                 <NavLink className="peoplelist__container" to={`/${item.id}`}>
                   <div className="peoplelist__avadar">
-                    <img src={item.image} />
+                    <img src={getImageSrc(item.image)} />
                   </div>
                   <div className="peoplelist__profile">
                     <div className="peoplelist__profile-name">{item.name}</div>
