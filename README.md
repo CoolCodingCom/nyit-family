@@ -150,7 +150,7 @@ _Below is an example of how you can instruct your audience on installing and set
      },
      // Simple email service
      mailtrap: {
-       PASSWORD: "edbb47d4962e414565c07cb365f2ce38",
+       PASSWORD: "",
      },
      // Default ports for this app
      email: {
