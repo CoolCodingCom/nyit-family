@@ -1,7 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 
-const keys = require("../config/keys");
+// const keys = require("../config/keys");
 
 const {
   loginWithThirdParty,
@@ -19,7 +19,7 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    successRedirect: keys.frontend.FRONTEND_URL + "?google=true",
+    successRedirect: process.env.FRONTEND_URL + "?google=true",
   })
 );
 

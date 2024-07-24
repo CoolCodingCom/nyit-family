@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 const User = require("../../models/users");
-const keys = require("../../config/keys");
+// const keys = require("../../config/keys");
 
 const login = async (req, res, next) => {
   const { email, password } = req.body;
@@ -44,7 +44,7 @@ const login = async (req, res, next) => {
   try {
     token = jwt.sign(
       { userId: desiredUser.id, email: desiredUser.email },
-      keys.token.PRIVATE_KEY,
+      process.env.TOKEN_PRIVATE_KEY,
       { expiresIn: "1h" }
     );
   } catch (error) {

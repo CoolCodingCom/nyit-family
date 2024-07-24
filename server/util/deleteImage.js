@@ -1,9 +1,9 @@
 const fs = require("fs");
-const keys = require("../config/keys");
+// const keys = require("../config/keys");
 
 const deleteImage = (imageUrl) => {
   const url = new URL(imageUrl);
-  const backendUrl = keys.email.BACKEND_URL;
+  const backendUrl = process.env.EMAIL_BACKEND_URL;
 
   if (url.origin !== backendUrl) return;
   const path = url.pathname;

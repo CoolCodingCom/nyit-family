@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const keys = require("../../config/keys");
+// const keys = require("../../config/keys");
 
 const loginWithThirdParty = (req, res) => {
     const desiredUser = req.user;
@@ -8,7 +8,7 @@ const loginWithThirdParty = (req, res) => {
     try {
       token = jwt.sign(
         { userId: desiredUser._id, email: desiredUser.email },
-        keys.token.PRIVATE_KEY,
+        process.env.TOKEN_PRIVATE_KEY,
         { expiresIn: "1h" }
       );
     } catch (error) {

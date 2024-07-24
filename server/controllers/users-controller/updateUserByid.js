@@ -1,6 +1,6 @@
 const User = require("../../models/users");
 const deleteImage = require("../../util/deleteImage");
-const keys = require("../../config/keys");
+// const keys = require("../../config/keys");
 
 const updateUserById = async (req, res, next) => {
   const userId = req.params.uid;
@@ -17,7 +17,7 @@ const updateUserById = async (req, res, next) => {
 
     if (newImage) {
       deleteImage(user.image);
-      const backendUrl = keys.email.BACKEND_URL;
+      const backendUrl = process.env.EMAIL_BACKEND_URL;
       user.image = backendUrl + "/" + newImage.path;
     }
 

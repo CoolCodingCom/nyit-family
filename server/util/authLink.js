@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const keys = require("../config/keys");
+// const keys = require("../config/keys");
 
 async function sendAuthLink(message) {
 	const transporter = nodemailer.createTransport({
@@ -7,7 +7,7 @@ async function sendAuthLink(message) {
 		port: 587,
 		auth: {
 		  user: "api",
-		  pass: keys.mailtrap.PASSWORD
+		  pass: process.env.MAILTRAP_PASSWORD
 		}
 	  });
 	

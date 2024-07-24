@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require("uuid");
 
 const User = require("../../models/users");
-const keys = require("../../config/keys");
+// const keys = require("../../config/keys");
 const sendAuthLink = require("../../util/authLink");
 
 const signup = async (req, res, next) => {
@@ -60,11 +60,11 @@ const signup = async (req, res, next) => {
   }
 
   // this snippet of code is used for email confirmation and can't be tested in a CDE.
-  const backendUrl = keys.email.BACKEND_URL; // the test only works with local environment
-  const frontendurl = keys.frontend.FRONTEND_URL;
+  const backendUrl = process.env.EMAIL_BACKEND_URL; // the test only works with local environment
+  const frontendurl = process.env.FRONTEND_URL;
 
   const message = {
-    from: `"NYIT FAMILY" <${keys.email.SENDER}>`, // sender address
+    from: `"NYIT FAMILY" <${process.env.EMAIL_SENDER}>`, // sender address
     to: email,
     subject: "Email Confirmation",
     // text: "Happy Family?",

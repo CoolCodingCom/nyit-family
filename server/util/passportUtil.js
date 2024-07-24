@@ -1,6 +1,7 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const passport = require("passport");
-const keys = require("../config/keys");
+// const keys = require("../config/keys");
+
 const cookieSession = require("cookie-session");
 const { v4: uuidv4 } = require("uuid");
 
@@ -19,8 +20,8 @@ const passportUtil = (app) => {
   passport.use(
     new GoogleStrategy(
       {
-        clientID: keys.google.CLIEND_ID,
-        clientSecret: keys.google.CLIEND_SECRET,
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "http://localhost:5000/api/auth/google/callback",
       },
       async (accessToken, refreshToken, profile, cb) => {
