@@ -8,6 +8,7 @@ import Image from "react-bootstrap/Image";
 import { mapMonthname } from "../../utils/util";
 import { useUserInfo } from "../../share/context/user-info-context";
 import EditProfile from "./EditProfile";
+import { getImageSrc } from "../../utils/util";
 
 export default function ProfileHeader({
   profileInfo: { id, name, createdAt, image },
@@ -35,7 +36,7 @@ export default function ProfileHeader({
       <div className="profile__header__content">
         <div className="first__row">
           <div className="profile__avatar">
-            <Image src={image} fluid roundedCircle></Image>
+            <Image src={getImageSrc(image)} fluid roundedCircle></Image>
           </div>
           <div className="profile__operation">
             {userInfo.id === id && (

@@ -48,3 +48,14 @@ monthMap.set(11, "Dec");
 export function mapMonthname(monthIndex) {
   return monthMap.get(monthIndex);
 }
+
+export function getImageSrc(url) {
+  if (!url) return url;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  // Determine if the source is from google login or NYIT-family server or blob file (user upload preview)
+  if (url.startsWith("uploads")) {
+    return `${backendUrl}/${url}`;
+  } else {
+    return url;
+  }
+}

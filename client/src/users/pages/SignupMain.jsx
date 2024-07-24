@@ -4,12 +4,11 @@ import GoogleButton from "../components/GoogleButton";
 import { signUpUser } from "../../apis/user";
 
 export async function action({ request }) {
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const formData = await request.formData();
   const name = formData.get("fullname");
   const email = formData.get("email");
   const password = formData.get("password");
-  const image = `${backendUrl}/uploads/defaultAvadar.svg`;
+  const image = `uploads/defaultAvadar.svg`;
   try {
     const data = await signUpUser({ name, email, password, image });
     return redirect(`verification?email=${data.email}`);

@@ -24,7 +24,6 @@ const SearchBar = (props) => {
     } else {
       setUserList();
     }
-    console.log(userList);
   }, [searchInput]);
 
   const handleChange = (e) => {
