@@ -7,6 +7,8 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
+<a id="readme-top"></a>
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -25,8 +27,6 @@
   <p align="center">
     An awesome X (Twitter)-like website to better share and connect in our community!
     <br />
-    <!-- <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br /> -->
     <br />
     <a href="http://nyitfamily.site">View Website</a>
     ·
