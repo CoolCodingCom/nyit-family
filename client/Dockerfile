@@ -1,4 +1,4 @@
-FROM node:alpine:3.18 as build
+FROM node:alpine3.18 as build
 
 # build the app
 # ENV PORT=3000
