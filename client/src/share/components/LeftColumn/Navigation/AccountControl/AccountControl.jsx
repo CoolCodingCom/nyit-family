@@ -3,6 +3,7 @@ import AccountList from "./AccountLIst";
 
 import "./AccountControl.css";
 import { useUserInfo } from "../../../../context/user-info-context";
+import { getImageSrc } from "../../../../../utils/util";
 
 const AccountControl = (props) => {
   const { userInfo } = useUserInfo();
@@ -33,7 +34,7 @@ const AccountControl = (props) => {
       <button className="accountcontrol__button" onClick={showListHandler}>
         <div className="accountcontrol__avadar">
           {/* <img src={props.image} /> */}
-          <img src={userInfo.image} />
+          <img src={getImageSrc(userInfo.image)} />
         </div>
         {props.username && (
           <>

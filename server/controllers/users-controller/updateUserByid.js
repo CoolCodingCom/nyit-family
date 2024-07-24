@@ -17,8 +17,7 @@ const updateUserById = async (req, res, next) => {
 
     if (newImage) {
       deleteImage(user.image);
-      const backendUrl = process.env.EMAIL_BACKEND_URL;
-      user.image = backendUrl + "/" + newImage.path;
+      user.image = newImage.path;
     }
 
     const updatedUser = await user.save();
