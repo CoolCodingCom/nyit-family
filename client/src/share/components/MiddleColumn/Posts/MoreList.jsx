@@ -1,13 +1,15 @@
 import PopList from "../../Elements/PopList";
 
 import "./MoreList.css";
+import { useUserInfo } from "../../../context/user-info-context";
 
 const MoreList = (props) => {
-  const morelist = [
+  const { userInfo } = useUserInfo();
+  let morelist = [
     {
-      name: "Delete",
+      name: "button 1",
       onClickHandler: () => {
-        props.onDeleteShow();
+        console.log("button 1");
       },
     },
     {
@@ -16,13 +18,15 @@ const MoreList = (props) => {
         console.log("button 2");
       },
     },
-    {
-      name: "button 3",
-      onClickHandler: () => {
-        console.log("button 3");
-      },
-    },
   ];
+  if (userInfo.id === props.userId) {
+    morelist.push({
+      name: "Delete",
+      onClickHandler: () => {
+        props.onDeleteShow();
+      },
+    });
+  }
 
   return (
     <PopList
