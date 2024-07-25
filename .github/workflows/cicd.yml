@@ -3,8 +3,9 @@ on:
   workflow_dispatch: {}
   # activates the workflow when there is a push on the main branch
   push:
+    # temporarily not auto deploy
     branches:
-      - M-CICD-TEST
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest # the OS your job should run on

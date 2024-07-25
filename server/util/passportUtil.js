@@ -27,7 +27,6 @@ const passportUtil = (app) => {
       async (accessToken, refreshToken, profile, cb) => {
         // create new user and store the user into database or just fetch the user
         const email = profile._json.email;
-        console.log(profile);  // for debugging
 
         let existedUser;
         try {

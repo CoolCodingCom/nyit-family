@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const loginWithThirdParty = (req, res) => {
     const desiredUser = req.user;
-
+    console.log(desiredUser);  // for debugging
     let token;
     try {
       token = jwt.sign(
