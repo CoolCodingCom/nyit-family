@@ -12,6 +12,9 @@ const passportUtil = (app) => {
     cookieSession({
       keys: ["my_secret"],
       maxAge: 1000 * 60 * 60 * 24, // 1 day
+      httpOnly: true,
+      secure: false,   
+      sameSite: 'Lax'
     })
   );
   app.use(passport.initialize());
