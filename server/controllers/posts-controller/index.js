@@ -17,7 +17,10 @@ const getAllPosts = async (req, res) => {
 const getHomePosts = async (req, res) => {
   try {
     const homePosts = await Post.find({ parentPost: { $exists: false } })
-      .populate("userId")
+      .populate({
+        path: "userId",
+        select: "-password",
+      })
       .sort({
         createdAt: -1,
       });
@@ -31,7 +34,10 @@ const getPostByAuthor = async (req, res) => {
   try {
     const { id } = req.params;
     const authorPosts = await Post.find({ userId: id })
-      .populate("userId")
+      .populate({
+        path: "userId",
+        select: "-password",
+      })
       .sort({ createdAt: -1 });
     res.status(200).json({ posts: authorPosts });
   } catch (error) {

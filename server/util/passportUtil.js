@@ -21,7 +21,7 @@ const passportUtil = (app) => {
       {
         clientID: keys.google.CLIEND_ID,
         clientSecret: keys.google.CLIEND_SECRET,
-        callbackURL: "http://localhost:5000/api/auth/google/callback",
+        callbackURL: `${keys.email.BACKEND_URL}/api/auth/google/callback`,
       },
       async (accessToken, refreshToken, profile, cb) => {
         // create new user and store the user into database or just fetch the user
