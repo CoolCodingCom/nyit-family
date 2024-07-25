@@ -3,7 +3,7 @@ import googleIcon from "../../assets/google.svg";
 export default function GoogleButton({ customClass, children }) {
   const loginWithGoogleHandler = async () => {
     try {
-      window.location.href = `http://localhost:5000/api/auth/google`;
+      window.location.href = `${import.meta.env.VITE_BACKEND_URL}/api/auth/google`;
     } catch (err) {
       return err.message;
     }
