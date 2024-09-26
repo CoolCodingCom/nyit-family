@@ -10,6 +10,35 @@ import Pie from "../../Elements/Pie";
 import { useUserInfo } from "../../../context/user-info-context";
 import { getImageSrc } from "../../../../utils/util";
 
+
+const sendToOpenAI = async (input) => {
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content:
+            "Assumming you are a user of twitter, make a playful comment to the given content of post with no more than 200 words",
+        },
+        {
+          role: "user",
+          content: input,
+        },
+      ],
+      max_tokens: 60,
+    }),
+  });
+  const data = await response.json();
+  return data.choices[0].message.content;
+};
+
+
 const PostForm = () => {
   const [message, setMessage] = useState("");
   const [wrappedmMessage, setwrappedmMessage] = useState("");
@@ -71,10 +100,14 @@ const PostForm = () => {
     event.preventDefault();
 
     try {
+      
+      const conbinedMessage = await sendToOpenAI(message);
+      // console.log(completion.choices[0].message);
+
       const formData = new FormData();
       formData.append("userId", userInfo.id);
       formData.append("username", userInfo.name);
-      formData.append("content", message);
+      formData.append("content", conbinedMessage);
       mediaList.forEach((file) => formData.append("media", file));
 
       const response = await newPost(formData);

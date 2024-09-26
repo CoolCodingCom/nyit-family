@@ -1,26 +1,26 @@
 module.exports = {
   google: {
     CLIEND_ID:
-      "",
-    CLIEND_SECRET: "",
+      "966004257988-njq8ipuib0dgst6ia2lvi9ehpugd4ks9.apps.googleusercontent.com",
+    CLIEND_SECRET: "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",
   },
   mongoDB: {
-    MONGODB_USER: "",
-    MONGODB_PASSWORD: "",
-    MONGODB_DATABASE: "",
+    MONGODB_USER: "leconyit",
+    MONGODB_PASSWORD: "oxYmaTeZElwr6La8",
+    MONGODB_DATABASE: "nyit-family-dev",
   },
   token: {
-    PRIVATE_KEY: "",
+    PRIVATE_KEY: "leco_most_secure_secret",
   },
   mailtrap: {
-    PASSWORD: "",
+    PASSWORD: "edbb47d4962e414565c07cb365f2ce38",
   },
   email: {
-    BACKEND_URL: "",
-    SENDER: "",
-    RECEIVER: "",
+    BACKEND_URL: "https://5000-coolcodingco-nyitfamily-o5yloct3j1k.ws-us116.gitpod.io",
+    SENDER: "verification@nyitfamily.site",
+    RECEIVER: "txu4031@gmail.com",
   },
   frontend: {
-    FRONTEND_URL: "",
+    FRONTEND_URL: "https://5173-coolcodingco-nyitfamily-o5yloct3j1k.ws-us116.gitpod.io",
   },
 };

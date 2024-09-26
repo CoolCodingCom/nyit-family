@@ -140,6 +140,10 @@ const createPost = async (req, res) => {
   try {
     const { userId, username, content } = req.body;
     const media = req.files.map((file) => file.path);
+
+    // add ai comments for test
+    
+
     await Post.create({ userId, username, content, media });
     res.status(200).json({ message: "Post created successfully" });
   } catch (error) {
